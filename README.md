@@ -9,105 +9,132 @@ Année académique : 2025‑2026
 
 ---
 
-# 📌 1. Introduction
+# 🌍 1. Lien de Production
 
-Dans le cadre du cours de Développement 3, notre groupe doit réaliser un projet full‑stack.  
-Nous avons choisi de développer une **plateforme communautaire dédiée à une salle d’escalade**, permettant aux grimpeurs de :
-
-- consulter les blocs proposés,  
-- commenter et donner leur avis,  
-- suivre l’évolution et l’historique des ouvertures.
+➡️ **Application déployée :**  
+`https://maniak-forum.l1-6.ephec-ti.be`
 
 ---
 
-# 🧩 2. Contexte & Problématique
+# 📌 2. Description du Projet
 
-Les salles d’escalade renouvellent régulièrement leurs blocs, mais il manque souvent un espace centralisé permettant :
+Cette application web est une **plateforme communautaire dédiée à une salle d’escalade**, permettant aux grimpeurs de :
 
-- de consulter les blocs actuels et archivés,  
-- de visualiser des vidéos de la *bêta* (méthode optimale),  
-- de donner un avis ou un ressenti,  
-- de suivre l’historique des ouvertures,  
-- de créditer les ouvreurs,  
-- d’échanger entre grimpeurs via un espace communautaire.
+- consulter les blocs actuels et archivés,  
+- visualiser des vidéos de la bêta,  
+- commenter et noter les blocs,  
+- suivre l’historique des ouvertures,  
+- discuter via un forum intégré.
 
-🎯 **Notre projet vise à combler ce manque en proposant une plateforme moderne et intuitive.**
-
----
-
-# 🎯 3. Objectifs du Projet
-
-## 3.1 Objectif principal
-Développer une **application web** permettant de gérer, consulter et commenter les blocs d’une salle d’escalade.
-
-## 3.2 Objectifs secondaires
-- Associer à chaque bloc une difficulté, une description et une vidéo explicative.  
-- Permettre aux utilisateurs de laisser des commentaires et des avis.  
-- Proposer un forum général pour discuter de techniques ou d’événements.  
-- Mettre en place une base de données structurée et évolutive.  
-- Offrir une interface claire et agréable à utiliser.
+Ce projet est réalisé dans le cadre du cours **Développement 3** et constitue un projet **full‑stack** complet.
 
 ---
 
-# ⚙️ 4. Fonctionnalités Prévues
+# 🎯 3. Fonctionnalités Principales
 
-## 4.1 Gestion des blocs
-- Création, modification et suppression de blocs.  
-- Classification par difficulté.  
-- Ajout de vidéos (upload ou lien externe).  
-- Archivage automatique des anciens blocs.
+## 🧱 Gestion des blocs
+- Création, modification et suppression de blocs  
+- Classification par difficulté  
+- Ajout de vidéos (upload ou lien externe)  
+- Archivage automatique des anciens blocs  
 
-## 4.2 Interaction communautaire
-- Commentaires et avis sur les blocs.  
-- Système de notation.  
-- Forum général avec posts et réponses.
+## 💬 Interaction communautaire
+- Commentaires et avis  
+- Système de notation  
+- Forum général avec posts et réponses  
 
-## 4.3 Recherche & Navigation
-- Filtrage par difficulté.  
-- Recherche par nom, date ou ouvreur.  
-- Tri par popularité ou nouveauté.
+## 🔎 Recherche & Navigation
+- Filtrage par difficulté  
+- Recherche par nom, date ou ouvreur  
+- Tri par popularité ou nouveauté  
 
 ---
 
-# 🗄️ 5. Modèle de Données (Aperçu)
+# 🗄️ 4. Modèle de Données (Aperçu)
 
-Tables principales prévues :
-
-| Table         | Description |
-|---------------|-------------|
-| **Users**     | Informations des utilisateurs |
-| **Blocs**     | Nom, difficulté, description, vidéo, date |
-| **Comments**  | Commentaires liés aux blocs |
-| **Ratings**   | Notes et avis |
+| Table          | Description |
+|----------------|-------------|
+| **Users**      | Informations des utilisateurs |
+| **Blocs**      | Nom, difficulté, description, vidéo, date |
+| **Comments**   | Commentaires liés aux blocs |
+| **Ratings**    | Notes et avis |
 | **ForumPosts** | Messages du forum |
 | **ForumReplies** | Réponses aux messages |
-| **...** | ...|
-
+| **...** | ... |
 ---
 
-# 🛠️ 6. Technologies Utilisées
+# 🛠️ 5. Technologies Utilisées
 
-- **Backend :** Node.js,Express,TypeScript 
-- **Frontend :** React, Vite  
-- **Base de données :** ORM : Sequelize => Supabase 
-- **Gestion vidéo :** stockage local ou lien externe  
+- **Backend :** Node.js / Express / TypeScript
+- **Frontend :** React / Vite
+- **Base de données :** ORM : Sequelize => PostgreSQL (Supabase) 
+- **Déploiement :** Docker,Reverse proxy, Nginx, GitHub Actions  
 - **Outils :** Git, Docker, etc.
 
 ---
 
-# 💡 7. Justification du Choix du Sujet
+# 🚀 6. Démarrer le Projet
 
-Ce sujet a été retenu car il combine :
+Cette section explique comment installer et lancer l’application en local.
 
-- un besoin réel dans le milieu de l’escalade,  
-- une dimension communautaire intéressante,  
-- une gestion de données riche et variée,  
-- un défi technique motivant pour un projet de groupe,  
-- la possibilité de créer une interface visuellement attractive.
+## 📦 6.1 Prérequis
+
+Assurez-vous d’avoir installé :
+
+- Git  
+- Node.js  
+- npm
+
+## 📥 6.2 Cloner le projet
+
+```bash
+git clone https://github.com/JN-EPHEC/group-maniak-forum_2tl1.git
+cd group-maniak-forum_2tl1
+```
+
+## 📚 6.3 Installer les dépendances
+
+```bash
+npm install
+cd server
+npm install
+cd ../client
+npm install
+```
+
+## ⚙️ 6.4 Configuration
+
+Ne pas oublier les environnements !
+
+## ▶️ 6.5 Lancer l’application
+
+### Backend & Frontend via concurrently
+```bash
+npm run dev
+```
+
+L’application sera disponible à l’adresse :
+
+```
+http://localhost:5173
+```
+
+---
+
+# 📄 7. Rapport de Projet (REPORT.md)
+
+Le fichier **REPORT.md**, situé à la racine du dépôt, contient :
+
+- Le pitch de l’application  
+- L’explication du refactoring initial  
+- Le schéma d’infrastructure (Docker, Nginx, GitHub Actions…)  
+- Les Design Patterns utilisés  
+- La capture d’écran du coverage de tests  
+
+*(Ce contenu n’est pas repris dans le README pour respecter les consignes.)*
 
 ---
 
 # 🏁 8. Conclusion
 
-Ce projet vise à offrir une **plateforme complète et moderne pour les grimpeurs**, tout en permettant au groupe d’explorer des concepts avancés du développement web.  
-Il représente un bon équilibre entre **complexité technique**, **utilité réelle** et **créativité**.
+Ce projet vise à offrir une **plateforme moderne et complète pour les grimpeurs**, tout en permettant d’explorer des concepts avancés du développement web : architecture, base de données, CI/CD, déploiement Docker, et interactions communautaires.
