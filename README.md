@@ -81,14 +81,15 @@ Tables principales prévues :
 | **Ratings**   | Notes et avis |
 | **ForumPosts** | Messages du forum |
 | **ForumReplies** | Réponses aux messages |
+| **...** | ...|
 
 ---
 
 # 🛠️ 6. Technologies Utilisées
 
-- **Backend :** à définir  
-- **Frontend :** framework à définir  
-- **Base de données :** à définir  
+- **Backend :** Node.js,Express,TypeScript 
+- **Frontend :** React, Vite  
+- **Base de données :** ORM : Sequelize => Supabase 
 - **Gestion vidéo :** stockage local ou lien externe  
 - **Outils :** Git, Docker, etc.
 
