@@ -1,128 +1,112 @@
-# 🌟 — DEV3  — 
+# 🧗 Plateforme Communautaire d'Escalade  
+Projet Dev3 – Application Web  
+Année académique : 2025‑2026  
+Établissement : EPHEC – Louvain‑la‑Neuve  
 
-> Projet full‑stack en **TypeScript + Express**, utilisant **Sequelize** et une base SQL, avec une structure propre et modulaire.  
-> *(Cours DEV3 — TP3)*
-
----
-
-## HELLOOOO
-
-![Description du gif](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXNpaTJ0M3dkazlieW4xaXNoeWtkNjU3ZmV3Y3JkbmhwbndjaTZ3NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TYNOx4VEbFqQwamuY8/giphy.gif)
-
-J'explique en dessous le projet tout ça, ça sera normalement mis à jour petit à petit
-
-## 🚀 Fonctionnalités
-
-### Backend (API REST)
-- Serveur Express en TypeScript  
-- Architecture MVC modulaire  
-- ORM Sequelize (models, migrations)  
-- Base SQLite (ou autre selon config)  
-- Middlewares custom (logger, error handler…)  
-- Documentation API via Swagger  
-- Validation des données  
-- Gestion des erreurs centralisée  
-
-### Frontend (public/)
-- Pages HTML statiques  
-- Script JS consommant l’API  
-- Affichage dynamique des données  
-- Organisation claire des assets (images, scripts)
-
-
-## 📁 Arborescence du Projet
-
-```
-/client
-  ... (flemme de mettre a jour la bisous)
-/public
-  /groupes
-    /img
-  index.html
-  script.js
-
-/server
-  /src
-    /config
-    /controllers
-    /middlewares
-    /models
-    /routes
-    server.ts
-    database.sqlite
-    package.json
-    package-lock.json
-    tsconfig.json
-.gitignore
-
-```
+## 👥 Membres du groupe
+- Decrème Matthieu  
+- Junion Benjamin  
 
 ---
 
-## 📚 Documentation API (Swagger)
+# 📌 1. Introduction
 
-Swagger est disponible à l’URL :
+Dans le cadre du cours de Développement 3, notre groupe doit réaliser un projet full‑stack.  
+Nous avons choisi de développer une **plateforme communautaire dédiée à une salle d’escalade**, permettant aux grimpeurs de :
 
-```
-http://localhost:3000/api-docs
-```
-
----
-
-## ⚙️ Installation & Lancement
-
-### 1️⃣ Cloner le projet
-```bash
-git clone https://github.com/le_meilleur_github.git
-cd le_meilleur_github
-```
+- consulter les blocs proposés,  
+- commenter et donner leur avis,  
+- suivre l’évolution et l’historique des ouvertures.
 
 ---
 
-## 🗄️ Backend
+# 🧩 2. Contexte & Problématique
 
-### Installer les dépendances
-```bash
-npm install
-```
+Les salles d’escalade renouvellent régulièrement leurs blocs, mais il manque souvent un espace centralisé permettant :
 
-### Lancer le serveur
-```bash
-npm run start
-```
+- de consulter les blocs actuels et archivés,  
+- de visualiser des vidéos de la *bêta* (méthode optimale),  
+- de donner un avis ou un ressenti,  
+- de suivre l’historique des ouvertures,  
+- de créditer les ouvreurs,  
+- d’échanger entre grimpeurs via un espace communautaire.
 
----
-
-## 💻 Frontend
-
-Le frontend est statique et servi automatiquement depuis `/public`.
-Le second frontend est statique et servi automatiquement depuis `/public/groupes`.
-
-Accès via :
-
-```
-http://localhost:3000/
-```
-
-et via :
-
-```
-http://localhost:3000/groupes
-```
+🎯 **Notre projet vise à combler ce manque en proposant une plateforme moderne et intuitive.**
 
 ---
 
-## 🎯 Objectifs du TP3 (DEV3)
+# 🎯 3. Objectifs du Projet
 
-- Créer une API REST en TypeScript  
-- Utiliser Sequelize pour gérer la base de données  
-- Documenter l’API avec Swagger  
-- Servir un frontend statique consommant l’API  
-- Structurer un projet propre et scalable  
+## 3.1 Objectif principal
+Développer une **application web** permettant de gérer, consulter et commenter les blocs d’une salle d’escalade.
+
+## 3.2 Objectifs secondaires
+- Associer à chaque bloc une difficulté, une description et une vidéo explicative.  
+- Permettre aux utilisateurs de laisser des commentaires et des avis.  
+- Proposer un forum général pour discuter de techniques ou d’événements.  
+- Mettre en place une base de données structurée et évolutive.  
+- Offrir une interface claire et agréable à utiliser.
 
 ---
 
-## 👤 Auteur
+# ⚙️ 4. Fonctionnalités Prévues
 
-** EKSS — EPHEC — HE202579 **  
-> Projet réalisé dans le cadre du cours de DEV3.
+## 4.1 Gestion des blocs
+- Création, modification et suppression de blocs.  
+- Classification par difficulté.  
+- Ajout de vidéos (upload ou lien externe).  
+- Archivage automatique des anciens blocs.
+
+## 4.2 Interaction communautaire
+- Commentaires et avis sur les blocs.  
+- Système de notation.  
+- Forum général avec posts et réponses.
+
+## 4.3 Recherche & Navigation
+- Filtrage par difficulté.  
+- Recherche par nom, date ou ouvreur.  
+- Tri par popularité ou nouveauté.
+
+---
+
+# 🗄️ 5. Modèle de Données (Aperçu)
+
+Tables principales prévues :
+
+| Table         | Description |
+|---------------|-------------|
+| **Users**     | Informations des utilisateurs |
+| **Blocs**     | Nom, difficulté, description, vidéo, date |
+| **Comments**  | Commentaires liés aux blocs |
+| **Ratings**   | Notes et avis |
+| **ForumPosts** | Messages du forum |
+| **ForumReplies** | Réponses aux messages |
+
+---
+
+# 🛠️ 6. Technologies Utilisées
+
+- **Backend :** à définir  
+- **Frontend :** framework à définir  
+- **Base de données :** à définir  
+- **Gestion vidéo :** stockage local ou lien externe  
+- **Outils :** Git, Docker, etc.
+
+---
+
+# 💡 7. Justification du Choix du Sujet
+
+Ce sujet a été retenu car il combine :
+
+- un besoin réel dans le milieu de l’escalade,  
+- une dimension communautaire intéressante,  
+- une gestion de données riche et variée,  
+- un défi technique motivant pour un projet de groupe,  
+- la possibilité de créer une interface visuellement attractive.
+
+---
+
+# 🏁 8. Conclusion
+
+Ce projet vise à offrir une **plateforme complète et moderne pour les grimpeurs**, tout en permettant au groupe d’explorer des concepts avancés du développement web.  
+Il représente un bon équilibre entre **complexité technique**, **utilité réelle** et **créativité**.
