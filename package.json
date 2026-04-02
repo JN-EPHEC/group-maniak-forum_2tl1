@@ -24,9 +24,9 @@
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
-    "url": "https://github.com/JN-EPHEC/individual-EkssTV/issues"
+    "url": "https://github.com/JN-EPHEC/group-maniak-forum_2tl1"
   },
-  "homepage": "https://github.com/JN-EPHEC/individual-EkssTV#readme",
+  "homepage": "https://github.com/JN-EPHEC/group-maniak-forum_2tl1#readme",
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/supertest": "^7.2.0",

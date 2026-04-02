@@ -21,7 +21,7 @@ function App() {
   return (
     
     <div className="container mt-4">
-      <h1 className="text-center">Liste des Users</h1>
+      <h1 className="text-center">Liste des Users de fou</h1>
       <UserForm setData={setData} />
       <UserList data={data} setData={setData} />
 
