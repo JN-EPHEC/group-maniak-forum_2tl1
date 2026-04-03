@@ -200,6 +200,205 @@ Assurer la fiabilité du code via des tests automatisés.
 
 ---
 
+# 🧩 EPIC 7 — Refactoring du Projet Initial
+
+## 🎯 Description
+Adapter un projet existant, comprendre sa structure, corriger ses incohérences et le transformer en une base propre, maintenable et extensible.
+
+---
+
+## 🟦 User Story 7.1 — Analyse du code existant
+**En tant que** développeur backend  
+**Je veux** analyser la structure du projet initial  
+**Afin de** comprendre son fonctionnement et identifier les points à refactorer.
+
+### ✔️ Critères d’acceptation
+- Un document liste les problèmes identifiés (structure, duplication, logique, sécurité).
+- Les dépendances obsolètes sont repérées.
+- Les routes et modèles existants sont cartographiés.
+
+---
+
+## 🟦 User Story 7.2 — Nettoyage du code
+**En tant que** développeur  
+**Je veux** supprimer les fichiers inutiles, doublons et dead code  
+**Afin de** repartir sur une base saine.
+
+### ✔️ Critères d’acceptation
+- Aucun fichier inutile ne reste dans le repo.
+- Le projet compile et démarre après nettoyage.
+- Le code respecte une structure cohérente.
+
+---
+
+## 🟦 User Story 7.3 — Réorganisation en architecture MVC / Clean Architecture
+**En tant que** équipe  
+**Je veux** restructurer le backend en modules clairs (routes, controllers, services, models)  
+**Afin de** faciliter la maintenance et l’évolution.
+
+### ✔️ Critères d’acceptation
+- Les controllers ne contiennent plus de logique métier.
+- Les services centralisent la logique.
+- Les modèles sont isolés dans un dossier dédié.
+- Les routes sont regroupées par domaine.
+
+---
+
+# 🧩 EPIC 8 — Base de Données & ORM
+
+## 🎯 Description
+Mettre en place une base de données robuste, normalisée, versionnée via migrations et accessible via un ORM.
+
+---
+
+## 🟦 User Story 8.1 — Création du schéma de base de données
+**En tant que** développeur  
+**Je veux** définir les tables, relations et contraintes  
+**Afin de** structurer les données de l’application.
+
+### ✔️ Critères d’acceptation
+- Un schéma ERD est produit.
+- Les relations sont définies.
+- Les contraintes (PK, FK, unique, cascade) sont documentées.
+
+---
+
+## 🟦 User Story 8.2 — Mise en place des migrations
+**En tant que** développeur  
+**Je veux** créer des migrations versionnées  
+**Afin de** garantir la reproductibilité de la base.
+
+### ✔️ Critères d’acceptation
+- Chaque table possède une migration.
+- Les migrations peuvent être exécutées sur un serveur vierge.
+- Une commande permet de reset + seed la DB.
+
+---
+
+## 🟦 User Story 8.3 — Seeders de données
+**En tant que** équipe  
+**Je veux** générer des données de test  
+**Afin de** faciliter le développement et les tests.
+
+### ✔️ Critères d’acceptation
+- Des blocs, utilisateurs, commentaires et posts sont générés.
+- Les seeders peuvent être rejoués sans casser la DB.
+
+---
+
+# 🧩 EPIC 9 — API REST Backend
+
+## 🎯 Description
+Créer une API REST complète, sécurisée, documentée et conforme aux besoins du frontend.
+
+---
+
+## 🟦 User Story 9.1 — Routes CRUD pour les blocs
+**En tant que** frontend  
+**Je veux** accéder à des endpoints CRUD  
+**Afin de** gérer les blocs.
+
+### ✔️ Critères d’acceptation
+- GET /api/blocks  
+- GET /api/blocks/:id  
+- POST /api/blocks  
+- PUT /api/blocks/:id  
+- DELETE /api/blocks/:id  
+- Validation des inputs  
+- Gestion des erreurs cohérente
+
+---
+
+## 🟦 User Story 9.2 — Routes pour commentaires & notes
+**En tant que** utilisateur  
+**Je veux** poster des commentaires et notes  
+**Afin de** interagir avec la communauté.
+
+### ✔️ Critères d’acceptation
+- POST /api/blocks/:id/comments  
+- POST /api/blocks/:id/ratings  
+- GET /api/blocks/:id/comments  
+- GET /api/blocks/:id/ratings  
+
+---
+
+
+# 🧩 EPIC 10 — Authentification & Sécurité
+
+## 🎯 Description
+Gérer l’inscription, la connexion, les rôles et la sécurité de l’API.
+
+---
+
+## 🟦 User Story 10.1 — Authentification JWT
+**En tant que** utilisateur  
+**Je veux** me connecter via un token sécurisé  
+**Afin de** accéder aux fonctionnalités privées.
+
+### ✔️ Critères d’acceptation
+- POST /auth/register  
+- POST /auth/login  
+- Token JWT signé  
+- Expiration configurable  
+
+---
+
+## 🟦 User Story 10.2 — Middleware de protection
+**En tant que** backend  
+**Je veux** protéger certaines routes  
+**Afin de** empêcher les accès non autorisés.
+
+### ✔️ Critères d’acceptation
+- Middleware `authRequired`  
+- Middleware `roleRequired(admin)`  
+- Tests unitaires associés  
+
+---
+
+## 🟦 User Story 10.3 — Sécurité API
+**En tant que** équipe  
+**Je veux** sécuriser l’API  
+**Afin de** éviter les attaques courantes.
+
+### ✔️ Critères d’acceptation
+- Rate limiting  
+- Validation stricte des inputs  
+- Protection contre injections SQL  
+- CORS configuré  
+
+---
+
+# 🧩 EPIC 11 — Tests Backend
+
+## 🎯 Description
+Garantir la stabilité du backend via des tests unitaires et d’intégration.
+
+---
+
+## 🟦 User Story 11.1 — Tests unitaires des services
+**En tant que** développeur  
+**Je veux** tester les services  
+**Afin de** garantir la logique métier.
+
+### ✔️ Critères d’acceptation
+- Tests pour blocs, commentaires, forum, auth  
+- Mock de la DB  
+- Couverture minimale définie (ex : 60%)
+
+---
+
+## 🟦 User Story 11.2 — Tests d’intégration API
+**En tant que** équipe  
+**Je veux** tester les endpoints  
+**Afin de** garantir leur bon fonctionnement.
+
+### ✔️ Critères d’acceptation
+- Tests CRUD  
+- Tests auth  
+- Tests erreurs 400/401/404/500  
+
+---
+
 # 🏁 Conclusion
 
 Ces EPICS et User Stories définissent l’ensemble des fonctionnalités nécessaires pour construire une plateforme communautaire d’escalade complète, moderne et maintenable.  
