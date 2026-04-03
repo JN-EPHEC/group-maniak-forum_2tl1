@@ -13,13 +13,13 @@ Permettre aux ouvreurs et administrateurs de créer, modifier, supprimer et arch
 
 ## 🟦 User Story 1.1 — Création d’un bloc
 **En tant qu’** ouvreur  
-**Je veux** créer un nouveau bloc avec un nom, une difficulté, une description et une vidéo  
+**Je veux pouvoir** créer un nouveau bloc avec un nom, une difficulté, une description et une vidéo (optionnel)
 **Afin de** le rendre disponible aux grimpeurs.
 
 ### ✔️ Critères d’acceptation
-- Le formulaire doit contenir : nom, difficulté, description, vidéo (upload ou lien).
+- Le formulaire doit contenir : nom, difficulté, description, vidéo ou photo du bloc (upload ou lien).
 - Le bloc apparaît immédiatement dans la liste des blocs actifs.
-- Si un champ obligatoire manque, un message d’erreur apparaît.
+- Si un champ obligatoire manque, un message d’erreur apparaît (sauf pour la vidéo du bloc).
 
 ---
 
