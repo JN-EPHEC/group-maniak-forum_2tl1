@@ -31,7 +31,6 @@ Permettre aux ouvreurs et administrateurs de créer, modifier, supprimer et arch
 ### ✔️ Critères d’acceptation
 - L’utilisateur peut modifier tous les champs.
 - Les modifications sont visibles immédiatement.
-- L’historique des modifications est conservé (optionnel).
 
 ---
 
@@ -67,7 +66,7 @@ Permettre aux grimpeurs d’interagir entre eux via commentaires, avis et forum.
 ---
 
 ## 🟦 User Story 2.2 — Noter un bloc
-**En tant qu’** grimpeur  
+**En tant que** grimpeur  
 **Je veux** attribuer une note à un bloc  
 **Afin de** indiquer sa qualité ou sa difficulté ressentie.
 
@@ -166,8 +165,7 @@ Assurer un déploiement automatisé, stable et reproductible.
 
 ### ✔️ Critères d’acceptation
 - Le pipeline build → test → deploy doit être automatisé.
-- Le déploiement utilise SCP ou Docker Registry.
-- En cas d’erreur, un rollback est effectué.
+- Le déploiement utilise SCP.
 
 ---
 
