@@ -34,14 +34,14 @@ tbUsers.init(
         difficultyId:{
             type :DataTypes.INTEGER,
             references : {
-                model: "tbDifficulty",
+                model: "tbDifficulties",
                 key : "difficultyId"
             }
         },
         pictureId:{
             type :DataTypes.INTEGER,
             references : {
-                model: "tbProfilePicture",
+                model: "tbProfilePictures",
                 key : "pictureId"
             }
         },
@@ -56,6 +56,7 @@ tbUsers.init(
     {
         //les options de la table ici (model)
         sequelize, //need to pass the connection instance
+        freezeTableName: true,
         modelName: 'tbUsers',// Nom de la table 
     },
 );

@@ -1,39 +1,39 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class groupes extends Model {};
+class tbGyms extends Model {};
 
-groupes.init(
+tbGyms.init(
         {
         // Attributs ici
-        groupeId : {
+        gymId : {
             type : DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement:true
         },
-        nom:{
+        gymName :{
             type : DataTypes.STRING,
             allowNull: false,
         },
-        agence :{
+        gymAddress :{
             type : DataTypes.STRING,
             allowNull: false,
         },
-        actif :{
-            type : DataTypes.BOOLEAN,
-            allowNull: true,
+        gymSchedule :{
+            type : DataTypes.JSON,
+            allowNull: false,
         },
-        imageUrl: {
+        areaImageUrl: {
         type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: "./img/pasgroupe.jpeg"
+        allowNull: true,
         }
     },
     {
         //les options de la table ici (model)
         sequelize, //need to pass the connection instance
-        modelName: 'groupes',// Nom de la table 
+        freezeTableName: true,
+        modelName: 'tbGyms',// Nom de la table 
     },
 );
 
-export default groupes
+export default tbGyms

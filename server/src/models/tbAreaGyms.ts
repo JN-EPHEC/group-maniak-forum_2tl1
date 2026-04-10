@@ -1,34 +1,42 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class tbDifficulty extends Model {};
+class tbAreaGyms extends Model {};
 
-tbDifficulty.init(
+tbAreaGyms.init(
         {
         // Attributs ici
-        difficultyId : {
+        areaId : {
             type : DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement:true
         },
-        difficultyColorName :{
+        areaName :{
             type : DataTypes.STRING,
             allowNull: false,
         },
-        difficultyFrenchScale:{
+        areaDesc :{
             type : DataTypes.STRING,
             allowNull: false,
         },
-        difficultyVerminScale:{
-            type : DataTypes.STRING,
-            allowNull: false,
+        gymId:{
+            type :DataTypes.INTEGER,
+            references : {
+                model: "tbGyms",
+                key : "gymId"
+            }
+        },
+        areaImageUrl: {
+        type: DataTypes.STRING,
+        allowNull: true,
         }
     },
     {
         //les options de la table ici (model)
         sequelize, //need to pass the connection instance
-        modelName: 'tbDifficulty',// Nom de la table 
+        freezeTableName: true,
+        modelName: 'tbAreaGyms',// Nom de la table 
     },
 );
 
-export default tbDifficulty
+export default tbAreaGyms

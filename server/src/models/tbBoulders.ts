@@ -31,7 +31,7 @@ tbBoulders.init(
         difficultyId:{
             type :DataTypes.INTEGER,
             references : {
-                model: "tbDifficulty",
+                model: "tbDifficulties",
                 key : "difficultyId"
             }
         },
@@ -45,7 +45,7 @@ tbBoulders.init(
         areaId:{
             type :DataTypes.INTEGER,
             references : {
-                model: "tbAreaGym",
+                model: "tbAreaGyms",
                 key : "areaId"
             }
         },
@@ -57,6 +57,7 @@ tbBoulders.init(
     {
         //les options de la table ici (model)
         sequelize, //need to pass the connection instance
+        freezeTableName: true,
         modelName: 'tbBoulders',// Nom de la table 
     },
 );

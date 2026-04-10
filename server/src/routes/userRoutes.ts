@@ -1,5 +1,5 @@
 import express from 'express';
-import * as userControllers from "../controllers/userControllers.js";
+import * as tbUserControllers from "../controllers/tbUsersControllers.js";
 import { checkIdParam } from '../middlewares/checkIdParam.js';
 
 const router = express.Router()
@@ -14,7 +14,7 @@ const router = express.Router()
 *           200:
 *              description: Succès
 */
-router.get("/", userControllers.getAllUsers);
+router.get("/", tbUserControllers.getAllUsers);
 // ici je crée un user et je le met dans Users
 /**
 * @swagger
@@ -42,7 +42,7 @@ router.get("/", userControllers.getAllUsers);
  *       201:
  *         description: User créé
  */
-router.post("/", userControllers.postUsers);
+router.post("/", tbUserControllers.postUsers);
 // ici je supprime un user dans Users selon son id
 /**
  * @openapi
@@ -64,6 +64,6 @@ router.post("/", userControllers.postUsers);
  *         description: User introuvable
  */
 
-router.delete("/:id",checkIdParam,userControllers.deleteUsers);
+router.delete("/:id",checkIdParam,tbUserControllers.deleteUsers);
 
 export default router;

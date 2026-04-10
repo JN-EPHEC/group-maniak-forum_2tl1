@@ -33,6 +33,7 @@ tbComments.init(
     {
         //les options de la table ici (model)
         sequelize, //need to pass the connection instance
+        freezeTableName: true,
         modelName: 'tbComments',// Nom de la table 
     },
 );
