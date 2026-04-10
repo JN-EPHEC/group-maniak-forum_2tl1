@@ -1,21 +1,25 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class tbProfilePicture extends Model {};
+class tbDifficulties extends Model {};
 
-tbProfilePicture.init(
+tbDifficulties.init(
         {
         // Attributs ici
-        pictureId : {
+        difficultyId : {
             type : DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement:true
         },
-        pictureLink :{
+        difficultyColorName :{
             type : DataTypes.STRING,
             allowNull: false,
         },
-        pictureLegend :{
+        difficultyFrenchScale:{
+            type : DataTypes.STRING,
+            allowNull: false,
+        },
+        difficultyVerminScale:{
             type : DataTypes.STRING,
             allowNull: false,
         }
@@ -23,8 +27,9 @@ tbProfilePicture.init(
     {
         //les options de la table ici (model)
         sequelize, //need to pass the connection instance
-        modelName: 'tbProfilePicture',// Nom de la table 
+        freezeTableName: true,
+        modelName: 'tbDifficulties',// Nom de la table 
     },
 );
 
-export default tbProfilePicture
+export default tbDifficulties
