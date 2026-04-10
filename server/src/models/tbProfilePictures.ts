@@ -1,35 +1,31 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
+class tbProfilePictures extends Model {};
 
-/// User table (model)
-
-class users extends Model {}
-
-users.init(
-    {
+tbProfilePictures.init(
+        {
         // Attributs ici
-        id : {
+        pictureId : {
             type : DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement:true
         },
-        prenom :{
+        pictureLink :{
             type : DataTypes.STRING,
             allowNull: false,
         },
-        nom :{
+        pictureLegend :{
             type : DataTypes.STRING,
             allowNull: false,
-        },
-        
+        }
     },
     {
         //les options de la table ici (model)
         sequelize, //need to pass the connection instance
-        modelName: 'users',// Nom de la table 
+        freezeTableName: true,
+        modelName: 'tbProfilePictures',// Nom de la table 
     },
 );
 
-
-export default users
+export default tbProfilePictures

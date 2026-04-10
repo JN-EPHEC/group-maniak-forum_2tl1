@@ -1,39 +1,35 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class groupes extends Model {};
+class tbDifficulties extends Model {};
 
-groupes.init(
+tbDifficulties.init(
         {
         // Attributs ici
-        groupeId : {
+        difficultyId : {
             type : DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement:true
         },
-        nom:{
+        difficultyColorName :{
             type : DataTypes.STRING,
             allowNull: false,
         },
-        agence :{
+        difficultyFrenchScale:{
             type : DataTypes.STRING,
             allowNull: false,
         },
-        actif :{
-            type : DataTypes.BOOLEAN,
-            allowNull: true,
-        },
-        imageUrl: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: "./img/pasgroupe.jpeg"
+        difficultyVerminScale:{
+            type : DataTypes.STRING,
+            allowNull: false,
         }
     },
     {
         //les options de la table ici (model)
         sequelize, //need to pass the connection instance
-        modelName: 'groupes',// Nom de la table 
+        freezeTableName: true,
+        modelName: 'tbDifficulties',// Nom de la table 
     },
 );
 
-export default groupes
+export default tbDifficulties

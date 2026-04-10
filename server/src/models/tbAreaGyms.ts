@@ -1,46 +1,42 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class artistes extends Model {};
+class tbAreaGyms extends Model {};
 
-artistes.init(
+tbAreaGyms.init(
         {
         // Attributs ici
-        id : {
+        areaId : {
             type : DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement:true
         },
-        nation :{
+        areaName :{
             type : DataTypes.STRING,
             allowNull: false,
         },
-        nickname :{
+        areaDesc :{
             type : DataTypes.STRING,
             allowNull: false,
         },
-        sexe :{
-            type : DataTypes.STRING,
-            allowNull: false,
-        },
-        groupeId:{
+        gymId:{
             type :DataTypes.INTEGER,
             references : {
-                model: "groupes",
-                key : "groupeId"
+                model: "tbGyms",
+                key : "gymId"
             }
         },
-        imageUrl: {
+        areaImageUrl: {
         type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: "./img/pasgroupe.jpeg"
+        allowNull: true,
         }
     },
     {
         //les options de la table ici (model)
         sequelize, //need to pass the connection instance
-        modelName: 'artistes',// Nom de la table 
+        freezeTableName: true,
+        modelName: 'tbAreaGyms',// Nom de la table 
     },
 );
 
-export default artistes
+export default tbAreaGyms
