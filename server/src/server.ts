@@ -36,7 +36,7 @@ async function startServer() {
             try {
                
                 try {
-                await sequelize.sync({force:true});
+                await sequelize.sync();
                 console.log('la syncro est done')
                     try {
                     /// Lancement du Serveur
