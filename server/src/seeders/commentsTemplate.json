@@ -1,0 +1,14 @@
+[
+    {
+    "commentsId":1,
+    "commentsTxt":"je suis d'accord",
+    "userId":1,
+    "boulderId":1
+    },
+    {
+    "commentsId":2,
+    "commentsTxt":"je suis d'accord avec moi meme",
+    "userId":1,
+    "boulderId":1
+    }
+]
