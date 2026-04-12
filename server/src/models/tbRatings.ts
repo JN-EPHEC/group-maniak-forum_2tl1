@@ -15,9 +15,17 @@ tbRatings.init(
             type : DataTypes.INTEGER,
             allowNull: false,
         },
+        rateDifficulty :{
+            type : DataTypes.INTEGER,
+            allowNull: false,
+        },
         rateTxt :{
             type : DataTypes.STRING,
             allowNull: false,
+        },
+        videoLink :{
+            type : DataTypes.STRING,
+            allowNull: true,
         },
         userId:{
             type :DataTypes.INTEGER,
