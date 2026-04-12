@@ -2,7 +2,7 @@
     "userId": 1,
     "userMail": "exemple@template.com",
     "userLName": "Kim",
-    "userFname": "Minjeong",
+    "userFName": "Minjeong",
     "userPseudo": "Winter",
     "userPassHashed": "un_mdp_pas_vrm_hashed",
     "difficultyId": "1",

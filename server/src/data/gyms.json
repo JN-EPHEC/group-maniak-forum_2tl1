@@ -34,7 +34,7 @@
         "updatedAt":"2026-04-11 13:00:00+02"
     },
         {
-        "gymId": 1,
+        "gymId": 3,
         "gymName":"Maniak Forest (Padoue)",
         "gymAddress":"26 rue des Moines, 1190 Forest",
         "gymSchedule":{
@@ -51,7 +51,7 @@
         "updatedAt":"2026-04-11 13:00:00+02"
     },
         {
-        "gymId": 1,
+        "gymId": 4,
         "gymName":"Maniak Braine-l'Alleud",
         "gymAddress":"Collège Cardinal Mercier - 83 Chaussée de Mont-Saint-Jean, 1420 Braine-l'Alleud",
         "gymSchedule":{
