@@ -15,9 +15,12 @@ tbRatings.init(
             type : DataTypes.INTEGER,
             allowNull: false,
         },
-        rateDifficulty :{
-            type : DataTypes.INTEGER,
-            allowNull: false,
+        difficultyId:{
+            type :DataTypes.INTEGER,
+            references : {
+                model: "tbDifficulties",
+                key : "difficultyId"
+            }
         },
         rateTxt :{
             type : DataTypes.STRING,
