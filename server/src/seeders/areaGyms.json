@@ -1,0 +1,128 @@
+[
+    {
+        "areaId": 1,
+        "areaName": "Le Reta",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 2,
+        "areaName": "Le skatepark",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 3,
+        "areaName": "L’arche",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 4,
+        "areaName": "Le dévers compétition",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 5,
+        "areaName": "Angle compétition",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 6,
+        "areaName": "La boule",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 7,
+        "areaName": "La dalle 4m",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 8,
+        "areaName": "La fusée gauche",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 9,
+        "areaName": "La fusée droite",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 10,
+        "areaName": "Le pan 30 degrés",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 11,
+        "areaName": "La dalle",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 12,
+        "areaName": "Le toit du coin",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 13,
+        "areaName": "Le ptit 20e",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 14,
+        "areaName": "Le toit",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 15,
+        "areaName": "La flèche gauche",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 16,
+        "areaName": "La flèche droite",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 17,
+        "areaName": "Le changing corner",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    },
+    {
+        "areaId": 18,
+        "areaName": "La kilterboard",
+        "areaDesc": "A FAIRE",
+        "gymId": 1,
+        "areaImageUrl": null
+    }
+]

@@ -1,0 +1,70 @@
+[
+    {
+        "gymId": 1,
+        "gymName":"Maniak Charleroi",
+        "gymAddress":"100 Chaussée de Bruxelles, 6020 Dampremy",
+        "gymSchedule":{
+                "lundi": "10:00-22:30",
+                "mardi": "10:00-22:30",
+                "mercredi": "10:00-22:30",
+                "jeudi": "10:00-22:30",
+                "vendredi": "10:00-22:30",
+                "samedi": "10:00-20:00",
+                "dimanche": "10:00-20:00"
+                    },
+        "areaImageUrl":"https://www.maniak.club/web/image/431121-f5c37b32/charleroi.jpg",
+        "createdAt":"2026-04-11 13:00:00+02",
+        "updatedAt":"2026-04-11 13:00:00+02"
+    },
+    {
+        "gymId": 2,
+        "gymName":"Maniak Nivelles",
+        "gymAddress":"13, av. Jean Monnet - 1400 Nivelles",
+        "gymSchedule":{
+                "lundi": "10:00-22:30",
+                "mardi": "10:00-22:30",
+                "mercredi": "10:00-22:30",
+                "jeudi": "10:00-22:30",
+                "vendredi": "10:00-22:30",
+                "samedi": "10:00-20:00",
+                "dimanche": "10:00-20:00"
+                    },
+        "areaImageUrl":"https://www.maniak.club/web/image/431120-c4bc0898/nivelles.jpg",
+        "createdAt":"2026-04-11 13:00:00+02",
+        "updatedAt":"2026-04-11 13:00:00+02"
+    },
+        {
+        "gymId": 1,
+        "gymName":"Maniak Forest (Padoue)",
+        "gymAddress":"26 rue des Moines, 1190 Forest",
+        "gymSchedule":{
+                "lundi": "10:00-22:30",
+                "mardi": "10:00-22:30",
+                "mercredi": "10:00-22:30",
+                "jeudi": "10:00-22:30",
+                "vendredi": "10:00-22:30",
+                "samedi": "10:00-20:00",
+                "dimanche": "10:00-20:00"
+                    },
+        "areaImageUrl":"https://www.maniak.club/web/image/485481-66c44039/padoue2.jpg",
+        "createdAt":"2026-04-11 13:00:00+02",
+        "updatedAt":"2026-04-11 13:00:00+02"
+    },
+        {
+        "gymId": 1,
+        "gymName":"Maniak Braine-l'Alleud",
+        "gymAddress":"Collège Cardinal Mercier - 83 Chaussée de Mont-Saint-Jean, 1420 Braine-l'Alleud",
+        "gymSchedule":{
+                    "lundi": "16:30-22:30",
+                    "mardi": "16:30-22:30",
+                    "mercredi": "16:30-22:30",
+                    "jeudi": "16:30-22:30",
+                    "vendredi": null,
+                    "samedi": null,
+                    "dimanche": "10:00-18:00"
+                    },
+        "areaImageUrl":"https://www.maniak.club/web/image/431119-38e7f59a/braine.jpg",
+        "createdAt":"2026-04-11 13:00:00+02",
+        "updatedAt":"2026-04-11 13:00:00+02"
+    }
+]
