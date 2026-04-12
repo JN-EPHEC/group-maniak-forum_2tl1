@@ -2,7 +2,10 @@ import express from 'express';
 import type { Request,Response } from "express";
 import userRoutes from './userRoutes.js';
 import apiTestJWT from "./apiTestJWT.js";
-import apiUser from "./apiUser.js"
+import apiUser from "./apiUser.js";
+import apiDifficulties from './apiDifficulties.js';
+import apiGyms from './apiGyms.js'
+
 const router = express.Router()
 //Racine
 router.get("/", (req : Request,res:Response) => {
@@ -10,6 +13,8 @@ router.get("/", (req : Request,res:Response) => {
     console.log(typeof(req),typeof(res));
 });
 //Redirection
+router.use("/gyms",apiGyms)
+router.use("/difficulties",apiDifficulties);
 router.use('/users',userRoutes);
 router.use('/auth',apiTestJWT);
 router.use('/profile',apiUser)
