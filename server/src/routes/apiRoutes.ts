@@ -5,7 +5,7 @@ import apiTestJWT from "./apiTestJWT.js";
 import apiUser from "./apiUser.js";
 import apiDifficulties from './apiDifficulties.js';
 import apiGyms from './apiGyms.js'
-
+import apiAreaGyms from './apiAreaGyms.js'
 const router = express.Router()
 //Racine
 router.get("/", (req : Request,res:Response) => {
@@ -15,6 +15,7 @@ router.get("/", (req : Request,res:Response) => {
 //Redirection
 router.use("/gyms",apiGyms)
 router.use("/difficulties",apiDifficulties);
+router.use("/areagyms",apiAreaGyms);
 router.use('/users',userRoutes);
 router.use('/auth',apiTestJWT);
 router.use('/profile',apiUser)
