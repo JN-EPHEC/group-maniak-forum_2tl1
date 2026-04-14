@@ -8,7 +8,8 @@ import apiGyms from './apiGyms.js'
 import apiAreaGyms from './apiAreaGyms.js';
 import apiBoulders from './apiBoulders.js';
 import apiRatings from './apiRatings.js';
-import apiComments from "./apiComments.js"
+import apiComments from "./apiComments.js";
+import apiReplies from "./apiReplies.js";
 const router = express.Router()
 //Racine
 router.get("/", (req : Request,res:Response) => {
@@ -16,6 +17,7 @@ router.get("/", (req : Request,res:Response) => {
     console.log(typeof(req),typeof(res));
 });
 //Redirection
+router.use('/replies',apiReplies)
 router.use('/comments',apiComments);
 router.use("/ratings",apiRatings);
 router.use("/gyms",apiGyms);
