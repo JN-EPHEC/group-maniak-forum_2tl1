@@ -71,11 +71,10 @@ import {
     // -------------------------
     // REPLIES (self-relation on comments)
     // -------------------------
+tbReplies.belongsTo(tbComments, {foreignKey: "commentsId", as: "parentComment" });
+tbReplies.belongsTo(tbComments, { foreignKey: "commentsrepliesId", as: "childComment" });
+tbComments.hasMany(tbReplies, { foreignKey: "commentsId", as: "replies" });
+tbComments.hasMany(tbReplies, { foreignKey: "commentsrepliesId", as: "isReplyOf" });
 
-    tbReplies.belongsTo(tbComments, { foreignKey: "commentsId", as: "comment" });
-    tbReplies.belongsTo(tbComments, { foreignKey: "commentsrepliesId", as: "reply" });
-
-    tbComments.hasMany(tbReplies, { foreignKey: "commentsId", as: "replies" });
-    tbComments.hasMany(tbReplies, { foreignKey: "commentsrepliesId", as: "parentReplies" });
 
 

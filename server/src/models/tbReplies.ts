@@ -4,23 +4,22 @@ import sequelize from "../config/database.js";
 class tbReplies extends Model {};
 
 tbReplies.init(
+    
         {
-        commentsId:{
-            type :DataTypes.INTEGER,
+        replyId: {
+            type: DataTypes.INTEGER,
             primaryKey: true,
-            references : {
-                model: "tbComments",
-                key : "commentsId"
-            }
+            autoIncrement: true
         },
-        commentsrepliesId:{
-            type :DataTypes.INTEGER,
-            primaryKey: true,
-            references : {
-                model: "tbComments",
-                key : "commentsId"
-            }
+        commentsId: {
+            type: DataTypes.INTEGER,
+            references: { model: "tbComments", key: "commentsId" }
+        },
+        commentsrepliesId: {
+            type: DataTypes.INTEGER,
+            references: { model: "tbComments", key: "commentsId" }
         }
+
     },
     {
         //les options de la table ici (model)
