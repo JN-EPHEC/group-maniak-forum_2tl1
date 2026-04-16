@@ -12,14 +12,17 @@ tbDifficulties.init(
             autoIncrement:true
         },
         difficultyColorName :{
+            unique:true,
             type : DataTypes.STRING,
             allowNull: false,
         },
         difficultyFrenchScale:{
+            unique:true,
             type : DataTypes.STRING,
             allowNull: false,
         },
         difficultyVerminScale:{
+            unique:true,
             type : DataTypes.STRING,
             allowNull: false,
         }

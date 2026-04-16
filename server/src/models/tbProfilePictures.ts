@@ -13,6 +13,7 @@ tbProfilePictures.init(
         },
         pictureLink :{
             type : DataTypes.STRING,
+            unique:true,
             allowNull: false,
         },
         pictureLegend :{

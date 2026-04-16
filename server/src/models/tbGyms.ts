@@ -12,6 +12,7 @@ tbGyms.init(
             autoIncrement:true
         },
         gymName :{
+            unique:true,
             type : DataTypes.STRING,
             allowNull: false,
         },
@@ -25,6 +26,7 @@ tbGyms.init(
         },
         areaImageUrl: {
         type: DataTypes.STRING,
+        unique:true,
         allowNull: true,
         }
     },
