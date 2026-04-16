@@ -17,6 +17,7 @@ tbBoulders.init(
         },
         boulderLink :{
             type : DataTypes.STRING,
+            unique:true,
             allowNull: true,
         },
         boulderReleaseDate :{
@@ -51,6 +52,7 @@ tbBoulders.init(
         },
         boulderImageUrl: {
         type: DataTypes.STRING,
+        unique:true,
         allowNull: true,
         }
     },

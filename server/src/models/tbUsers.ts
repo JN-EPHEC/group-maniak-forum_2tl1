@@ -13,6 +13,7 @@ tbUsers.init(
         },
         userMail :{
             type : DataTypes.STRING,
+            unique:true,
             allowNull: false,
         },
         userLName :{
@@ -25,18 +26,12 @@ tbUsers.init(
         },
         userPseudo :{
             type : DataTypes.STRING,
+            unique:true,
             allowNull: false,
         },
         userPassHashed :{
             type : DataTypes.STRING,
             allowNull: false,
-        },
-        difficultyId:{
-            type :DataTypes.INTEGER,
-            references : {
-                model: "tbDifficulties",
-                key : "difficultyId"
-            }
         },
         pictureId:{
             type :DataTypes.INTEGER,

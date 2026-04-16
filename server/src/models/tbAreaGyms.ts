@@ -13,6 +13,7 @@ tbAreaGyms.init(
         },
         areaName :{
             type : DataTypes.STRING,
+            unique:true,
             allowNull: false,
         },
         areaDesc :{
@@ -27,6 +28,7 @@ tbAreaGyms.init(
             }
         },
         areaImageUrl: {
+        unique:true,
         type: DataTypes.STRING,
         allowNull: true,
         }

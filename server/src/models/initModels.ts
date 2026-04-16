@@ -11,7 +11,8 @@ export async function initModels() {
     await import("./tbBoulders.js");    
     await import("./tbComments.js");    
     await import("./tbRatings.js");     
-    await import("./tbReplies.js");     
+    await import("./tbReplies.js");
+    await import("./tbDifficultyUsers.js")   ; 
 
 
     await import("../relations/relations.js");

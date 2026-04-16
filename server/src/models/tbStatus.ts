@@ -12,6 +12,7 @@ tbStatus.init(
             autoIncrement:true
         },
         statusName :{
+            unique: true,
             type : DataTypes.STRING,
             allowNull: false,
         }

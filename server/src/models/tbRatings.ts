@@ -13,6 +13,7 @@ tbRatings.init(
         },
         rateNote :{
             type : DataTypes.INTEGER,
+            validate : {min:0,max:10},
             allowNull: false,
         },
         difficultyId:{

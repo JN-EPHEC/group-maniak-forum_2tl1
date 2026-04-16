@@ -8,14 +8,12 @@ import {
     tbBoulders,
     tbComments,
     tbRatings,
-    tbReplies
+    tbReplies,
+    tbDifficultyUsers
 } from "../models/index";
     // -------------------------
     // USERS
     // -------------------------
-
-    tbUsers.belongsTo(tbDifficulties, { foreignKey: "difficultyId", as: "difficulty" });
-    tbDifficulties.hasMany(tbUsers, { foreignKey: "difficultyId", as: "users" });
 
     tbUsers.belongsTo(tbProfilePictures, { foreignKey: "pictureId", as: "profilePicture" });
     tbProfilePictures.hasMany(tbUsers, { foreignKey: "pictureId", as: "users" });
@@ -75,6 +73,16 @@ tbReplies.belongsTo(tbComments, {foreignKey: "commentsId", as: "parentComment" }
 tbReplies.belongsTo(tbComments, { foreignKey: "commentsrepliesId", as: "childComment" });
 tbComments.hasMany(tbReplies, { foreignKey: "commentsId", as: "replies" });
 tbComments.hasMany(tbReplies, { foreignKey: "commentsrepliesId", as: "isReplyOf" });
+
+   // -------------------------
+    // DIFFICULTY USERS 
+    // -------------------------
+tbUsers.hasMany(tbDifficultyUsers, { foreignKey: "userId", as: "difficultyUsers" });
+tbDifficultyUsers.belongsTo(tbUsers, { foreignKey: "userId", as: "user" });
+
+tbDifficulties.hasMany(tbDifficultyUsers, { foreignKey: "difficultyId", as: "difficultyUsers" });
+tbDifficultyUsers.belongsTo(tbDifficulties, { foreignKey: "difficultyId", as: "difficulty" });
+
 
 
 

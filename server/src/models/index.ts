@@ -10,5 +10,6 @@ export { default as tbBoulders } from "./tbBoulders";
 export { default as tbComments } from "./tbComments";
 export { default as tbRatings } from "./tbRatings";
 export { default as tbReplies } from "./tbReplies";
+export {default as tbDifficultyUsers} from "./tbDifficultyUsers";
 
 
