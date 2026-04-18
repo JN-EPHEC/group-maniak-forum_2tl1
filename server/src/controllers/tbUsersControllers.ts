@@ -61,6 +61,29 @@ export const getUserbyPk = async (req:Request,res: Response) =>{
         res.status(500).json({ error: (error as any).message })
     }
 };
+
+export const getUserbyStatus = async (req:Request,res: Response) =>{
+    try {
+        const id = req.params.id as string;
+        const user = await tbUsers.findAll({
+            where:{statusId:id},
+            include: [{model: tbDifficultyUsers,
+            as: "averageDifficultiy",
+            attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]},
+            {
+            model: tbProfilePictures,
+            as: "profilePicture",
+            attributes: ["pictureId","pictureLink","pictureLegend"]
+            },{
+            model: tbStatus,
+            as: "status",
+            attributes: ["statusId","statusName"]
+            }]});
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ error: (error as any).message })
+    }
+};
 export const postUsers = async (req:Request,res:Response) => {
     postElement(req,res,tbUsers)
 };

@@ -57,8 +57,8 @@ export const getRepliesbyComments = async (req:Request,res: Response) =>{
     }
 };
 export const postReplies = async (req:Request,res:Response) => {
-    postElement(req,res,tbComments)
+    postElement(req,res,tbReplies)
 };
 export const deleteReplies = async (req:Request,res:Response)=>{
-    delElement(req,res,tbComments)
+    delElement(req,res,tbReplies)
 };
