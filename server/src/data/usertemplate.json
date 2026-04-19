@@ -1,0 +1,11 @@
+[{
+    "userId": 1,
+    "userMail": "exemple@template.com",
+    "userLName": "Kim",
+    "userFName": "Minjeong",
+    "userPseudo": "Winter",
+    "userPassHashed": "un_mdp_pas_vrm_hashed",
+    "difficultyId": "1",
+    "pictureId": "1",
+    "statusId": "1"
+}]

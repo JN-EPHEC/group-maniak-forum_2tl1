@@ -1,32 +1,58 @@
-import { useState, useEffect } from 'react';
-import './App.css';
+import CreationAboutUs from "./assets/components/aboutUsPage/creationAboutUs";
+import CreationPageAccueil from "./assets/components/pageAccueil/creationPAgeAccueil";
+import { useState } from "react";
+import { PageContext } from "./PageContext";
+import CreationPageMonProfil from "./assets/components/profilPage/creationPageMonProfil";
+import CreationWeekBoulder from "./assets/components/weekBoulder/creationWeekBoulder";
 
-//Fonctions utilisées
-
-import loadData from './utils/loadData.tsx';
-//Components
-import UserForm from "./components/UserForm";
-import UserList from './components/UserList.tsx';
-
-//Définition de d'un interface User pour le typage
-import type { User } from './types/user.tsx';
-
-function App() {
-  const [data, setData] = useState<User[]>([]);
-
-// 2. Appel API au montage du composant
-  useEffect(() => {
-    loadData(setData);
-  }, []);
+function App(){
+  const [page, setPage] = useState("home");
+  if(page === "aboutUs") {
+    return (
+      <div>
+        <PageContext.Provider value={setPage}>
+          <CreationAboutUs>
+          
+          </CreationAboutUs>
+        </PageContext.Provider>
+        
+      </div>
+    );
+  }
+  if(page === "Profil") {
+    return (
+      <div>
+        <PageContext.Provider value={setPage}>
+          <CreationPageMonProfil>
+          
+          </CreationPageMonProfil>
+        </PageContext.Provider>
+        
+      </div>
+    );
+  }
+  if(page === "blocSemaine") {
+    return (
+      <div>
+        <PageContext.Provider value={setPage}>
+          <CreationWeekBoulder>
+          
+          </CreationWeekBoulder>
+        </PageContext.Provider>
+        
+      </div>
+    );
+  }
   return (
-    
-    <div className="container mt-4">
-      <h1 className="text-center">Liste des Users test</h1>
-      <UserForm setData={setData} />
-      <UserList data={data} setData={setData} />
-
+    <div>
+      <PageContext.Provider value={setPage}>
+        <CreationPageAccueil>
+        </CreationPageAccueil>
+      </PageContext.Provider>
+      
     </div>
-  );
+  )
+  
 }
 
-export default App
+export default App;
