@@ -25,7 +25,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "client/dist/*"
-          target: "/home/ekss/web/www"
+          target: "/home/ben/maniak-forum/front"
           port : ${{ secrets.SSH_PORT }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           strip_components: 2
