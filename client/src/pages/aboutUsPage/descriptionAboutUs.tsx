@@ -30,7 +30,7 @@ function DescriptionAboutUs(){
         <div id="equipeDev">
             <h1>Notre équipe de développeurs</h1>
             <div id="rowBen">
-                <img id="idPhotoBen" src="./img/Benjamin_bloc.jpg" alt="Benjamin"/>
+                <img id="idPhotoBen" src="./img/Benjamin_bloc.jpg" alt="Benjamin" loading="lazy"/>
                 <div id="idDescriBen">
                 <p><strong> Benjamin</strong> est un grimpeur confirmé depuis quelques années maintenant.</p>
                 <p>Polyvalent et surtout interessé par la grimpe en voie, il a pu exploiter ses compétences pour en tirer le meilleur</p>
@@ -41,7 +41,7 @@ function DescriptionAboutUs(){
             </div>
 
             <div id="rowMatt">
-                <img id="idPhotoMatt" src="./img/Matthieu_bloc.jpg" alt="Matthieu"/>
+                <img id="idPhotoMatt" src="./img/Matthieu_bloc.jpg" alt="Matthieu" loading="lazy"/>
                 <div id="idDescriMatt">
                 <p><strong> Matthieu</strong> est encore un jeune grimpeur mais n'est pas moins assidus</p>
 
