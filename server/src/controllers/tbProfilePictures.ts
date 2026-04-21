@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { tbProfilePictures } from "../models";
-import { postElement,getAll,getByPk,delElement } from "../utils/simpleControllers";
+import { tbProfilePictures } from "../models/index.js";
+import { postElement,getAll,getByPk,delElement } from "../utils/simpleControllers.js";
 // GET ALL ProfilePictures
 export const getAllProfilePictures = async (req : Request,res : Response ) =>{
     getAll(req,res,tbProfilePictures);

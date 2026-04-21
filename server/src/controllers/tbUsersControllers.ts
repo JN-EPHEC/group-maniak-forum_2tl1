@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { tbUsers,tbDifficultyUsers,tbStatus,tbProfilePictures,tbDifficulties } from "../models";
-import { postElement,delElement } from "../utils/simpleControllers";
+import { tbUsers,tbDifficultyUsers,tbStatus,tbProfilePictures,tbDifficulties } from  "../models/index.js";
+import { postElement,delElement } from "../utils/simpleControllers.js";
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {

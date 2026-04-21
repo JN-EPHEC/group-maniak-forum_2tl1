@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { tbDifficulties } from "../models";
-import { postElement,getAll,getByPk,delElement } from "../utils/simpleControllers";
+import { tbDifficulties } from  "../models/index.js";
+import { postElement,getAll,getByPk,delElement } from "../utils/simpleControllers.js";
 // GET ALL Difficulties
 export const getAllDifficulties = async (req : Request,res : Response ) =>{
     getAll(req,res,tbDifficulties);

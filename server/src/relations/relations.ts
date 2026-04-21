@@ -10,7 +10,7 @@ import {
     tbRatings,
     tbReplies,
     tbDifficultyUsers
-} from "../models/index";
+} from "../models/index.js";
     // -------------------------
     // USERS
     // -------------------------

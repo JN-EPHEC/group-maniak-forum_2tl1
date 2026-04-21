@@ -1,5 +1,5 @@
 import express from 'express';
-import * as tbRatings from "../controllers/tbRatingsControllers";
+import * as tbRatings from "../controllers/tbRatingsControllers.js";
 
 const router = express.Router()
 /**

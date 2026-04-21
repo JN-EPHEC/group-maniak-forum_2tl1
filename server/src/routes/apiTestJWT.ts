@@ -1,7 +1,7 @@
 import express from 'express';
 import type { Request,Response,NextFunction,ErrorRequestHandler} from "express";
 import jwt from "jsonwebtoken";
-import { demoUser,createAccessToken,createRefreshToken } from '../controllers/jwt';
+import { demoUser,createAccessToken,createRefreshToken } from '../controllers/jwt.js';
 
 const router = express.Router()
 

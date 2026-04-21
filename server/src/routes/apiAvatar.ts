@@ -1,6 +1,6 @@
 
 import express from 'express';
-import * as tbProfilePictures from "../controllers/tbProfilePictures";
+import * as tbProfilePictures from "../controllers/tbProfilePictures.js";
 
 const router = express.Router()
 

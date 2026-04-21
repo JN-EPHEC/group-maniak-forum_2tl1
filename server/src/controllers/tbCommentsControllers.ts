@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { tbUsers,tbComments,tbBoulders,tbAreaGyms,tbReplies} from "../models";
-import { postElement,delElement } from "../utils/simpleControllers";
+import { tbUsers,tbComments,tbBoulders,tbAreaGyms,tbReplies} from  "../models/index.js";
+import { postElement,delElement } from "../utils/simpleControllers.js";
 import { Op, Sequelize } from "sequelize"
 
 export const getAllComments = async (req : Request,res : Response ) =>{
