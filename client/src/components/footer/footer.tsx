@@ -1,4 +1,4 @@
-import { usePage } from "../../../PageContext"
+import { usePage } from "../../PageContext"
 
 function Footer(){
    const setPage = usePage();
@@ -10,7 +10,7 @@ function Footer(){
         <div id="copyrightTextFooter">
             Ce site web a été réalisé par JUNION Benjamin et DECREME Matthieu. {"\n"}
             Toute les autorisations nécessaire aux droits d'auteur ont été obtenue.
-        </div>
+        </div> 
         <button id="aboutUs" onClick={() => setPage("aboutUs")}> A propos </button>
     </div>
    )    

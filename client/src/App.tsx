@@ -1,8 +1,8 @@
-import CreationAboutUs from "./assets/components/aboutUsPage/creationAboutUs";
-import CreationPageAccueil from "./assets/components/pageAccueil/creationPAgeAccueil";
+import CreationAboutUs from "./pages/aboutUsPage/creationAboutUs";
+import CreationPageAccueil from "./pages/homePage/creationPAgeAccueil";
 import { useState } from "react";
 import { PageContext } from "./PageContext";
-import CreationPageMonProfil from "./assets/components/profilPage/creationPageMonProfil";
+import CreationPageMonProfil from "./pages/profilePage/creationPageMonProfil";
 import CreationWeekBoulder from "./assets/components/weekBoulder/creationWeekBoulder";
 
 function App(){
