@@ -3,7 +3,7 @@ import CreationPageAccueil from "./pages/homePage/creationPAgeAccueil";
 import { useState } from "react";
 import { PageContext } from "./PageContext";
 import CreationPageMonProfil from "./pages/profilePage/creationPageMonProfil";
-import CreationWeekBoulder from "./assets/components/weekBoulder/creationWeekBoulder";
+import CreationWeekBoulder from "./pages/weekBoulderPage/creationWeekBoulder";
 
 function App(){
   const [page, setPage] = useState("home");
