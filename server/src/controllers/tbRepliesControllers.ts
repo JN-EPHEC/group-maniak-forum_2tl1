@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { tbUsers,tbComments,tbReplies} from "../models";
-import { postElement,delElement } from "../utils/simpleControllers";
+import { tbUsers,tbComments,tbReplies} from  "../models/index.js";
+import { postElement,delElement } from "../utils/simpleControllers.js";
 
 export const getAllReplies = async (req : Request,res : Response ) =>{
     try {

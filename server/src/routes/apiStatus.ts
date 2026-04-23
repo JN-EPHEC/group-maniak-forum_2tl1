@@ -1,5 +1,5 @@
 import express from 'express';
-import * as tbStatus from "../controllers/tbStatusControllers"
+import * as tbStatus from "../controllers/tbStatusControllers.js"
 const router = express.Router()
 /**
  * @swagger

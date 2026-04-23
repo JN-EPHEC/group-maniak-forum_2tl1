@@ -1,5 +1,5 @@
-import Footer from "../template/footer"
-import ToolBar from "../template/toolbar"
+import Footer from "../../components/footer/footer"
+import ToolBar from "../../components/toolBar/toolbar"
 import DescriptionAboutUs from "./descriptionAboutUs"
 
 function CreationAboutUs(){

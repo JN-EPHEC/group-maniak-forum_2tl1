@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { tbAreaGyms,tbGyms } from "../models";
-import { postElement,delElement } from "../utils/simpleControllers";
+import { tbAreaGyms,tbGyms } from "../models/index.js";
+import { postElement,delElement } from "../utils/simpleControllers.js";
 // GET ALL Difficulties
 export const getAllAreaGyms = async (req : Request,res : Response ) =>{
      try {

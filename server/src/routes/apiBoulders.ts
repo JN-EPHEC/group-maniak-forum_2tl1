@@ -1,5 +1,5 @@
 import express from 'express';
-import * as tbBoulders from "../controllers/tbBouldersControllers";
+import * as tbBoulders from "../controllers/tbBouldersControllers.js";
 
 const router = express.Router()
 /**

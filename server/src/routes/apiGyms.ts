@@ -1,5 +1,5 @@
 import express from 'express';
-import * as tbGymControllers from "../controllers/tbGymControllers";
+import * as tbGymControllers from "../controllers/tbGymControllers.js";
 
 const router = express.Router()
 /**

@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { tbStatus } from "../models";
-import { postElement,getAll,getByPk,delElement } from "../utils/simpleControllers";
+import { tbStatus } from  "../models/index.js";
+import { postElement,getAll,getByPk,delElement } from "../utils/simpleControllers.js";
 // GET ALL status
 export const getAllstatus = async (req : Request,res : Response ) =>{
     getAll(req,res,tbStatus);

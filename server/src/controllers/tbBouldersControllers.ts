@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { tbUsers,tbDifficulties,tbBoulders,tbAreaGyms,tbGyms} from "../models";
-import { postElement,delElement } from "../utils/simpleControllers";
+import { tbUsers,tbDifficulties,tbBoulders,tbAreaGyms,tbGyms} from  "../models/index.js";
+import { postElement,delElement } from "../utils/simpleControllers.js";
 
 export const getAllBoulders = async (req : Request,res : Response ) =>{
     try {

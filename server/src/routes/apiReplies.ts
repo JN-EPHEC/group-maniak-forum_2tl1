@@ -1,5 +1,5 @@
 import express from 'express';
-import * as tbReplies from "../controllers/tbRepliesControllers";
+import * as tbReplies from "../controllers/tbRepliesControllers.js";
 
 const router = express.Router()
 /**

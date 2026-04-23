@@ -1,6 +1,6 @@
 import { describe, test, expect } from "@jest/globals";
-import {validateUserRegistration} from "../utils/userValidator"
-import {userCases} from "./cases/userValidatorCases";
+import {validateUserRegistration} from "../utils/userValidator.js"
+import {userCases} from "./cases/userValidatorCases.js";
 type UserCaseType = [number, "admin"|"user"|"stagiaire", string, boolean | "exception"];
 describe("Shipping Utils", () => {
     test.each(userCases as UserCaseType[])(

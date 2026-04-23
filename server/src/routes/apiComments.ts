@@ -1,5 +1,5 @@
 import express from 'express';
-import * as tbComments from "../controllers/tbCommentsControllers";
+import * as tbComments from "../controllers/tbCommentsControllers.js";
 
 const router = express.Router()
 

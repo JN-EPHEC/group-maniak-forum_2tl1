@@ -1,6 +1,6 @@
-import WhiteManiakLogo from "./logo_maniak_blanc"
-import ToolBar from "../template/toolbar";
-import Footer from "../template/footer";
+import WhiteManiakLogo from "./logo_maniak_blanc";
+import ToolBar from "../../components/toolBar/toolbar";
+import Footer from "../../components/footer/footer";
 
 function CreationPageAccueil(){
   
