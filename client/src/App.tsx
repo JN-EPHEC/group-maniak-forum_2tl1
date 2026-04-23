@@ -1,9 +1,9 @@
-import CreationAboutUs from "./pages/aboutUsPage/creationAboutUs";
-import CreationPageAccueil from "./pages/homePage/creationPAgeAccueil";
+import CreationAboutUs from "./pages/aboutUsPage/creationAboutUs.tsx";
+import CreationPageAccueil from "./pages/homePage/creationPAgeAccueil.tsx";
 import { useState } from "react";
-import { PageContext } from "./PageContext";
-import CreationPageMonProfil from "./pages/profilePage/creationPageMonProfil";
-import CreationWeekBoulder from "./assets/components/weekBoulder/creationWeekBoulder";
+import { PageContext } from "./PageContext.tsx";
+import CreationPageMonProfil from "./pages/profilePage/creationPageMonProfil.tsx";
+import CreationWeekBoulder from "./pages/weekBoulderPage/creationWeekBoulder.tsx";
 
 function App(){
   const [page, setPage] = useState("home");

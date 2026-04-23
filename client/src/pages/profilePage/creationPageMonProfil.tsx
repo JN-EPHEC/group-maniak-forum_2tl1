@@ -1,6 +1,6 @@
-import Footer from "../../components/footer/footer"
-import ToolBar from "../../components/toolBar/toolbar"
-import InfoProfil from "./infoProfil"
+import Footer from "../../components/footer/footer.tsx"
+import ToolBar from "../../components/toolBar/toolbar.tsx"
+import InfoProfil from "./infoProfil.tsx"
 
 function CreationPageMonProfil(){
     return (

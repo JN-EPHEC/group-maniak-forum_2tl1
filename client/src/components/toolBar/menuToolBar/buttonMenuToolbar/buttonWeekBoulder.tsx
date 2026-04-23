@@ -1,4 +1,4 @@
-import { usePage } from "../../../../PageContext";
+import { usePage } from "../../../../PageContext.tsx";
 
 function ButtonWeekBoulderPage(){
     const setPage = usePage();
