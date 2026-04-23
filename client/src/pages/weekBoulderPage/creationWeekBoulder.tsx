@@ -1,7 +1,7 @@
-import WhiteManiakLogo from "../../components/logoManiak/logo_maniak_blanc";
-import Footer from "../../components/footer/footer";
-import ToolBar from "../../components/toolBar/toolbar";
-import WeekBoulder from "./listeBlocsSemaine";
+import WhiteManiakLogo from "../../components/logoManiak/logo_maniak_blanc.tsx";
+import Footer from "../../components/footer/footer.tsx";
+import ToolBar from "../../components/toolBar/toolbar.tsx";
+import WeekBoulder from "./listeBlocsSemaine.tsx";
 
 function CreationWeekBoulder(){
     return (

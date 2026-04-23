@@ -1,6 +1,6 @@
 import { useState } from "react";
-import DisplayMenuInterface from "./menuToolBar/displayMenu";
-import { usePage } from "../../PageContext";
+import DisplayMenuInterface from "./menuToolBar/displayMenu.tsx";
+import { usePage } from "../../PageContext.tsx";
 
 function ToolBar(){
     const[stateMenuDisplay, changeStateMenuDisplay] = useState(false)

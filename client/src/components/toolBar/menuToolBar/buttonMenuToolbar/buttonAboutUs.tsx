@@ -1,4 +1,4 @@
-import { usePage } from "../../../../PageContext";
+import { usePage } from "../../../../PageContext.tsx";
 
 function ButtonAboutUsPage(){
     const setPage = usePage();

@@ -1,4 +1,4 @@
-import { usePage } from "../../PageContext"
+import { usePage } from "../../PageContext.tsx"
 
 function Footer(){
    const setPage = usePage();

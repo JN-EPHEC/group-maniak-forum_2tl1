@@ -1,7 +1,7 @@
-import ButtonAboutUsPage from "./buttonMenuToolbar/buttonAboutUs";
-import ButtonForumPage from "./buttonMenuToolbar/buttonForum";
-import ButtonHomePage from "./buttonMenuToolbar/buttonHome";
-import ButtonWeekBoulderPage from "./buttonMenuToolbar/buttonWeekBoulder";
+import ButtonAboutUsPage from "./buttonMenuToolbar/buttonAboutUs.tsx";
+import ButtonForumPage from "./buttonMenuToolbar/buttonForum.tsx";
+import ButtonHomePage from "./buttonMenuToolbar/buttonHome.tsx";
+import ButtonWeekBoulderPage from "./buttonMenuToolbar/buttonWeekBoulder.tsx";
 
 function DisplayMenuInterface(){
     return (
