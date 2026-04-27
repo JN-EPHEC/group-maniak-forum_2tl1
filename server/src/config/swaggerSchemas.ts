@@ -177,47 +177,6 @@
  *         boulderImageUrl:
  *           type: string
  *           example: "https://cdn.maniak.club/boulders/img42.jpg"
- *         difficulty:
- *           type: object
- *           description: Informations sur la difficulté
- *           properties:
- *             difficultyId:
- *               type: integer
- *             difficultyColorName:
- *               type: string
- *             difficultyFrenchScale:
- *               type: string
- *             difficultyVerminScale:
- *               type: string
- *         setter:
- *           type: object
- *           description: Informations sur l'ouvreur
- *           properties:
- *             userId:
- *               type: integer
- *             userFName:
- *               type: string
- *             userLName:
- *               type: string
- *             userPseudo:
- *               type: string
- *         area:
- *           type: object
- *           description: Zone dans laquelle se trouve le bloc
- *           properties:
- *             areaId:
- *               type: integer
- *             areaName:
- *               type: string
- *             areaDesc:
- *               type: string
- *             gym:
- *               type: object
- *               properties:
- *                 gymId:
- *                   type: integer
- *                 gymName:
- *                   type: string
  */
 /**
  * @swagger

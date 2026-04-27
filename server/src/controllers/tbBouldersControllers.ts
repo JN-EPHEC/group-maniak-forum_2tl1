@@ -30,10 +30,12 @@ export const getAllBoulders = async (req : Request,res : Response ) =>{
     res.status(500).json({ error: (error as any).message });
 };  
 };
+
 export const getBoulderbyPk = async (req:Request,res: Response) =>{
     try {
         const id = req.params.id as string;
-        const json = await tbUsers.findByPk(id,{
+        const json = await tbBoulders.findAll({
+            where:{boulderId:id},
             include:
             [{model: tbDifficulties,
             as: "difficulty",
@@ -44,7 +46,7 @@ export const getBoulderbyPk = async (req:Request,res: Response) =>{
             attributes: ["userId","userFName","userLName","userPseudo"]
             },{
             model: tbAreaGyms,
-            as: "areaGyms",
+            as: "area",
             attributes: ["areaId","areaName","areaDesc"],
             include :[ {
                 model: tbGyms,
@@ -88,11 +90,12 @@ export const getBoulderByArea = async (req:Request,res:Response) => {
     res.status(500).json({ error: (error as any).message });
 };  
 };
+
 export const getBoulderByGym = async (req:Request,res:Response) => {
     try {
         const id = req.params.id as string;
         const json = await tbBoulders.findAll({
-            where : {gymId:id},
+
             include: 
             [{model: tbDifficulties,
             as: "difficulty",
@@ -108,7 +111,8 @@ export const getBoulderByGym = async (req:Request,res:Response) => {
             include :[ {
                 model: tbGyms,
                 as: "gym",
-                attributes: ["gymId","gymName"]
+                attributes: ["gymId","gymName"],
+                            where : {gymId:id},
             }]
             }]
         });

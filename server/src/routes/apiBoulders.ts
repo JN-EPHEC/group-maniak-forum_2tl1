@@ -1,6 +1,6 @@
 import express from 'express';
 import * as tbBoulders from "../controllers/tbBouldersControllers.js";
-
+import { getWeeklyBoulders } from '../controllers/weeklyBouldersControllers.js';
 const router = express.Router()
 /**
  * @swagger
@@ -30,6 +30,7 @@ const router = express.Router()
  */
 
 router.get('/',tbBoulders.getAllBoulders);
+router.get('/weekly',getWeeklyBoulders);
 /**
  * @swagger
  * /api/boulders/{id}:
@@ -141,6 +142,8 @@ router.get('/bySetter/:id',tbBoulders.getBoulderBySetter);
  */
 
 router.get('/byDifficulty/:id',tbBoulders.getBoulderByDifficulty);
+
+
 //post
 /**
  * @swagger
