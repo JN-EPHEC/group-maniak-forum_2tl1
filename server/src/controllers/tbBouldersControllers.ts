@@ -88,6 +88,36 @@ export const getBoulderByArea = async (req:Request,res:Response) => {
     res.status(500).json({ error: (error as any).message });
 };  
 };
+export const getBoulderByGym = async (req:Request,res:Response) => {
+    try {
+        const id = req.params.id as string;
+        const json = await tbBoulders.findAll({
+            where : {gymId:id},
+            include: 
+            [{model: tbDifficulties,
+            as: "difficulty",
+            attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]},
+            {
+            model: tbUsers,
+            as: "setter",
+            attributes: ["userId","userFName","userLName","userPseudo"]
+            },{
+            model: tbAreaGyms,
+            as: "area",
+            attributes: ["areaId","areaName","areaDesc"],
+            include :[ {
+                model: tbGyms,
+                as: "gym",
+                attributes: ["gymId","gymName"]
+            }]
+            }]
+        });
+        res.status(200).json(json);
+
+    } catch (error) {
+    res.status(500).json({ error: (error as any).message });
+};  
+};
 export const getBoulderBySetter = async (req:Request,res:Response) => {
     try {
         const id = req.params.id as string;

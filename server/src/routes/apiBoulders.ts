@@ -80,6 +80,27 @@ router.get('/:id',tbBoulders.getBoulderbyPk);
 router.get('/byArea/:id',tbBoulders.getBoulderByArea);
 /**
  * @swagger
+ * /api/boulders/byGym/{id}:
+ *   get:
+ *     summary: Récupère tous les blocs d'une salle spécifique
+ *     tags: [Boulders]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID de la zone
+ *     responses:
+ *       200:
+ *         description: Liste des blocs de la salle
+ *       500:
+ *         description: Erreur serveur
+ */
+
+router.get('/byGym/:id',tbBoulders.getBoulderByGym);
+/**
+ * @swagger
  * /api/boulders/bySetter/{id}:
  *   get:
  *     summary: Récupère tous les blocs ouverts par un setter donné
