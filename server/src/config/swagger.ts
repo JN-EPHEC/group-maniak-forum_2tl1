@@ -8,14 +8,15 @@ const swaggerOptions = {
       version: "1.0.0",
     },
     components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: "http",
-          scheme: "bearer",
-          bearerFormat: "JWT",
-        },
-      },
+  securitySchemes: {
+    bearerAuth: {
+      type: "http",
+      scheme: "bearer",
+      bearerFormat: "JWT",
     },
+  },
+},
+
   },
   apis: ["./src/routes/*.ts", "./src/config/swaggerSchemas.ts"],
 };

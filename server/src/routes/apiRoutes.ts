@@ -1,6 +1,6 @@
 import express from 'express';
 import type { Request,Response } from "express";
-import apiTestJWT from "./apiTestJWT.js";
+import apiLogin from "./apiLogin.js";
 import apiUser from "./apiUsers.js";
 import apiDifficulties from './apiDifficulties.js';
 import apiGyms from './apiGyms.js'
@@ -28,7 +28,7 @@ router.use("/boulders",apiBoulders);
 router.use("/difficulties",apiDifficulties);
 router.use("/areagyms",apiAreaGyms);
 router.use('/users',apiUser);
-router.use('/auth',apiTestJWT);
 router.use('/profile',apiUser);
 
+router.use('/auth',apiLogin);
 export default router;

@@ -8,7 +8,7 @@ import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './config/swagger.js';
 import cors from "cors";
 import { initModels } from './models/initModels.js';
-
+import cookieParser from "cookie-parser";
 //Import du router
 import apiRoutes from './routes/apiRoutes.js';
 //Constantes
@@ -27,6 +27,9 @@ app.use("/api-docs", swaggerUi.serve,swaggerUi.setup(swaggerSpec));
 app.use('/api',apiRoutes);
 //Apres toute les routes le errorhandler pour gerer les erreurs
 app.use(ErrorHandler);
+
+//Pour savoir lire les cookies 
+app.use(cookieParser());
 ///Dans la console
 async function startServer() {
     try {

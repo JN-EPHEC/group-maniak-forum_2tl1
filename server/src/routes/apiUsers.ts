@@ -1,7 +1,7 @@
 import express from 'express';
 import * as tbUserControllers from "../controllers/tbUsersControllers.js";
 import { checkIdParam } from '../middlewares/checkIdParam.js';
-
+import { jwtAuth } from "../middlewares/jwtAuth.js";
 const router = express.Router()
 /**
  * @swagger
@@ -34,6 +34,8 @@ router.get("/", tbUserControllers.getAllUsers);
  * @swagger
  * /api/users/{id}:
  *   get:
+ *     security:
+ *       - bearerAuth: []
  *     summary: Récupère un utilisateur via son ID
  *     tags: [Users]
  *     parameters:
@@ -50,13 +52,17 @@ router.get("/", tbUserControllers.getAllUsers);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
+ *       401:
+ *         description: Token expiré ou manquant
+ *       403:
+ *         description: Token invalide
  *       404:
  *         description: Utilisateur non trouvé
  *       500:
  *         description: Erreur serveur
  */
 
-router.get('/:id',tbUserControllers.getUserbyPk);
+router.get('/:id',jwtAuth,tbUserControllers.getUserbyPk);
 /**
  * @swagger
  * /api/users/status/{id}:
