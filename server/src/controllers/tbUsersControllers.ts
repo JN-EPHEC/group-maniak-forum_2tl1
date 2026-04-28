@@ -12,7 +12,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
                     model: tbDifficultyUsers,
                     as: "boulderUsers",
                     attributes: ["boulderId", "createdAt"],
-                    separate: true, // 🔥 OBLIGATOIRE pour ORDER + LIMIT
+                    separate: true,
                     limit: 1,
                     include: [
                         {
@@ -60,25 +60,32 @@ export const getUserbyPk = async (req:Request,res: Response) =>{
     try {
         const id = req.params.id as string;
         const user = await tbUsers.findByPk(id,{
-include: [
+            attributes: { exclude: ["userPassHashed"] },
+            include: [
                 {
                     model: tbDifficultyUsers,
                     as: "boulderUsers",
                     attributes: ["boulderId", "createdAt"],
+                    separate: true,
                     limit: 1,
-                    order: [["createdAt", "DESC"]],
                     include: [
                         {
                             model: tbBoulders,
                             as: "boulder",
-                            attributes: ["difficultyId","boulderId"],
-                            include: [{
-                                model : tbDifficulties,
-                                as: "difficulty",
-                                attributes: ["difficultyId", "difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]
-                            }]
-                                
-                            
+                            attributes: ["difficultyId", "boulderId"],
+                            include: [
+                                {
+                                    model: tbDifficulties,
+                                    as: "difficulty",
+                                    attributes: [
+                                        "difficultyId",
+                                        "difficultyColorName",
+                                        "difficultyFrenchScale",
+                                        "difficultyVerminScale"
+                                    ]
+                                }
+                            ],
+                            order: [["difficultyId", "DESC"]]
                         }
                     ]
                 },
