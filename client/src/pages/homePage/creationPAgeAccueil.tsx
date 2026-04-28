@@ -1,6 +1,7 @@
 import WhiteManiakLogo from "../../components/logoManiak/logo_maniak_blanc.tsx";
 import ToolBar from "../../components/toolBar/toolbar.tsx";
 import Footer from "../../components/footer/footer.tsx";
+import CreateGymList from "../../hooks/getAreaGym/getAreaGyms.tsx";
 
 function CreationPageAccueil(){
   
@@ -8,7 +9,8 @@ function CreationPageAccueil(){
   return (
       <div>
         <ToolBar></ToolBar>
-        <WhiteManiakLogo></WhiteManiakLogo>   
+        <WhiteManiakLogo></WhiteManiakLogo> 
+        <CreateGymList></CreateGymList>  
         <Footer></Footer>
       </div>
 );

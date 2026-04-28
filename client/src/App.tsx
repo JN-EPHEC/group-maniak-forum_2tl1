@@ -4,6 +4,7 @@ import { useState } from "react";
 import { PageContext } from "./PageContext.tsx";
 import CreationPageMonProfil from "./pages/profilePage/creationPageMonProfil.tsx";
 import CreationWeekBoulder from "./pages/weekBoulderPage/creationWeekBoulder.tsx";
+import CreationBoulderGymPage from "./pages/boulderGymPage/creationBoulderGymPage.tsx";
 
 function App(){
   const [page, setPage] = useState("home");
@@ -43,10 +44,21 @@ function App(){
       </div>
     );
   }
+  if(page.startsWith("boulderPage")) {
+    const gymId = page.split("-")[1];
+    return (
+      <div>
+        <PageContext.Provider value={setPage}>
+          <CreationBoulderGymPage gymId={gymId} />
+        </PageContext.Provider>
+      </div>
+    );
+  }
   return (
     <div>
       <PageContext.Provider value={setPage}>
         <CreationPageAccueil>
+
         </CreationPageAccueil>
       </PageContext.Provider>
       
