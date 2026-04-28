@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import { sequelize } from "../models/index.js";
 import { tbRatings,tbUsers,tbBoulders,tbAreaGyms,tbDifficultyUsers  } from "../models/index.js";
 import { postElement,delElement } from "../utils/simpleControllers.js";
+import { constrainedMemory } from "node:process";
 // GET ALL Ratings
 export const getAllRatings = async (req : Request,res : Response ) =>{
      try {
@@ -133,22 +134,8 @@ export const postRatings = async (req: Request, res: Response) => {
     const t = await sequelize.transaction();
 
     try {
+        
         const { rateNote, difficultyId, rateTxt, videoLink, userId, boulderId } = req.body;
-
-        // Récupérer la difficulté du bloc (difficulté réelle)
-        const boulder = await tbBoulders.findByPk(boulderId, {
-            attributes: ["difficultyId"],
-            transaction: t
-        });
-
-        if (!boulder) {
-            await t.rollback();
-            return res.status(404).json({ error: "Boulder not found" });
-        }
-
-        const difficultyIdOfBoulder = boulder.difficultyId; // difficulté réelle
-
-        // Créer le rating (avec difficulté ressentie)
         const rating = await tbRatings.create(
             {
                 rateNote,
@@ -160,15 +147,10 @@ export const postRatings = async (req: Request, res: Response) => {
             },
             { transaction: t }
         );
-
-        // Créer l'entrée dans tbDifficultyUsers (avec difficulté réelle)
-        await tbDifficultyUsers.create(
-            {
-                userId,
-                difficultyId: difficultyIdOfBoulder //difficulté réelle
-            },
-            { transaction: t }
-        );
+        await tbDifficultyUsers.findOrCreate({
+            where: { userId, boulderId: boulderId },
+            defaults: { userId, boulderId: boulderId },
+            transaction: t});
 
         // Valider la transaction
         await t.commit();

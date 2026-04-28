@@ -9,8 +9,6 @@
  *         - gymAddress
  *         - gymSchedule
  *       properties:
- *         gymId:
- *           type: integer
  *         gymName:
  *           type: string
  *         gymAddress:
@@ -20,8 +18,6 @@
  *         areaImageUrl:
  *           type: string
  */
-
-
 /**
  * @swagger
  * components:
@@ -33,8 +29,6 @@
  *         - areaDesc
  *         - gymId
  *       properties:
- *         areaId:
- *           type: integer
  *         areaName:
  *           type: string
  *         areaDesc:
@@ -44,7 +38,6 @@
  *         areaImageUrl:
  *           type: string
  */
-
 /**
  * @swagger
  * components:
@@ -56,8 +49,6 @@
  *         - difficultyFrenchScale
  *         - difficultyVerminScale
  *       properties:
- *         difficultyId:
- *           type: integer
  *         difficultyColorName:
  *           type: string
  *         difficultyFrenchScale:
@@ -65,7 +56,6 @@
  *         difficultyVerminScale:
  *           type: string
  */
-
 /**
  * @swagger
  * components:
@@ -76,14 +66,11 @@
  *         - pictureLink
  *         - pictureLegend
  *       properties:
- *         pictureId:
- *           type: integer
  *         pictureLink:
  *           type: string
  *         pictureLegend:
  *           type: string
  */
-
 /**
  * @swagger
  * components:
@@ -93,12 +80,9 @@
  *       required:
  *         - statusName
  *       properties:
- *         statusId:
- *           type: integer
  *         statusName:
  *           type: string
  */
-
 /**
  * @swagger
  * components:
@@ -112,8 +96,6 @@
  *         - userId
  *         - areaId
  *       properties:
- *         boulderId:
- *           type: integer
  *         boulderDesc:
  *           type: string
  *         boulderLink:
@@ -132,7 +114,6 @@
  *         boulderImageUrl:
  *           type: string
  */
-
 /**
  * @swagger
  * components:
@@ -144,8 +125,6 @@
  *         - userId
  *         - boulderId
  *       properties:
- *         commentsId:
- *           type: integer
  *         commentsTxt:
  *           type: string
  *         userId:
@@ -153,7 +132,6 @@
  *         boulderId:
  *           type: integer
  */
-
 /**
  * @swagger
  * components:
@@ -166,8 +144,6 @@
  *         - userId
  *         - boulderId
  *       properties:
- *         rateId:
- *           type: integer
  *         rateNote:
  *           type: integer
  *         difficultyId:
@@ -182,8 +158,7 @@
  *         boulderId:
  *           type: integer
  */
-
- /**
+/**
  * @swagger
  * components:
  *   schemas:
@@ -193,14 +168,11 @@
  *         - commentsId
  *         - commentsrepliesId
  *       properties:
- *         replyId:
- *           type: integer
  *         commentsId:
  *           type: integer
  *         commentsrepliesId:
  *           type: integer
  */
-
 /**
  * @swagger
  * components:
@@ -216,7 +188,6 @@
  *         difficultyId:
  *           type: integer
  */
-
 /**
  * @swagger
  * components:
@@ -228,8 +199,6 @@
  *         - userPseudo
  *         - userPassHashed
  *       properties:
- *         userId:
- *           type: integer
  *         userMail:
  *           type: string
  *         userLName:
@@ -240,7 +209,7 @@
  *           nullable: true
  *         userPseudo:
  *           type: string
- *         userPassHashed:
+ *         password:
  *           type: string
  *         pictureId:
  *           type: integer

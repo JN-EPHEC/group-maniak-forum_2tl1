@@ -11,6 +11,10 @@ tbBoulders.init(
             primaryKey: true,
             autoIncrement:true
         },
+        boulderName :{
+            type : DataTypes.STRING,
+            allowNull: false,
+        },
         boulderDesc :{
             type : DataTypes.STRING,
             allowNull: false,

@@ -14,12 +14,12 @@ tbDifficultyUsers.init(
                 key : "userId"
             }
         },
-        difficultyId:{
+        boulderId:{
             type :DataTypes.INTEGER,
             primaryKey: true,
             references : {
-                model: "tbDifficulties",
-                key : "difficultyId"
+                model: "tbBoulders",
+                key : "boulderId"
             }
         }
     },
