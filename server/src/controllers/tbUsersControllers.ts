@@ -6,6 +6,7 @@ import bcrypt from "bcrypt";
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
         const usersAll = await tbUsers.findAll({
+            attributes: { exclude: ["userPassHashed"] },
             include: [
                 {
                     model: tbDifficultyUsers,

@@ -108,11 +108,13 @@ export const getBoulderByGym = async (req:Request,res:Response) => {
             model: tbAreaGyms,
             as: "area",
             attributes: ["areaId","areaName","areaDesc"],
+            required: true,
             include :[ {
                 model: tbGyms,
                 as: "gym",
                 attributes: ["gymId","gymName"],
                             where : {gymId:id},
+                            required: true,
             }]
             }]
         });
