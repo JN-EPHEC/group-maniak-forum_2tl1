@@ -402,3 +402,144 @@
   font-style: italic;
   margin: 0;
 }
+
+#listGym {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 1rem 0;
+}
+
+[id^="idGym"] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  background: #f4943d;
+  border-radius: 12px;
+  padding: 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  min-width: 0;
+}
+
+[id^="idGym"]:hover {
+  background: #f4943d;
+}
+
+[id^="idGym"] img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+[id^="idGym"] span {
+  font-size: 35px;
+  font-weight: 500;
+  color: #FFF3EC;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+@media (max-width: 640px) {
+  #listGym {
+    grid-template-columns: 1fr;
+  }
+}
+#boulderList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 1rem 0;
+}
+
+#boulderList > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #2e2e2e;
+  border-radius: 12px;
+  padding: 14px;
+  min-width: 0;
+  border-top: 3px solid gray;
+}
+
+#boulderList > div img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+#boulderList > div .descriptionBoulder {
+  font-size: 14px;
+  color: white;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#boulderList > div .nameArea {
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  margin-top: auto;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Couleurs par difficulté */
+#boulderList > div.difficultyId1 { border-top-color: #2d9e4f; }  /* vert   */
+#boulderList > div.difficultyId2 { border-top-color: #e8b800; }  /* jaune  */
+#boulderList > div.difficultyId3 { border-top-color: #E8600A; }  /* orange */
+#boulderList > div.difficultyId4 { border-top-color: #1060cc; }  /* bleu   */
+#boulderList > div.difficultyId5 { border-top-color: #cc2200; }  /* rouge  */
+#boulderList > div.difficultyId6 { border-top-color: #1a1a1a; }  /* noire  */
+#boulderList > div.difficultyId7 { border-top-color: #c8c8c8; }  /* blanc  */
+#boulderList > div.difficultyId8 { border-top-color: #c0399a; }  /* rose   */
+
+@media (max-width: 768px) {
+  #boulderList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  #boulderList {
+    grid-template-columns: 1fr;
+  }
+}
+
+#boulderList > div .boulderName {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.3;
+}
+
+#boulderList > div .descriptionBoulder {
+  font-size: 13px;
+  font-style: italic;
+  color: #aaaaaa;
+  line-height: 1.5;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+#boulderList > div .nameArea {
+  font-size: 12px;
+  font-weight: 500;
+  color: #888;
+  margin-top: auto;
+}
