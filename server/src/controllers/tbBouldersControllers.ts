@@ -1,29 +1,56 @@
 import type { Request, Response } from "express";
-import { tbUsers,tbDifficulties,tbBoulders,tbAreaGyms,tbGyms,tbRatings} from  "../models/index.js";
+import { tbUsers,tbDifficulties,tbBoulders,tbAreaGyms,tbGyms,tbRatings,sequelize} from  "../models/index.js";
 import { postElement,delElement } from "../utils/simpleControllers.js";
 
 export const getAllBoulders = async (req : Request,res : Response ) =>{
     try {
         const json = await tbBoulders.findAll({
-            include: 
-            [{model: tbDifficulties,
-            as: "difficulty",
-            attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]},
-            {
-            model: tbUsers,
-            as: "setter",
-            attributes: ["userId","userFName","userLName","userPseudo"]
-            },{
-            model: tbAreaGyms,
-            as: "area",
-            attributes: ["areaId","areaName","areaDesc"],
-            include :[ {
-                model: tbGyms,
-                as: "gym",
-                attributes: ["gymId","gymName"]
-            }]
-            }]
+ 
+            attributes: {
+                include: [
+                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"]
+                ]
+            },
+
+            include: [
+                {
+                    model: tbRatings,
+                    as: "ratings",
+                    attributes: [] 
+                },
+                {
+                    model: tbDifficulties,
+                    as: "difficulty",
+                    attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]
+                },
+                {
+                    model: tbUsers,
+                    as: "setter",
+                    attributes: ["userId","userFName","userLName","userPseudo"]
+                },
+                {
+                    model: tbAreaGyms,
+                    as: "area",
+                    attributes: ["areaId","areaName","areaDesc"],
+                    include :[
+                        {
+                            model: tbGyms,
+                            as: "gym",
+                            attributes: ["gymId","gymName"]
+                        }
+                    ]
+                }
+            ],
+
+            group: [
+                "tbBoulders.boulderId",
+                "difficulty.difficultyId",
+                "setter.userId",
+                "area.areaId",
+                "area->gym.gymId"
+            ]
         });
+
         res.status(200).json(json);
 
     } catch (error) {
@@ -34,28 +61,57 @@ export const getAllBoulders = async (req : Request,res : Response ) =>{
 export const getBoulderbyPk = async (req:Request,res: Response) =>{
     try {
         const id = req.params.id as string;
+
         const json = await tbBoulders.findAll({
-            where:{boulderId:id},
-            include:
-            [{model: tbDifficulties,
-            as: "difficulty",
-            attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]},
-            {
-            model: tbUsers,
-            as: "setter",
-            attributes: ["userId","userFName","userLName","userPseudo"]
-            },{
-            model: tbAreaGyms,
-            as: "area",
-            attributes: ["areaId","areaName","areaDesc"],
-            include :[ {
-                model: tbGyms,
-                as: "gym",
-                attributes: ["gymId","gymName"]
-            }]
-            }]
-        })
+            where:{ boulderId:id },
+
+            attributes: {
+                include: [
+                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"]
+                ]
+            },
+
+            include: [
+                {
+                    model: tbRatings,
+                    as: "ratings",
+                    attributes: [] 
+                },
+                {
+                    model: tbDifficulties,
+                    as: "difficulty",
+                    attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]
+                },
+                {
+                    model: tbUsers,
+                    as: "setter",
+                    attributes: ["userId","userFName","userLName","userPseudo"]
+                },
+                {
+                    model: tbAreaGyms,
+                    as: "area",
+                    attributes: ["areaId","areaName","areaDesc"],
+                    include :[
+                        {
+                            model: tbGyms,
+                            as: "gym",
+                            attributes: ["gymId","gymName"]
+                        }
+                    ]
+                }
+            ],
+
+            group: [
+                "tbBoulders.boulderId",
+                "difficulty.difficultyId",
+                "setter.userId",
+                "area.areaId",
+                "area->gym.gymId"
+            ]
+        });
+
         res.status(200).json(json);
+
     } catch (error) {
         res.status(500).json({ error: (error as any).message })
     }
@@ -65,25 +121,52 @@ export const getBoulderByArea = async (req:Request,res:Response) => {
         const id = req.params.id as string;
         const json = await tbBoulders.findAll({
             where : {areaId:id},
-            include: 
-            [{model: tbDifficulties,
-            as: "difficulty",
-            attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]},
-            {
-            model: tbUsers,
-            as: "setter",
-            attributes: ["userId","userFName","userLName","userPseudo"]
-            },{
-            model: tbAreaGyms,
-            as: "area",
-            attributes: ["areaId","areaName","areaDesc"],
-            include :[ {
-                model: tbGyms,
-                as: "gym",
-                attributes: ["gymId","gymName"]
-            }]
-            }]
+
+            attributes: {
+                include: [
+                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"]
+                ]
+            },
+
+            include: [
+                {
+                    model: tbRatings,
+                    as: "ratings",
+                    attributes: [] 
+                },
+                {
+                    model: tbDifficulties,
+                    as: "difficulty",
+                    attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]
+                },
+                {
+                    model: tbUsers,
+                    as: "setter",
+                    attributes: ["userId","userFName","userLName","userPseudo"]
+                },
+                {
+                    model: tbAreaGyms,
+                    as: "area",
+                    attributes: ["areaId","areaName","areaDesc"],
+                    include :[
+                        {
+                            model: tbGyms,
+                            as: "gym",
+                            attributes: ["gymId","gymName"]
+                        }
+                    ]
+                }
+            ],
+
+            group: [
+                "tbBoulders.boulderId",
+                "difficulty.difficultyId",
+                "setter.userId",
+                "area.areaId",
+                "area->gym.gymId"
+            ]
         });
+
         res.status(200).json(json);
 
     } catch (error) {
@@ -95,9 +178,19 @@ export const getBoulderByGym = async (req:Request,res:Response) => {
     try {
         const id = req.params.id as string;
         const json = await tbBoulders.findAll({
-
+            attributes: {
+                include: [
+                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"]
+                ]
+            },
             include: 
-            [{model: tbDifficulties,
+            [
+            {
+                    model: tbRatings,
+                    as: "ratings",
+                    attributes: [] 
+                },
+            {model: tbDifficulties,
             as: "difficulty",
             attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]},
             {
@@ -116,7 +209,15 @@ export const getBoulderByGym = async (req:Request,res:Response) => {
                             where : {gymId:id},
                             required: true,
             }]
-            }]
+            }],
+            
+            group: [
+                "tbBoulders.boulderId",
+                "difficulty.difficultyId",
+                "setter.userId",
+                "area.areaId",
+                "area->gym.gymId"
+            ]
         });
         res.status(200).json(json);
 
@@ -129,25 +230,52 @@ export const getBoulderBySetter = async (req:Request,res:Response) => {
         const id = req.params.id as string;
         const json = await tbBoulders.findAll({
             where : {userId:id},
-            include: 
-            [{model: tbDifficulties,
-            as: "difficulty",
-            attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]},
-            {
-            model: tbUsers,
-            as: "setter",
-            attributes: ["userId","userFName","userLName","userPseudo"]
-            },{
-            model: tbAreaGyms,
-            as: "area",
-            attributes: ["areaId","areaName","areaDesc"],
-            include :[ {
-                model: tbGyms,
-                as: "gym",
-                attributes: ["gymId","gymName"]
-            }]
-            }]
+
+            attributes: {
+                include: [
+                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"]
+                ]
+            },
+
+            include: [
+                {
+                    model: tbRatings,
+                    as: "ratings",
+                    attributes: [] 
+                },
+                {
+                    model: tbDifficulties,
+                    as: "difficulty",
+                    attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]
+                },
+                {
+                    model: tbUsers,
+                    as: "setter",
+                    attributes: ["userId","userFName","userLName","userPseudo"]
+                },
+                {
+                    model: tbAreaGyms,
+                    as: "area",
+                    attributes: ["areaId","areaName","areaDesc"],
+                    include :[
+                        {
+                            model: tbGyms,
+                            as: "gym",
+                            attributes: ["gymId","gymName"]
+                        }
+                    ]
+                }
+            ],
+
+            group: [
+                "tbBoulders.boulderId",
+                "difficulty.difficultyId",
+                "setter.userId",
+                "area.areaId",
+                "area->gym.gymId"
+            ]
         });
+
         res.status(200).json(json);
 
     } catch (error) {
@@ -159,25 +287,52 @@ export const getBoulderByDifficulty = async (req:Request,res:Response) => {
         const id = req.params.id as string;
         const json = await tbBoulders.findAll({
             where : {difficultyId:id},
-            include: 
-            [{model: tbDifficulties,
-            as: "difficulty",
-            attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]},
-            {
-            model: tbUsers,
-            as: "setter",
-            attributes: ["userId","userFName","userLName","userPseudo"]
-            },{
-            model: tbAreaGyms,
-            as: "area",
-            attributes: ["areaId","areaName","areaDesc"],
-            include :[ {
-                model: tbGyms,
-                as: "gym",
-                attributes: ["gymId","gymName"]
-            }]
-            }]
+
+            attributes: {
+                include: [
+                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"]
+                ]
+            },
+
+            include: [
+                {
+                    model: tbRatings,
+                    as: "ratings",
+                    attributes: [] 
+                },
+                {
+                    model: tbDifficulties,
+                    as: "difficulty",
+                    attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]
+                },
+                {
+                    model: tbUsers,
+                    as: "setter",
+                    attributes: ["userId","userFName","userLName","userPseudo"]
+                },
+                {
+                    model: tbAreaGyms,
+                    as: "area",
+                    attributes: ["areaId","areaName","areaDesc"],
+                    include :[
+                        {
+                            model: tbGyms,
+                            as: "gym",
+                            attributes: ["gymId","gymName"]
+                        }
+                    ]
+                }
+            ],
+
+            group: [
+                "tbBoulders.boulderId",
+                "difficulty.difficultyId",
+                "setter.userId",
+                "area.areaId",
+                "area->gym.gymId"
+            ]
         });
+
         res.status(200).json(json);
 
     } catch (error) {
