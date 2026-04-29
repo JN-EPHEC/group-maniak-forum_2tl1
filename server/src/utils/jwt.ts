@@ -7,13 +7,13 @@ const REFRESH_EXPIRES_IN = "7d";
 export interface JwtAccessPayload {
     id: number;
     pseudo: string;
-    role: string;
+    role: number;
 }
 
 export interface JwtRefreshPayload {
     id: number;
     pseudo: string;
-    role: string;
+    role: number;
 }
 
 export const createAccessToken = (user: tbUsers) => {

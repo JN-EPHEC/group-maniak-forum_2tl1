@@ -1,6 +1,7 @@
 import express from 'express';
 import * as tbGymControllers from "../controllers/tbGymControllers.js";
-
+import { jwtAuth} from '../middlewares/jwtAuth.js';
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
 const router = express.Router()
 /**
  * @swagger
@@ -101,6 +102,6 @@ router.post("/", tbGymControllers.postGym);
  *         description: Erreur serveur
  */
 
-router.delete("/:id", tbGymControllers.delGym);
+router.delete("/:id",jwtAuth,requireAdmin, tbGymControllers.delGym);
 
 export default router;

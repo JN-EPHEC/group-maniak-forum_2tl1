@@ -4,20 +4,25 @@ const swaggerOptions = {
   swaggerDefinition: {
     openapi: "3.0.0",
     info: {
-      title: "Mon API de fou malade",
+      title: "Api Maniak Forum",
       version: "1.0.0",
     },
     components: {
-  securitySchemes: {
-    bearerAuth: {
-      type: "http",
-      scheme: "bearer",
-      bearerFormat: "JWT",
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
     },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
-},
 
-  },
   apis: ["./src/routes/*.ts", "./src/config/swaggerSchemas.ts"],
 };
 

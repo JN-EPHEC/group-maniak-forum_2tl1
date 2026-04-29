@@ -1,6 +1,8 @@
 import express from 'express';
-import * as tbComments from "../controllers/tbCommentsControllers.js";
-
+import * as Comments from "../controllers/tbCommentsControllers.js";
+import tbComments from '../models/tbComments.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
 const router = express.Router()
 
 /**
@@ -30,7 +32,7 @@ const router = express.Router()
  *         description: Erreur serveur
  */
 
-router.get("/",tbComments.getAllComments);
+router.get("/",Comments.getAllComments);
 /**
  * @swagger
  * /api/comments/{id}:
@@ -57,7 +59,7 @@ router.get("/",tbComments.getAllComments);
  *         description: Erreur serveur
  */
 
-router.get("/:id",tbComments.getCommentsbyPk);
+router.get("/:id",Comments.getCommentsbyPk);
 /**
  * @swagger
  * /api/comments/author/{id}:
@@ -78,7 +80,7 @@ router.get("/:id",tbComments.getCommentsbyPk);
  *         description: Erreur serveur
  */
 
-router.get("/author/:id",tbComments.getCommentsbyUser);
+router.get("/author/:id",Comments.getCommentsbyUser);
 /**
  * @swagger
  * /api/comments/boulder/{id}:
@@ -99,7 +101,7 @@ router.get("/author/:id",tbComments.getCommentsbyUser);
  *         description: Erreur serveur
  */
 
-router.get("/boulder/:id",tbComments.getCommentsbyBoulders);
+router.get("/boulder/:id",Comments.getCommentsbyBoulders);
 
 //POST 
 /**
@@ -121,7 +123,7 @@ router.get("/boulder/:id",tbComments.getCommentsbyBoulders);
  *         description: Erreur serveur
  */
 
-router.post("/",tbComments.postComments);
+router.post("/",Comments.postComments);
 //DEL
 /**
  * @swagger
@@ -144,5 +146,5 @@ router.post("/",tbComments.postComments);
  *         description: Erreur serveur
  */
 
-router.delete("/:id",tbComments.deleteComments);
+router.delete("/:id",jwtAuth,checkOwnerOrAdmin(tbComments,'userId'),Comments.deleteComments);
 export default router

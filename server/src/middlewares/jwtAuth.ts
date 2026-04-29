@@ -5,7 +5,6 @@ import type { JwtAccessPayload } from "../utils/jwt.js";
 export const jwtAuth = (req: Request, res: Response, next: NextFunction) => {
   try {
     const authHeader = req.headers.authorization;
-
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(401).json({ message: "Token manquant" });
     }
@@ -18,7 +17,7 @@ export const jwtAuth = (req: Request, res: Response, next: NextFunction) => {
     }
 
     const decoded = jwt.verify(token, secret) as JwtAccessPayload;
-
+console.log("TOKEN DECODED:", decoded);
     req.user = decoded; // injecte le payload dans req.user
 
     next();

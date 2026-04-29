@@ -11,6 +11,8 @@ import apiComments from "./apiComments.js";
 import apiReplies from "./apiReplies.js";
 import apiAvatar from "./apiAvatar.js";
 import apiStatus from "./apiStatus.js"
+import { jwtAuth} from '../middlewares/jwtAuth.js';
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
 const router = express.Router()
 //Racine
 router.get("/", (req : Request,res:Response) => {

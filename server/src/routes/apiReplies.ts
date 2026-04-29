@@ -1,6 +1,7 @@
 import express from 'express';
 import * as tbReplies from "../controllers/tbRepliesControllers.js";
-
+import { jwtAuth} from '../middlewares/jwtAuth.js';
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
 const router = express.Router()
 /**
  * @swagger

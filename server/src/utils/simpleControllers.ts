@@ -23,6 +23,7 @@ export async function getByPk(req:Request,res: Response,table:any ){
 // POST 
 export async function postElement(req: Request,res : Response,table:any ){
     try {
+        
         const json = await table.create(req.body);
         res.status(201).json(json);
     } catch (error) {
