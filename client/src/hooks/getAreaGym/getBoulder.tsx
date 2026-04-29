@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { getStars } from "../../utils/conversionRating";
+
 interface Props {
   gymId: string;
 }
@@ -15,6 +17,7 @@ function GetBoulder({ gymId }: Props){
         areaId: number;
         boulderImageUrl: string;
         area: object;
+        avgRating: number;
     }
     const [boulder, setBoulder] = useState<Boulder[]>([]);
 
@@ -36,7 +39,15 @@ function GetBoulder({ gymId }: Props){
                     <span className="boulderName">{boulder.boulderName}</span>
                     <span className="descriptionBoulder">{boulder.boulderDesc}</span>
                     <span className="nameArea">📍{boulder.area.areaName}</span>
-                    <span></span>
+                    <span>
+                    {getStars(boulder.avgRating).map((star, i) => (
+                         star === 'full' 
+                            ? <span key={i} className="star-full">★</span>
+                            : star === 'half' 
+                                ? <span key={i} className="star-half">★</span>
+                                : <span key={i} className="star-empty">★</span>
+    ))}
+</span>
                 </div>
             ))}
         </div>

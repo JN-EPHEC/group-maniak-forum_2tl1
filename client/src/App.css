@@ -548,3 +548,32 @@ form {
   color: white;
   
 }
+
+span {
+    display: inline-flex;
+    align-items: center;
+}
+
+.star-full {
+    color: gold;
+}
+
+.star-empty {
+    color: white;
+}
+
+.star-half {
+    position: relative;
+    display: inline-block;
+    color: white;
+}
+
+.star-half::before {
+    content: '★';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    overflow: hidden;
+    color: gold;
+}
