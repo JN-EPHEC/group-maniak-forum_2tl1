@@ -1,6 +1,7 @@
 import express from 'express';
 import * as tbDifficulties from "../controllers/tbDifficultiesControllers.js";
-
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
 const router = express.Router()
 /**
  * @swagger
@@ -103,6 +104,6 @@ router.post("/", tbDifficulties.postDifficulty);
  *         description: Erreur serveur
  */
 
-router.delete("/:id", tbDifficulties.delDifficulty);
+router.delete("/:id",jwtAuth,requireAdmin, tbDifficulties.delDifficulty);
 
 export default router;

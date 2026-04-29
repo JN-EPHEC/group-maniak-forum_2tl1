@@ -13,7 +13,8 @@ tbReplies.init(
         },
         commentsId: {
             type: DataTypes.INTEGER,
-            references: { model: "tbComments", key: "commentsId" }
+            references: { model: "tbComments", key: "commentsId" },
+            onDelete: "CASCADE",
         },
         commentsrepliesId: {
             type: DataTypes.INTEGER,

@@ -1,5 +1,7 @@
 import express from 'express';
 import * as tbStatus from "../controllers/tbStatusControllers.js"
+import { jwtAuth} from '../middlewares/jwtAuth.js';
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
 const router = express.Router()
 /**
  * @swagger
@@ -104,6 +106,6 @@ router.post("/",tbStatus.postStatus);
  *         description: Erreur serveur
  */
 
-router.delete("/:id",tbStatus.delStatus);
+router.delete("/:id",jwtAuth,requireAdmin,tbStatus.delStatus);
 
 export default router
