@@ -1,27 +1,9 @@
 import type { Request, Response } from "express";
-import { sequelize } from "../models/index.js";
-import { tbRatings,tbUsers,tbBoulders,tbAreaGyms,tbDifficultyUsers  } from "../models/index.js";
-import { postElement,delElement } from "../utils/simpleControllers.js";
-import { constrainedMemory } from "node:process";
+import * as tbRatingsServices from "../services/tbRatingsServices.js"
 // GET ALL Ratings
 export const getAllRatings = async (req : Request,res : Response ) =>{
      try {
-        const json = await tbRatings.findAll({
-                include: [{
-            model: tbUsers,
-            as: "author",
-            attributes: ["userId","userFName","userLName","userPseudo"]
-            },{
-                model: tbBoulders,
-                as:"boulder",
-                attributes: ["boulderId","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
-                include :[ {
-                model: tbAreaGyms,
-                as: "area",
-                attributes: ["areaId","areaName"]
-            }]
-            }]
-        });
+        const json = await tbRatingsServices.getAllService()
         res.status(200).json(json);
     } catch (error) {
     res.status(500).json({ error: (error as any).message });
@@ -30,23 +12,8 @@ export const getAllRatings = async (req : Request,res : Response ) =>{
 // GET Ratings by PK
 export const getRatingsbyPk = async (req:Request,res: Response) =>{
    try {
-        const id = req.params.id as string;
-        const json = await tbRatings.findByPk(id,{
-                include:  [{
-            model: tbUsers,
-            as: "author",
-            attributes: ["userId","userFName","userLName","userPseudo"]
-            },{
-                model: tbBoulders,
-                as:"boulder",
-                attributes: ["boulderId","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
-                include :[ {
-                model: tbAreaGyms,
-                as: "area",
-                attributes: ["areaId","areaName"]
-            }]
-            }]
-        });
+        const id = Number(req.params.id);
+        const json = await tbRatingsServices.getByPkService(id)
         res.status(200).json(json);
     } catch (error) {
     res.status(500).json({ error: (error as any).message });
@@ -55,24 +22,8 @@ export const getRatingsbyPk = async (req:Request,res: Response) =>{
 // Get Ratings par User 
 export const getRatingsByUser = async (req : Request,res : Response ) =>{
      try {
-        const id = req.params.id as string;
-        const json = await tbRatings.findAll({
-            where : {userId:id},
-            include: [{
-            model: tbUsers,
-            as: "author",
-            attributes: ["userId","userFName","userLName","userPseudo"]
-            },{
-                model: tbBoulders,
-                as:"boulder",
-                attributes: ["boulderId","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
-                include :[ {
-                model: tbAreaGyms,
-                as: "area",
-                attributes: ["areaId","areaName"]
-            }]
-            }]
-        });
+        const id = Number(req.params.id);
+        const json = await tbRatingsServices.getByUserService(id)
         res.status(200).json(json);
     } catch (error) {
     res.status(500).json({ error: (error as any).message });
@@ -81,24 +32,8 @@ export const getRatingsByUser = async (req : Request,res : Response ) =>{
 // Get Ratings par Boulders 
 export const getRatingsByBoulders = async (req : Request,res : Response ) =>{
      try {
-        const id = req.params.id as string;
-        const json = await tbRatings.findAll({
-            where : {boulderId:id},
-            include: [{
-            model: tbUsers,
-            as: "author",
-            attributes: ["userId","userFName","userLName","userPseudo"]
-            },{
-                model: tbBoulders,
-                as:"boulder",
-                attributes: ["boulderId","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
-                include :[ {
-                model: tbAreaGyms,
-                as: "area",
-                attributes: ["areaId","areaName"]
-            }]
-            }]
-        });
+        const id = Number(req.params.id);
+        const json = await tbRatingsServices.getByBoulderService(id)
         res.status(200).json(json);
     } catch (error) {
     res.status(500).json({ error: (error as any).message });
@@ -106,24 +41,8 @@ export const getRatingsByBoulders = async (req : Request,res : Response ) =>{
 };
 export const getRatingsByAreaGym = async (req : Request,res : Response ) =>{
      try {
-        const id = req.params.id as string;
-        const json = await tbRatings.findAll({
-            where : {areaId:id},
-            include: [{
-            model: tbUsers,
-            as: "author",
-            attributes: ["userId","userFName","userLName","userPseudo"]
-            },{
-                model: tbBoulders,
-                as:"boulder",
-                attributes: ["boulderId","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
-                include :[ {
-                model: tbAreaGyms,
-                as: "area",
-                attributes: ["areaId","areaName"]
-            }]
-            }]
-        });
+        const id = Number(req.params.id);
+        const json = await tbRatingsServices.getByAreaService(id);
         res.status(200).json(json);
     } catch (error) {
     res.status(500).json({ error: (error as any).message });
@@ -131,39 +50,26 @@ export const getRatingsByAreaGym = async (req : Request,res : Response ) =>{
 };
 // POST Ratings
 export const postRatings = async (req: Request, res: Response) => {
-    const t = await sequelize.transaction();
-
-    try {
-        
-        const { rateNote, difficultyId, rateTxt, videoLink, userId, boulderId } = req.body;
-        const rating = await tbRatings.create(
-            {
-                rateNote,
-                difficultyId, // difficulté ressentie
-                rateTxt,
-                videoLink,
-                userId,
-                boulderId
-            },
-            { transaction: t }
-        );
-        await tbDifficultyUsers.findOrCreate({
-            where: { userId, boulderId: boulderId },
-            defaults: { userId, boulderId: boulderId },
-            transaction: t});
-
-        // Valider la transaction
-        await t.commit();
-
-        res.status(201).json(rating);
-
-    } catch (error) {
-        await t.rollback();
-        res.status(500).json({ error: (error as any).message });
-    }
+  try {
+    const rating = await tbRatingsServices.postService(req.body);
+    res.status(201).json(rating);
+  } catch (error) {
+    res.status(500).json({ error: (error as any).message });
+  }
 };
 
 // DEL Ratings
 export const delRatings = async (req: Request,res : Response) => {
-    delElement(req,res,tbRatings)
+      try {
+        const id = Number(req.params.id);
+        const deleted = await tbRatingsServices.delService(id);
+        if (!deleted) {
+          return res.status(404).json({ error: "pas d'élement ayant cet ID" });
+        }
+        res.status(204).json({
+          message: `l'élement ${id} a été supprimé`
+        });
+      } catch (error) {
+        res.status(500).json({ error: (error as any).message });
+      }
 };

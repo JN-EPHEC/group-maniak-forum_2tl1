@@ -1,29 +1,9 @@
 import type { Request, Response } from "express";
-import { tbUsers,tbComments,tbReplies,sequelize} from  "../models/index.js";
-import { postElement,delElement } from "../utils/simpleControllers.js";
+import * as tbRepliesServices from "../services/tbRepliesServices.js"
 
 export const getAllReplies = async (req : Request,res : Response ) =>{
     try {
-        const json = await tbReplies.findAll({
-            include: 
-            [  
-                {
-                model: tbComments,
-                as: "parentComment",
-                attributes: ["commentsId"] 
-                },
-                                {
-                model: tbComments,
-                as: "childComment",
-                attributes: ["commentsId","commentsTxt","userId","boulderId"],
-                include:  [{
-                model: tbUsers,
-                as: "author",
-                attributes: ["userId","userFName","userLName","userPseudo"]
-                }]
-                }
-            ],
-        });
+        const json = await tbRepliesServices.getAllService();
         res.status(200).json(json);
 
     } catch (error) {
@@ -32,73 +12,49 @@ export const getAllReplies = async (req : Request,res : Response ) =>{
 };
 export const getRepliesbyComments = async (req:Request,res: Response) =>{
     try {
-        const id = req.params.id as string;
-        const json = await tbReplies.findAll({
-            where : {commentsId:id},
-            include:
-                [{
-                model: tbComments,
-                as: "parentComment",
-                attributes: ["commentsId"] 
-                },{
-                model: tbComments,
-                as: "childComment",
-                attributes: ["commentsId","commentsTxt","userId","boulderId"],
-                include:  [{
-                model: tbUsers,
-                as: "author",
-                attributes: ["userId","userFName","userLName","userPseudo"]
-                }]
-                }]
-        })
+        const id = Number(req.params.id);
+        const json = await tbRepliesServices.getByPkService(id)
         res.status(200).json(json);
     } catch (error) {
         res.status(500).json({ error: (error as any).message })
     }
 };
 export const postReplies = async (req:Request,res: Response) => {
-    const t = await sequelize.transaction();
-
     try {
-        const { parentId, commentsTxt, userId, boulderId } = req.body;
+    const { parentId, commentsTxt, userId, boulderId } = req.body;
 
-        if (!parentId || !commentsTxt || !userId || !boulderId) {
-            return res.status(400).json({ error: "Missing fields" });
-        }
-
-        // Créer le commentaire enfant
-        const childComment = await tbComments.create(
-            {
-                commentsTxt,
-                userId,
-                boulderId
-            },
-            { transaction: t }
-        );
-
-        // Créer la relation reply
-        const reply = await tbReplies.create(
-            {
-                commentsId: parentId,
-                commentsrepliesId: childComment.commentsId
-            },
-            { transaction: t }
-        );
-
-        await t.commit();
-
-        return res.status(201).json({
-            message: "Reply created successfully",
-            reply,
-            childComment
-        });
-
-    } catch (error) {
-        await t.rollback();
-        console.error(error);
-        return res.status(500).json({ error: "Failed to create reply" });
+    if (!parentId || !commentsTxt || !userId || !boulderId) {
+      return res.status(400).json({ error: "Missing fields" });
     }
+
+    const result = await tbRepliesServices.postService({
+      parentId,
+      commentsTxt,
+      userId,
+      boulderId,
+    });
+
+    return res.status(201).json({
+      message: "Reply created successfully",
+      result,
+    });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Failed to create reply" });
+  }
 };
 export const deleteReplies = async (req:Request,res:Response)=>{
-    delElement(req,res,tbReplies)
+          try {
+            const id = Number(req.params.id);
+            const deleted = await tbRepliesServices.delService(id);
+            if (!deleted) {
+              return res.status(404).json({ error: "pas d'élement ayant cet ID" });
+            }
+            res.status(204).json({
+              message: `l'élement ${id} a été supprimé`
+            });
+          } catch (error) {
+            res.status(500).json({ error: (error as any).message });
+          }
 };
