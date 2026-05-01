@@ -32,6 +32,24 @@ const router = express.Router()
  */
 
 router.get('/',tbBoulders.getAllBoulders);
+/**
+ * @swagger
+ * /api/boulders/weekly:
+ *   get:
+ *     summary: Récupère les blocs de la semaines
+ *     tags: [Boulders]
+ *     responses:
+ *       200:
+ *         description: Liste de tous les blocs
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Boulder'
+ *       500:
+ *         description: Erreur serveur
+ */
 router.get('/weekly',getWeeklyBoulders);
 /**
  * @swagger

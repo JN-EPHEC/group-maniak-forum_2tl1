@@ -1,52 +1,10 @@
 import type { Request, Response } from "express";
-import { tbUsers,tbDifficultyUsers,tbStatus,tbProfilePictures,tbDifficulties, tbBoulders,sequelize } from  "../models/index.js";
-import { postElement,delElement } from "../utils/simpleControllers.js";
-import bcrypt from "bcrypt";
+import * as tbUsersServices from "../services/tbUsersServices.js"
+
 
 export const getAllUsers = async (req: Request, res: Response) => {
     try {
-        const usersAll = await tbUsers.findAll({
-            attributes: { exclude: ["userPassHashed"] },
-            include: [
-                {
-                    model: tbDifficultyUsers,
-                    as: "boulderUsers",
-                    attributes: ["boulderId", "createdAt"],
-                    separate: true,
-                    limit: 1,
-                    include: [
-                        {
-                            model: tbBoulders,
-                            as: "boulder",
-                            attributes: ["difficultyId", "boulderId"],
-                            include: [
-                                {
-                                    model: tbDifficulties,
-                                    as: "difficulty",
-                                    attributes: [
-                                        "difficultyId",
-                                        "difficultyColorName",
-                                        "difficultyFrenchScale",
-                                        "difficultyVerminScale"
-                                    ]
-                                }
-                            ],
-                            order: [["difficultyId", "DESC"]]
-                        }
-                    ]
-                },
-                {
-                    model: tbProfilePictures,
-                    as: "profilePicture",
-                    attributes: ["pictureId", "pictureLink", "pictureLegend"]
-                },
-                {
-                    model: tbStatus,
-                    as: "status",
-                    attributes: ["statusId", "statusName"]
-                }
-            ]
-        });
+        const usersAll = await tbUsersServices.getAllService()
 
         res.status(200).json(usersAll);
 
@@ -58,50 +16,8 @@ export const getAllUsers = async (req: Request, res: Response) => {
 
 export const getUserbyPk = async (req:Request,res: Response) =>{
     try {
-        const id = req.params.id as string;
-        const user = await tbUsers.findByPk(id,{
-            attributes: { exclude: ["userPassHashed"] },
-            include: [
-                {
-                    model: tbDifficultyUsers,
-                    as: "boulderUsers",
-                    attributes: ["boulderId", "createdAt"],
-                    separate: true,
-                    limit: 1,
-                    include: [
-                        {
-                            model: tbBoulders,
-                            as: "boulder",
-                            attributes: ["difficultyId", "boulderId"],
-                            include: [
-                                {
-                                    model: tbDifficulties,
-                                    as: "difficulty",
-                                    attributes: [
-                                        "difficultyId",
-                                        "difficultyColorName",
-                                        "difficultyFrenchScale",
-                                        "difficultyVerminScale"
-                                    ]
-                                }
-                            ],
-                            order: [["difficultyId", "DESC"]]
-                        }
-                    ]
-                },
-                {
-                    model: tbProfilePictures,
-                    as: "profilePicture",
-                    attributes: ["pictureId", "pictureLink", "pictureLegend"]
-                },
-                {
-                    model: tbStatus,
-                    as: "status",
-                    attributes: ["statusId", "statusName"]
-                }
-            ]
-        });
-
+        const id = Number(req.params.id);
+        const user = await tbUsersServices.getByPkService(id);
         res.status(200).json(user);
 
     } catch (error) {
@@ -111,21 +27,8 @@ export const getUserbyPk = async (req:Request,res: Response) =>{
 
 export const getUserbyStatus = async (req:Request,res: Response) =>{
     try {
-        const id = req.params.id as string;
-        const user = await tbUsers.findAll({
-            where:{statusId:id},
-            include: [{model: tbDifficultyUsers,
-            as: "averageDifficultiy",
-            attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]},
-            {
-            model: tbProfilePictures,
-            as: "profilePicture",
-            attributes: ["pictureId","pictureLink","pictureLegend"]
-            },{
-            model: tbStatus,
-            as: "status",
-            attributes: ["statusId","statusName"]
-            }]});
+        const id = Number(req.params.id);
+        const user = await tbUsersServices.getByStatusService(id);
         res.status(200).json(user);
     } catch (error) {
         res.status(500).json({ error: (error as any).message })
@@ -133,22 +36,20 @@ export const getUserbyStatus = async (req:Request,res: Response) =>{
 };
 export const postUsers = async (req:Request,res:Response) => {
     try {
-    const { userMail,userLName,userFName,userPseudo,password,pictureId,statusId} = req.body;
+    const { userMail, userLName, userFName, userPseudo, password, pictureId, statusId } = req.body;
+
     if (!password) {
       return res.status(400).json({ message: "Password manquant" });
     }
 
-    // Hash du mot de passe
-    const hashed = await bcrypt.hash(password, 10);
-    // Création de l'utilisateur
-    const newUser = await tbUsers.create({
-      userMail:userMail,
-      userLName:userLName,
-      userFName:userFName,
-      userPseudo:userPseudo,
-      userPassHashed:hashed,
-      pictureId:pictureId,
-      statusId: statusId,
+    const newUser = await tbUsersServices.postService({
+      userMail,
+      userLName,
+      userFName,
+      userPseudo,
+      password,
+      pictureId,
+      statusId,
     });
 
     return res.status(201).json({
@@ -158,10 +59,22 @@ export const postUsers = async (req:Request,res:Response) => {
         mail: newUser.userMail,
       },
     });
-    } catch (error) {
-        res.status(500).json({ error: (error as any).message });
-    }
+
+  } catch (error) {
+    return res.status(500).json({ error: (error as any).message });
+  }
 };
 export const deleteUsers = async (req:Request,res:Response)=>{
-    delElement(req,res,tbUsers)
+              try {
+                const id = Number(req.params.id);
+                const deleted = await tbUsersServices.delService(id);
+                if (!deleted) {
+                  return res.status(404).json({ error: "pas d'élement ayant cet ID" });
+                }
+                res.status(204).json({
+                  message: `l'élement ${id} a été supprimé`
+                });
+              } catch (error) {
+                res.status(500).json({ error: (error as any).message });
+              }
 };
