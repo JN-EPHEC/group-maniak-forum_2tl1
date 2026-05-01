@@ -8,7 +8,8 @@ export const getAllBoulders = async (req : Request,res : Response ) =>{
  
             attributes: {
                 include: [
-                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"]
+                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"],
+                    [sequelize.fn("COUNT", sequelize.col("ratings.rateNote")), "SumRating"]
                 ]
             },
 
@@ -67,7 +68,8 @@ export const getBoulderbyPk = async (req:Request,res: Response) =>{
 
             attributes: {
                 include: [
-                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"]
+                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"],
+                    [sequelize.fn("COUNT", sequelize.col("ratings.rateNote")), "SumRating"]
                 ]
             },
 
@@ -124,7 +126,8 @@ export const getBoulderByArea = async (req:Request,res:Response) => {
 
             attributes: {
                 include: [
-                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"]
+                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"],
+                    [sequelize.fn("COUNT", sequelize.col("ratings.rateNote")), "SumRating"]
                 ]
             },
 
@@ -180,7 +183,8 @@ export const getBoulderByGym = async (req:Request,res:Response) => {
         const json = await tbBoulders.findAll({
             attributes: {
                 include: [
-                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"]
+                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"],
+                    [sequelize.fn("COUNT", sequelize.col("ratings.rateNote")), "SumRating"]
                 ]
             },
             include: 
@@ -233,7 +237,8 @@ export const getBoulderBySetter = async (req:Request,res:Response) => {
 
             attributes: {
                 include: [
-                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"]
+                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"],
+                    [sequelize.fn("COUNT", sequelize.col("ratings.rateNote")), "SumRating"]
                 ]
             },
 
@@ -290,7 +295,8 @@ export const getBoulderByDifficulty = async (req:Request,res:Response) => {
 
             attributes: {
                 include: [
-                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"]
+                    [sequelize.fn("AVG", sequelize.col("ratings.rateNote")), "avgRating"],
+                    [sequelize.fn("COUNT", sequelize.col("ratings.rateNote")), "SumRating"]
                 ]
             },
 
