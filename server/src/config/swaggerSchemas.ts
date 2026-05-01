@@ -118,20 +118,23 @@
  * @swagger
  * components:
  *   schemas:
- *     Comment:
+ *     tbComments:
  *       type: object
- *       required:
- *         - commentsTxt
- *         - userId
- *         - boulderId
  *       properties:
+ *         commentsId:
+ *           type: integer
+ *           example: 42
  *         commentsTxt:
  *           type: string
+ *           example: "Ceci est un commentaire"
  *         userId:
  *           type: integer
+ *           example: 3
  *         boulderId:
  *           type: integer
+ *           example: 5
  */
+
 /**
  * @swagger
  * components:
@@ -162,16 +165,20 @@
  * @swagger
  * components:
  *   schemas:
- *     Reply:
+ *     tbReplies:
  *       type: object
- *       required:
- *         - commentsId
- *         - commentsrepliesId
  *       properties:
+ *         replyId:
+ *           type: integer
+ *           example: 10
  *         commentsId:
  *           type: integer
+ *           description: ID du commentaire parent
+ *           example: 12
  *         commentsrepliesId:
  *           type: integer
+ *           description: ID du commentaire enfant créé automatiquement
+ *           example: 42
  */
 /**
  * @swagger
@@ -217,4 +224,31 @@
  *         statusId:
  *           type: integer
  *           nullable: true
+ */
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     CreateReplyInput:
+ *       type: object
+ *       required:
+ *         - parentId
+ *         - commentsTxt
+ *         - userId
+ *         - boulderId
+ *       properties:
+ *         parentId:
+ *           type: integer
+ *           description: ID du commentaire parent
+ *           example: 12
+ *         commentsTxt:
+ *           type: string
+ *           description: Texte du commentaire enfant
+ *           example: "Je suis une réponse"
+ *         userId:
+ *           type: integer
+ *           example: 3
+ *         boulderId:
+ *           type: integer
+ *           example: 5
  */

@@ -57,21 +57,40 @@ router.get("/comment/:id",tbReplies.getRepliesbyComments);
  * @swagger
  * /api/replies:
  *   post:
- *     summary: Crée une nouvelle réponse à un commentaire
- *     tags: [Replies]
+ *     tags:
+ *       - Replies
+ *     summary: Crée un reply (commentaire enfant + relation)
+ *     description: >
+ *       Crée automatiquement un commentaire enfant, puis crée la relation reply
+ *       entre le commentaire parent et le commentaire enfant.
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Reply'
+ *             $ref: '#/components/schemas/CreateReplyInput'
  *     responses:
  *       201:
- *         description: Réponse créée avec succès
+ *         description: Reply créé avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Reply created successfully"
+ *                 reply:
+ *                   $ref: '#/components/schemas/tbReplies'
+ *                 childComment:
+ *                   $ref: '#/components/schemas/tbComments'
+ *       400:
+ *         description: Champs manquants
  *       500:
  *         description: Erreur serveur
  */
-
 router.post("/",tbReplies.postReplies);
 //DELETE
 /**
