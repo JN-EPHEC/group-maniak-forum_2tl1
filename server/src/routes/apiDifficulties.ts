@@ -1,7 +1,10 @@
 import express from 'express';
 import * as tbDifficulties from "../controllers/tbDifficultiesControllers.js";
-import { jwtAuth } from '../middlewares/jwtAuth.js';
 import { requireAdmin } from '../middlewares/checkAdminRole.js';
+import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
+import { checkAdminOrSetter } from '../middlewares/checkAdminOrSetter.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkIfConnected } from '../middlewares/checkIfConnected.js';
 const router = express.Router()
 /**
  * @swagger
@@ -80,7 +83,7 @@ router.get("/:id",tbDifficulties.getDifficultybyPk);
  *         description: Erreur serveur
  */
 
-router.post("/", tbDifficulties.postDifficulty);
+router.post("/",jwtAuth,requireAdmin ,tbDifficulties.postDifficulty);
 
 /**
  * @swagger

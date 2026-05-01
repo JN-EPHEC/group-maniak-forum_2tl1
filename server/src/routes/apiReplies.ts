@@ -1,7 +1,11 @@
 import express from 'express';
-import * as tbReplies from "../controllers/tbRepliesControllers.js";
-import { jwtAuth} from '../middlewares/jwtAuth.js';
+import * as Replies from "../controllers/tbRepliesControllers.js";
+import tbReplies from '../models/tbReplies.js';
 import { requireAdmin } from '../middlewares/checkAdminRole.js';
+import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
+import { checkAdminOrSetter } from '../middlewares/checkAdminOrSetter.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkIfConnected } from '../middlewares/checkIfConnected.js';
 const router = express.Router()
 /**
  * @swagger
@@ -30,7 +34,7 @@ const router = express.Router()
  *         description: Erreur serveur
  */
 
-router.get("/",tbReplies.getAllReplies);
+router.get("/",Replies.getAllReplies);
 /**
  * @swagger
  * /api/replies/comment/{id}:
@@ -51,7 +55,7 @@ router.get("/",tbReplies.getAllReplies);
  *         description: Erreur serveur
  */
 
-router.get("/comment/:id",tbReplies.getRepliesbyComments);
+router.get("/comment/:id",Replies.getRepliesbyComments);
 //POST
 /**
  * @swagger
@@ -72,7 +76,7 @@ router.get("/comment/:id",tbReplies.getRepliesbyComments);
  *         description: Erreur serveur
  */
 
-router.post("/",tbReplies.postReplies);
+router.post("/",jwtAuth,checkIfConnected,Replies.postReplies);
 //DELETE
 /**
  * @swagger
@@ -96,6 +100,6 @@ router.post("/",tbReplies.postReplies);
  *         description: Erreur serveur
  */
 
-router.delete("/:id",tbReplies.deleteReplies);
+router.delete("/:id",jwtAuth,checkOwnerOrAdmin(tbReplies,"replyId"),Replies.deleteReplies);
 
 export default router
