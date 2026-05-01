@@ -1,6 +1,8 @@
 import express from 'express';
 import * as tbBoulders from "../controllers/tbBouldersControllers.js";
 import { getWeeklyBoulders } from '../controllers/weeklyBouldersControllers.js';
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
 const router = express.Router()
 /**
  * @swagger
@@ -187,6 +189,6 @@ router.post('/',tbBoulders.postBoulder);
  *         description: Erreur serveur
  */
 
-router.delete('/:id',tbBoulders.deleteBoulder);
+router.delete('/:id',jwtAuth,requireAdmin,tbBoulders.deleteBoulder);
 
 export default router
