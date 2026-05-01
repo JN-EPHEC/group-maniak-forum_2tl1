@@ -1,7 +1,7 @@
 import express from 'express';
 import * as tbUserControllers from "../controllers/tbUsersControllers.js";
-import { checkIdParam } from '../middlewares/checkIdParam.js';
 import { jwtAuth } from "../middlewares/jwtAuth.js";
+import { checkPassword } from '../middlewares/checkPassword.js';
 const router = express.Router()
 /**
  * @swagger
@@ -103,7 +103,7 @@ router.get('/status/:id',tbUserControllers.getUserbyStatus);
  *         description: Erreur serveur
  */
 
-router.post("/", tbUserControllers.postUsers);
+router.post("/",checkPassword ,tbUserControllers.postUsers);
 /**
  * @swagger
  * /api/users/{id}:
@@ -125,6 +125,6 @@ router.post("/", tbUserControllers.postUsers);
  *         description: Erreur serveur
  */
 
-router.delete("/:id",checkIdParam,tbUserControllers.deleteUsers);
+router.delete("/:id",tbUserControllers.deleteUsers);
 
 export default router;

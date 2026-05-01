@@ -1,7 +1,15 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class tbRatings extends Model {};
+class tbRatings extends Model {
+    declare rateId: number;
+    declare rateNote: number;
+    declare difficultyId: number;
+    declare rateTxt: string;
+    declare videoLink: string;
+    declare userId: number;
+    declare boulderId: number;
+};
 
 tbRatings.init(
         {

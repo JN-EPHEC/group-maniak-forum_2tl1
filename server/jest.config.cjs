@@ -9,4 +9,19 @@ module.exports = {
   transform: {
     ...tsJestTransformCfg,
   },
+    collectCoverage: true,
+  collectCoverageFrom: [
+    "src/**/*.ts",
+    "src/tests/**",
+    "!src/server.ts",
+    "!src/config/**",
+    "!src/routes/**",
+    "!src/controllers/**",
+    "!src/data/**",
+    "!src/models/**",
+    "!src/relations/**",
+    "!src/types/**",
+    "!src/seeders/**",
+    "!src/**/index.ts",
+  ],
 };

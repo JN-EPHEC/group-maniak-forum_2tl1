@@ -1,7 +1,12 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class tbDifficulties extends Model {};
+class tbDifficulties extends Model {
+    declare difficultyId: number;
+    declare difficultyColorName: string;
+    declare difficultyFrenchScale: string;
+    declare difficultyVerminScale: string;
+};
 
 tbDifficulties.init(
         {

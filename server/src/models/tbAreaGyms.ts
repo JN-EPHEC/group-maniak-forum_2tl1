@@ -1,7 +1,13 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class tbAreaGyms extends Model {};
+class tbAreaGyms extends Model {
+    declare areaId : number;
+    declare areaName:string;
+    declare areaDesc: string;
+    declare gymId:number;
+    declare areaImageUrl: string;
+};
 
 tbAreaGyms.init(
         {

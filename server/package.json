@@ -16,6 +16,7 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/http-auth": "^4.1.4",
     "@types/jest": "^30.0.0",
     "@types/supertest": "^7.2.0",

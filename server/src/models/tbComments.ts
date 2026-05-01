@@ -1,7 +1,12 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class tbComments extends Model {};
+class tbComments extends Model {
+    declare commentsId: number;
+    declare commentsTxt: string;
+    declare userId:number;
+    declare boulderId:number;
+};
 
 tbComments.init(
         {

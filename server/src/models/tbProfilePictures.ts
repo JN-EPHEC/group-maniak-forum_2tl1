@@ -1,7 +1,11 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class tbProfilePictures extends Model {};
+class tbProfilePictures extends Model {
+    declare pictureId: number;
+    declare pictureLink: string;
+    declare pictureLegend: string;
+};
 
 tbProfilePictures.init(
         {
