@@ -495,7 +495,6 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-/* Couleurs par difficulté */
 #boulderList > div.difficultyId1 { border-top-color: #2d9e4f; }  /* vert   */
 #boulderList > div.difficultyId2 { border-top-color: #e8b800; }  /* jaune  */
 #boulderList > div.difficultyId3 { border-top-color: #E8600A; }  /* orange */
@@ -576,4 +575,250 @@ span {
     width: 50%;
     overflow: hidden;
     color: gold;
+}
+#ratingStars {
+  color: white;
+}
+#boulderDetail {
+  width: 100%;
+  padding: 1.5rem;
+  background: transparent !important;
+}
+
+.boulderCard {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  grid-template-areas:
+    "name       name"
+    "setter     setter"
+    "image      desc"
+    "image      area"
+    "image      date"
+    "image      link"
+    "image      rating"
+    "image      formrating";
+  gap: 12px 24px;
+  padding: 1.5rem;
+  width: 100%;
+  background: transparent !important;
+}
+
+.boulderNameTitle {
+  grid-area: name;
+  font-size: 24px;
+  font-weight: 500;
+  color: white;
+}
+
+.setterInfo {
+  grid-area: setter;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.boulderImageUrl {
+  grid-area: image;
+  background: #333;
+  border-radius: 10px;
+  min-height: 200px;
+}
+
+.boulderImageUrl img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.boulderDesc {
+  grid-area: desc;
+  font-size: 14px;
+  color: #aaa;
+  border-left: 3px solid #E8600A;
+  padding-left: 10px;
+}
+
+.areaNameBoulder {
+  grid-area: area;
+  font-size: 13px;
+  font-weight: 500;
+  color: #E8600A;
+}
+
+.boulderReleaseDate {
+  grid-area: date;
+  font-size: 12px;
+  color: #666;
+}
+
+.boulderLink {
+  grid-area: link;
+}
+
+.boulderLink a {
+  font-size: 13px;
+  color: #E8600A;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#ratingStars {
+  grid-area: rating;
+  font-size: 18px;
+  color: #E8600A;
+}
+
+.star-full {
+  color: #E8600A;
+}
+
+.star-half {
+  color: #E8600A;
+  opacity: 0.5;
+}
+
+.star-empty {
+  color: #444;
+}
+
+.formAddRating {
+  grid-area: formrating;
+
+  margin-right: 40px;
+}
+
+.formAddRating form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.formAddRating label {
+  font-size: 13px;
+  color: #aaa;
+}
+
+.formAddRating > form > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.formAddRating input[type="number"] {
+  width: 60px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 0.5px solid #444;
+  background: #2e2e2e;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
+.formAddRating input[type="number"]:focus {
+  outline: none;
+  border-color: #E8600A;
+}
+
+.formAddRating button {
+  background: #E8600A;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.formAddRating button:hover {
+  background: #D05508;
+}
+
+.ratingWarning {
+  font-size: 11px;
+  color: #666;
+}
+
+#ajouterCommentaire {
+  width: 100%;
+  max-width: 80%;
+  margin-bottom: 24px;
+}
+
+#ajouterCommentaire form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#ajouterCommentaire textarea {
+  width: 100%;
+  min-height: 90px;
+  resize: vertical;
+  border: 0.5px solid #444;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: #fff;
+  background: #2e2e2e;
+  line-height: 1.5;
+}
+
+#ajouterCommentaire textarea:focus {
+  outline: none;
+  border-color: #E8600A;
+}
+
+#ajouterCommentaire button {
+  align-self: flex-end;
+  background: #E8600A;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#ajouterCommentaire button:hover {
+  background: #D05508;
+}
+
+.commentCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 0;
+  border-bottom: 0.5px solid #333;
+}
+
+.commentAuthor {
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.commentTxt {
+  font-size: 14px;
+  color: #aaa;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .boulderCard {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "name"
+      "setter"
+      "image"
+      "desc"
+      "area"
+      "date"
+      "link"
+      "rating"
+      "formrating";
+  }
 }

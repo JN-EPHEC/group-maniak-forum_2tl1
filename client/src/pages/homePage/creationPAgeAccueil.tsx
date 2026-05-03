@@ -13,7 +13,7 @@ function CreationPageAccueil(){
         <CreateGymList></CreateGymList>  
         <Footer></Footer>
       </div>
-);
+  );
 }
 
 export default CreationPageAccueil;

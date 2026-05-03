@@ -5,6 +5,7 @@ import { PageContext } from "./PageContext.tsx";
 import CreationPageMonProfil from "./pages/profilePage/creationPageMonProfil.tsx";
 import CreationWeekBoulder from "./pages/weekBoulderPage/creationWeekBoulder.tsx";
 import CreationBoulderGymPage from "./pages/boulderGymPage/creationBoulderGymPage.tsx";
+import CreationBoulderById from "./pages/boulderIdPage/creationBoulderIdPage.tsx";
 
 function App(){
   const [page, setPage] = useState("home");
@@ -50,6 +51,16 @@ function App(){
       <div>
         <PageContext.Provider value={setPage}>
           <CreationBoulderGymPage gymId={gymId} />
+        </PageContext.Provider>
+      </div>
+    );
+  }
+  if(page.startsWith("boulderId")) {
+    const boulderId = page.split("-")[1];
+    return (
+      <div>
+        <PageContext.Provider value={setPage}>
+          <CreationBoulderById boulderId={boulderId} />
         </PageContext.Provider>
       </div>
     );
