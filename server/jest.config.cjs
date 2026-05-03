@@ -14,6 +14,7 @@ module.exports = {
     "src/**/*.ts",
     "src/tests/**",
     "!src/server.ts",
+    "!src/services/**",
     "!src/config/**",
     "!src/routes/**",
     "!src/controllers/**",
