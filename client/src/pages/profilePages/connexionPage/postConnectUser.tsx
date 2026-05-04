@@ -1,17 +1,17 @@
 export const PostConnectUser = async (e: any) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const email = data.get("emailForm");
+    const identifier = data.get("emailForm");
     const password = data.get("passwordForm");
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
-            identifier: email,
+            identifier: identifier,
             password: password,
         })
     };
-    console.log(email, password)
+    console.log(identifier, password)
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, requestOptions);
         console.log(response)
