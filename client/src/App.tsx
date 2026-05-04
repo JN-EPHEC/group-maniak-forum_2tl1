@@ -6,6 +6,8 @@ import CreationPageMonProfil from "./pages/profilePage/creationPageMonProfil.tsx
 import CreationWeekBoulder from "./pages/weekBoulderPage/creationWeekBoulder.tsx";
 import CreationBoulderGymPage from "./pages/boulderGymPage/creationBoulderGymPage.tsx";
 import CreationBoulderById from "./pages/boulderIdPage/creationBoulderIdPage.tsx";
+import CreatePageConnexion from "./pages/profilePages/connexionPage/creationPageConnexion.tsx";
+import CreationPageCreateAccount from "./pages/profilePages/createAccountPage/creationPageCreateAccount.tsx";
 
 function App(){
   const [page, setPage] = useState("home");
@@ -16,18 +18,6 @@ function App(){
           <CreationAboutUs>
           
           </CreationAboutUs>
-        </PageContext.Provider>
-        
-      </div>
-    );
-  }
-  if(page === "Profil") {
-    return (
-      <div>
-        <PageContext.Provider value={setPage}>
-          <CreationPageMonProfil>
-          
-          </CreationPageMonProfil>
         </PageContext.Provider>
         
       </div>
@@ -65,6 +55,32 @@ function App(){
       </div>
     );
   }
+  if(page === "pageConnexion") {
+    return (
+      <div>
+        <PageContext.Provider value={setPage}>
+          <CreatePageConnexion>
+            
+          </CreatePageConnexion>
+        </PageContext.Provider>
+        
+      </div>
+    );
+  }
+  if(page === "pageCreationCompte") {
+    return (
+      <div>
+        <PageContext.Provider value={setPage}>
+          <CreationPageCreateAccount>
+            
+          </CreationPageCreateAccount>
+        </PageContext.Provider>
+        
+      </div>
+    );
+  }
+  
+  
   return (
     <div>
       <PageContext.Provider value={setPage}>
