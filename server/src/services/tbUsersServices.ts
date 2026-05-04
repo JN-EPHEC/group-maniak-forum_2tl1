@@ -148,7 +148,6 @@ export async function postService(data: {
 }) {
   // 1) Hash du mot de passe
   const hashed = await bcrypt.hash(data.password, 10);
-
   // 2) Création de l'utilisateur
   const newUser = await tbUsers.create({
     userMail: data.userMail,
