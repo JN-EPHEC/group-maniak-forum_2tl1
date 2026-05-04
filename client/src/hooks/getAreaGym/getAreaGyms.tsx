@@ -17,7 +17,6 @@ function CreateGymList(){
             .then((data) => setGyms(data));
     }, []); 
 
-    console.log(gyms) 
     const setPage = usePage();
     
     return (

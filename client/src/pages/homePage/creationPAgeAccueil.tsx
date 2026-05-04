@@ -5,7 +5,6 @@ import CreateGymList from "../../hooks/getAreaGym/getAreaGyms.tsx";
 
 function CreationPageAccueil(){
   
-  console.log("aaaa")
   return (
       <div>
         <ToolBar></ToolBar>
