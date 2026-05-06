@@ -2,12 +2,12 @@ import CreationAboutUs from "./pages/aboutUsPage/creationAboutUs.tsx";
 import CreationPageAccueil from "./pages/homePage/creationPAgeAccueil.tsx";
 import { useState } from "react";
 import { PageContext } from "./PageContext.tsx";
-import CreationPageMonProfil from "./pages/profilePage/creationPageMonProfil.tsx";
 import CreationWeekBoulder from "./pages/weekBoulderPage/creationWeekBoulder.tsx";
 import CreationBoulderGymPage from "./pages/boulderGymPage/creationBoulderGymPage.tsx";
 import CreationBoulderById from "./pages/boulderIdPage/creationBoulderIdPage.tsx";
 import CreatePageConnexion from "./pages/profilePages/connexionPage/creationPageConnexion.tsx";
 import CreationPageCreateAccount from "./pages/profilePages/createAccountPage/creationPageCreateAccount.tsx";
+import CreationPageMonProfil from "./pages/profilePages/myProfilPage/creationPageMyProfil.tsx";
 
 function App(){
   const [page, setPage] = useState("home");
@@ -62,6 +62,18 @@ function App(){
           <CreatePageConnexion>
             
           </CreatePageConnexion>
+        </PageContext.Provider>
+        
+      </div>
+    );
+  }
+  if(page === "pageProfil") {
+    return (
+      <div>
+        <PageContext.Provider value={setPage}>
+          <CreationPageMonProfil>
+            
+          </CreationPageMonProfil>
         </PageContext.Provider>
         
       </div>

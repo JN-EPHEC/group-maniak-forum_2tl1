@@ -11,19 +11,22 @@ export const PostConnectUser = async (e: any) => {
             password: password,
         })
     };
-    console.log(identifier, password)
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, requestOptions);
-        console.log(response)
-        if (response.status === 201) {
+        if (response.status === 200) {
             alert("Connecté à votre compte avec succès, vous pouvez désormais acceder à votre profil via le bouton 'Mon profil'")
+            const resultat = await response.json()
+            console.log(resultat)
+            localStorage.setItem("tokenIdentification", resultat.accessToken);
+            localStorage.setItem("tokenUser", JSON.stringify(resultat.user));
             // ou navigate vers la page de connexion
         } else if (response.status === 401) {
             alert("Erreur de connexion, le mot de passe ou email est peut-être incorrect")
         } else {
             alert("Une erreur inattendue est survenue.")
         }
-
+        
+    
     } catch (error) {
         alert("Impossible de contacter le serveur, vérifie ta connexion.")
         console.error(error)

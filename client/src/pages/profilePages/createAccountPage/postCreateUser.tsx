@@ -10,8 +10,6 @@ export const postCreateUser = async (e: any) => {
     const pictureId = Number(idPP)
     const statusId = 2
 
-    console.log(userMail, userLName, userFName, userPseudo, password, pictureId, statusId)
-
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
