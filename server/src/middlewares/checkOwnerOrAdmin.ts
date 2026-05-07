@@ -25,7 +25,7 @@ export const checkOwnerOrAdmin = (
       }
 
       // Admin = OK
-      if (req.user.roleId === 1) {
+      if (req.user.role === 1) {
         return next();
       }
 
