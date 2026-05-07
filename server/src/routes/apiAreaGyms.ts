@@ -1,6 +1,9 @@
 import express from 'express';
 import * as tbAreaGyms from "../controllers/tbAreaGymsControllers.js";
-
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
+import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkIfConnected } from '../middlewares/checkIfConnected.js';
 const router = express.Router()
 /**
  * @swagger
@@ -81,7 +84,7 @@ router.get("/:id",tbAreaGyms.getAreaGymbyPk);
  *         description: Erreur serveur
  */
 
-router.post("/", tbAreaGyms.postAreaGym);
+router.post("/",jwtAuth,requireAdmin ,tbAreaGyms.postAreaGym);
 // del
 /**
  * @swagger
@@ -105,6 +108,6 @@ router.post("/", tbAreaGyms.postAreaGym);
  *         description: Erreur serveur
  */
 
-router.delete("/:id", tbAreaGyms.delAreaGym);
+router.delete("/:id",jwtAuth,requireAdmin, tbAreaGyms.delAreaGym);
 
 export default router;

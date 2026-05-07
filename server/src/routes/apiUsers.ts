@@ -1,7 +1,10 @@
 import express from 'express';
 import * as tbUserControllers from "../controllers/tbUsersControllers.js";
-import { jwtAuth } from "../middlewares/jwtAuth.js";
-import { checkPassword } from '../middlewares/checkPassword.js';
+import tbUsers from '../models/tbUsers.js';
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
+import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkIfConnected } from '../middlewares/checkIfConnected.js';
 const router = express.Router()
 /**
  * @swagger
@@ -29,7 +32,7 @@ const router = express.Router()
  *         description: Erreur serveur
  */
 
-router.get("/", tbUserControllers.getAllUsers);
+router.get("/",jwtAuth,checkIfConnected,tbUserControllers.getAllUsers);
 /**
  * @swagger
  * /api/users/{id}:
@@ -62,7 +65,7 @@ router.get("/", tbUserControllers.getAllUsers);
  *         description: Erreur serveur
  */
 
-router.get('/:id',jwtAuth,tbUserControllers.getUserbyPk);
+router.get('/:id',jwtAuth,checkIfConnected,tbUserControllers.getUserbyPk);
 /**
  * @swagger
  * /api/users/status/{id}:
@@ -103,7 +106,10 @@ router.get('/status/:id',tbUserControllers.getUserbyStatus);
  *         description: Erreur serveur
  */
 
-router.post("/",checkPassword ,tbUserControllers.postUsers);
+
+router.post("/", tbUserControllers.postUsers);
+router.patch("/:id",jwtAuth,checkOwnerOrAdmin(tbUsers,"userId"),tbUserControllers.patchUser)
+
 /**
  * @swagger
  * /api/users/{id}:
@@ -125,6 +131,6 @@ router.post("/",checkPassword ,tbUserControllers.postUsers);
  *         description: Erreur serveur
  */
 
-router.delete("/:id",tbUserControllers.deleteUsers);
+router.delete("/:id",jwtAuth,requireAdmin,tbUserControllers.deleteUsers);
 
 export default router;

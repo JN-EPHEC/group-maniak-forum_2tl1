@@ -23,8 +23,7 @@ tbReplies.init(
         commentsrepliesId: {
             type: DataTypes.INTEGER,
             references: { model: "tbComments", key: "commentsId" }
-        }
-
+        },
     },
     {
         //les options de la table ici (model)

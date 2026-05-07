@@ -1,7 +1,9 @@
 import express from 'express';
 import * as tbStatus from "../controllers/tbStatusControllers.js"
-import { jwtAuth} from '../middlewares/jwtAuth.js';
 import { requireAdmin } from '../middlewares/checkAdminRole.js';
+import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkIfConnected } from '../middlewares/checkIfConnected.js';
 const router = express.Router()
 /**
  * @swagger
@@ -82,7 +84,7 @@ router.get("/:id",tbStatus.getStatusbyPk);
  *         description: Erreur serveur
  */
 
-router.post("/",tbStatus.postStatus);
+router.post("/",jwtAuth,requireAdmin,tbStatus.postStatus);
 //DELETE
 /**
  * @swagger

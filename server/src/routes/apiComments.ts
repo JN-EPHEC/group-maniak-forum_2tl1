@@ -1,8 +1,11 @@
 import express from 'express';
 import * as Comments from "../controllers/tbCommentsControllers.js";
 import tbComments from '../models/tbComments.js';
-import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
 import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
+import { checkAdminOrSetter } from '../middlewares/checkAdminOrSetter.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkIfConnected } from '../middlewares/checkIfConnected.js';
 const router = express.Router()
 
 /**
@@ -123,7 +126,7 @@ router.get("/boulder/:id",Comments.getCommentsbyBoulders);
  *         description: Erreur serveur
  */
 
-router.post("/",Comments.postComments);
+router.post("/",jwtAuth,checkIfConnected,Comments.postComments);
 //DEL
 /**
  * @swagger

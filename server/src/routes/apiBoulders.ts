@@ -2,7 +2,10 @@ import express from 'express';
 import * as tbBoulders from "../controllers/tbBouldersControllers.js";
 import { getWeeklyBoulders } from '../controllers/weeklyBouldersControllers.js';
 import { requireAdmin } from '../middlewares/checkAdminRole.js';
+import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
+import { checkAdminOrSetter } from '../middlewares/checkAdminOrSetter.js';
 import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkIfConnected } from '../middlewares/checkIfConnected.js';
 const router = express.Router()
 /**
  * @swagger
@@ -184,7 +187,7 @@ router.get('/byDifficulty/:id',tbBoulders.getBoulderByDifficulty);
  *         description: Erreur serveur
  */
 
-router.post('/',tbBoulders.postBoulder);
+router.post('/',jwtAuth,checkAdminOrSetter,tbBoulders.postBoulder);
 //del
 /**
  * @swagger

@@ -1,7 +1,10 @@
 
 import express from 'express';
-import * as tbProfilePictures from "../controllers/tbProfilePicturesControllers.js";
-
+import * as tbProfilePictures from "../controllers/tbProfilePictures.js";
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
+import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkIfConnected } from '../middlewares/checkIfConnected.js';
 const router = express.Router()
 
 /**
@@ -83,7 +86,7 @@ router.get("/:id",tbProfilePictures.getProfilePicturebyPk);
  *         description: Erreur serveur
  */
 
-router.post("/",tbProfilePictures.postProfilePicture);
+router.post("/",jwtAuth,requireAdmin,tbProfilePictures.postProfilePicture);
 //DEL
 /**
  * @swagger
@@ -107,5 +110,5 @@ router.post("/",tbProfilePictures.postProfilePicture);
  *         description: Erreur serveur
  */
 
-router.delete("/:id",tbProfilePictures.delProfilePicture);
+router.delete("/:id",jwtAuth,requireAdmin,tbProfilePictures.delProfilePicture);
 export default router
