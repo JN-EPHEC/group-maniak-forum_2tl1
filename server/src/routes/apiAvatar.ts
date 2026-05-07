@@ -1,6 +1,6 @@
 
 import express from 'express';
-import * as tbProfilePictures from "../controllers/tbProfilePictures.js";
+import * as tbProfilePictures from "../controllers/tbProfilePicturesControllers.js";
 import { requireAdmin } from '../middlewares/checkAdminRole.js';
 import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
 import { jwtAuth } from '../middlewares/jwtAuth.js';
