@@ -30,32 +30,57 @@ function CreateFormAddingBoulder(){
     
 
     return (
-        <form id="formCreationBoulder" onSubmit={postFormCreateBoulder}>
-            <label>boulderName : </label>
-            <input type="text" name="boulderNameForm"></input><br></br>
-            <label> Niveau : </label>
+    <form id="formCreationBoulder" onSubmit={postFormCreateBoulder}>
+        <div className="form-field">
+            <label>Nom du bloc</label>
+            <input type="text" name="boulderNameForm" />
+        </div>
+
+        <div className="form-field">
+            <label>Niveau</label>
             <select name="boulderLevelIdForm">
-            {formBoulder.map((formBoulder) => (
-                <option key={`idformBoulder${formBoulder.difficultyId}`} value={formBoulder.difficultyId}>{formBoulder.difficultyColorName}</option>
-            ))}
-            </select><br></br>
-            <label></label>
+                {formBoulder.map((f) => (
+                    <option key={`idformBoulder${f.difficultyId}`} value={f.difficultyId}>
+                        {f.difficultyColorName}
+                    </option>
+                ))}
+            </select>
+        </div>
+
+        <div className="form-field">
+            <label>Zone</label>
             <select name="boulderAreaIdForm">
-            {formBoulderArea.map((formBoulderArea) => (
-                <option key={`idFormBoulderArea${formBoulderArea.areaId}`} value={formBoulderArea.areaId}>{formBoulderArea.areaName}</option>
-            ))}
-            </select><br></br>
-            <label>boulderDesc : </label>
-            <input type="text" name="boulderDescForm"></input><br></br>
-            <label>boulderLink : </label>
-            <input type="text" name="boulderLinkForm"></input><br></br>
-            <label>boulderImageUrl : </label>
-            <input type="text" name="boulderImageUrlForm"></input><br></br>
-            <label>Date de sortie : </label>
-            <input type="date" name="boulderDateForm"></input><br></br>
-            <input type="submit"></input>
-        </form>
-    )
+                {formBoulderArea.map((f) => (
+                    <option key={`idFormBoulderArea${f.areaId}`} value={f.areaId}>
+                        {f.areaName}
+                    </option>
+                ))}
+            </select>
+        </div>
+
+        <div className="form-field">
+            <label>Description</label>
+            <input type="text" name="boulderDescForm" />
+        </div>
+
+        <div className="form-field">
+            <label>Lien vidéo</label>
+            <input type="text" name="boulderLinkForm" />
+        </div>
+
+        <div className="form-field">
+            <label>Image URL</label>
+            <input type="text" name="boulderImageUrlForm" />
+        </div>
+
+        <div className="form-field">
+            <label>Date de sortie</label>
+            <input type="date" name="boulderDateForm" />
+        </div>
+
+        <input type="submit" value="Envoyer" />
+    </form>
+)
 }
 
 export default CreateFormAddingBoulder

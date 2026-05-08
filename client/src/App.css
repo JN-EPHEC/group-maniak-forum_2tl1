@@ -1209,3 +1209,75 @@ span {
 .formConnexionAccount button[type="submit"]:hover {
     background: #D05508;
 }
+
+/* ===== SÉPARATION ===== */
+#boulderGym .separator {
+    width: 90%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #444, transparent);
+    margin: 1rem auto;
+}
+
+/* ===== FORMULAIRE CRÉATION BLOC ===== */
+#formCreationBoulder {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 24px;
+    background: #2e2e2e;
+    border: 0.5px solid #444;
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 700px;
+    margin: 2rem auto;
+}
+
+#formCreationBoulder label {
+    display: block;
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+#formCreationBoulder input[type="text"],
+#formCreationBoulder input[type="date"],
+#formCreationBoulder select {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 0.5px solid #444;
+    background: #1e1e1e;
+    color: #fff;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+#formCreationBoulder input[type="text"]:focus,
+#formCreationBoulder input[type="date"]:focus,
+#formCreationBoulder select:focus {
+    outline: none;
+    border-color: #E8600A;
+}
+
+#formCreationBoulder select option {
+    background: #1e1e1e;
+    color: #fff;
+}
+
+#formCreationBoulder input[type="submit"] {
+    grid-column: 1 / -1;
+    background: #E8600A;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 0;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+#formCreationBoulder input[type="submit"]:hover {
+    background: #D05508;
+}
