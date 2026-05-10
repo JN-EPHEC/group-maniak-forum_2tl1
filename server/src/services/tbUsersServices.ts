@@ -8,7 +8,7 @@ return tbUsers.findAll({
             include: [
                 {
                     model: tbDifficultyUsers,
-                    as: "boulderUsers",
+                    as: "HighestLvl",
                     attributes: ["boulderId", "createdAt"],
                     separate: true,
                     limit: 1,
@@ -52,7 +52,7 @@ export async function getByPkService(id:number){
             include: [
                 {
                     model: tbDifficultyUsers,
-                    as: "boulderUsers",
+                    as: "HighestLvl",
                     attributes: ["boulderId", "createdAt"],
                     separate: true,
                     limit: 1,
@@ -98,7 +98,7 @@ export async function getByStatusService(id:number){
             include: [
                 {
                     model: tbDifficultyUsers,
-                    as: "boulderUsers",
+                    as: "HighestLvl",
                     attributes: ["boulderId", "createdAt"],
                     separate: true,
                     limit: 1,

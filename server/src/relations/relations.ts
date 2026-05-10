@@ -77,10 +77,10 @@ tbComments.hasMany(tbReplies, { foreignKey: "commentsrepliesId", as: "isReplyOf"
    // -------------------------
     // DIFFICULTY USERS 
     // -------------------------
-tbUsers.hasMany(tbDifficultyUsers, { foreignKey: "userId", as: "boulderUsers" });
+tbUsers.hasMany(tbDifficultyUsers, { foreignKey: "userId", as: "HighestLvl" });
 tbDifficultyUsers.belongsTo(tbUsers, { foreignKey: "userId", as: "user" });
 
-tbDifficulties.hasMany(tbDifficultyUsers, { foreignKey: "boulderId", as: "boulderUsers" });
+tbDifficulties.hasMany(tbDifficultyUsers, { foreignKey: "boulderId", as: "HighestLvl" });
 tbDifficultyUsers.belongsTo(tbBoulders, { foreignKey: "boulderId", as: "boulder" });
 
 
