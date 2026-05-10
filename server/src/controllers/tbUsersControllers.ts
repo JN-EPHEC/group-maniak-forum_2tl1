@@ -83,14 +83,11 @@ export const patchUser = async (req: Request, res: Response) => {
   try {
     const userId = Number(req.params.id);
 
-    // Vérifier si l'utilisateur existe
-    const user = await tbUsers.findByPk(userId);
+    const user = await tbUsersServices.updateUser(userId, req.body);
+
     if (!user) {
       return res.status(404).json({ message: "Utilisateur introuvable" });
     }
-
-    // Mise à jour partielle
-    await user.update(req.body);
 
     return res.status(200).json({
       message: "Utilisateur mis à jour",

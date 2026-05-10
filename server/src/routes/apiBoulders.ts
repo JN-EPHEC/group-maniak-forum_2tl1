@@ -188,6 +188,34 @@ router.get('/byDifficulty/:id',tbBoulders.getBoulderByDifficulty);
  */
 
 router.post('/',jwtAuth,checkAdminOrSetter,tbBoulders.postBoulder);
+//patch
+/**
+ * @swagger
+ * /api/boulders/{id}:
+ *   patch:
+ *     summary: Modifie un bloc
+ *     tags: [Boulders]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Boulder'
+ *     responses:
+ *       200:
+ *         description: Bloc modifié avec succès
+ *       404:
+ *         description: Bloc introuvable
+ *       500:
+ *         description: Erreur serveur
+ */
+router.patch('/:id',jwtAuth,checkAdminOrSetter,tbBoulders.patchBoulder);
 //del
 /**
  * @swagger

@@ -299,6 +299,13 @@ export async function getByDifficultyService(id:number){
 export async function postBoulderService(data:any) {
   return tbBoulders.create(data);
 }
+export const updateBoulderService = async (boulderId: number, data: any) => {
+  const boulder = await tbBoulders.findByPk(boulderId);
+  if (!boulder) return null;
+
+  await boulder.update(data);
+  return boulder;
+};
 export async function delBoulderService(id: number) {
   const element = await tbBoulders.findByPk(id);
   if (!element) return null;

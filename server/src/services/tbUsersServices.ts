@@ -161,7 +161,13 @@ export async function postService(data: {
 
   return newUser;
 }
+export const updateUser = async (userId: number, data: any) => {
+  const user = await tbUsers.findByPk(userId);
+  if (!user) return null;
 
+  await user.update(data);
+  return user;
+};
 export async function delService(id: number) {
   const element = await tbStatus.findByPk(id);
   if (!element) return null;

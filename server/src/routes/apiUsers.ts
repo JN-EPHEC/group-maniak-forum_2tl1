@@ -108,6 +108,32 @@ router.get('/status/:id',tbUserControllers.getUserbyStatus);
 
 
 router.post("/", tbUserControllers.postUsers);
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   patch:
+ *     summary: Modifie un bloc
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: Users modifié avec succès
+ *       404:
+ *         description: Users introuvable
+ *       500:
+ *         description: Erreur serveur
+ */
 router.patch("/:id",jwtAuth,checkOwnerOrAdmin(tbUsers,"userId"),tbUserControllers.patchUser)
 
 /**
