@@ -70,6 +70,27 @@ export const postBoulder = async (req:Request,res:Response) => {
             res.status(500).json({ error: (error as any).message });
           }
 };
+
+export const patchBoulder = async (req: Request, res: Response) => {
+  try {
+    const boulderId = Number(req.params.id);
+
+    const boulder = await tbBouldersServices.updateBoulderService(boulderId, req.body);
+
+    if (!boulder) {
+      return res.status(404).json({ message: "Boulder introuvable" });
+    }
+
+    return res.status(200).json({
+      message: "Boulder mis à jour",
+      boulder,
+    });
+  } catch (err: any) {
+    console.error("Erreur patchBoulder:", err);
+    return res.status(500).json({ error: err.message });
+  }
+};
+
 export const deleteBoulder = async (req:Request,res:Response)=>{
       try {
         const id = Number(req.params.id);
