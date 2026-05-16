@@ -8,6 +8,7 @@ import CreationBoulderById from "./pages/boulderIdPage/creationBoulderIdPage.tsx
 import CreatePageConnexion from "./pages/profilePages/connexionPage/creationPageConnexion.tsx";
 import CreationPageCreateAccount from "./pages/profilePages/createAccountPage/creationPageCreateAccount.tsx";
 import CreationPageMonProfil from "./pages/profilePages/myProfilPage/creationPageMyProfil.tsx";
+import CreateFormRatings from "./pages/formRatings/createFormRatings.tsx";
 
 function App(){
   const [page, setPage] = useState("home");
@@ -62,6 +63,16 @@ function App(){
           <CreatePageConnexion>
             
           </CreatePageConnexion>
+        </PageContext.Provider>
+        
+      </div>
+    );
+  }
+  if(page === "formRatings") {
+    return (
+      <div>
+        <PageContext.Provider value={setPage}>
+          <CreateFormRatings></CreateFormRatings>
         </PageContext.Provider>
         
       </div>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getStars } from "../utils/conversionRating";
 import { postCommentsBoulder } from "../utils/createComments/postCommentsBoulder";
+import { usePage } from "../PageContext";
 
 interface Props {
         boulderId: string;
@@ -54,7 +55,7 @@ function GetBoulderById({ boulderId }: Props){
         commentsTxt: string,
         
     }
-    
+    const setPage = usePage()
     const [boulderById, setBoulderById] = useState<BoulderById[]>([]);
     const [commentsBoulderById,setCommentsBoulderById] = useState<CommentById[]>([]);
          
@@ -100,13 +101,7 @@ function GetBoulderById({ boulderId }: Props){
                     {`(${boulder.SumRating})`}
                 </span>
                 <span className="formAddRating">
-                    <form>
-                        <div>
-                            <input type="number" min="1" max="10" name="rating" />Une note sur 10 sur ce bloc ?
-                            <button type="submit">Voter</button>
-                        </div>
-                        <span className="ratingWarning">(Attention cette note est unique !)</span>
-                    </form>
+                    <button className="buttonOrange" onClick={() => setPage("formRatings")}>Laisser un avis</button>
                 </span>
             </div>
         ))}
@@ -114,6 +109,7 @@ function GetBoulderById({ boulderId }: Props){
             <form onSubmit={postCommentsBoulder}>
                 <input type="hidden" name="boulderId" value={boulderId} />
                 <textarea name='commentsTxtForm' placeholder="Laisse un commentaire..."></textarea>
+                <input type="hidden" name=""></input>
                 <button type="submit"> Publier </button>
             </form>
         </div>

@@ -36,14 +36,31 @@ function GetInfoProfile(){
             statusId: number;
             statusName: string;
         };
-        boulderUsers: BoulderUser[];
+        HighestLvl : BoulderUser[];
         createdAt: string;
     }
+
+    interface RatingInfo {
+    rateId: number;
+    rateNote: number;
+    rateTxt: string;
+    videoLink: string | null;
+    boulderId: number;
+    boulder: {
+        boulderDesc: string;
+        area: {
+            areaName: string;
+        }
+    }
+}
+
+
 
     const tokenAuth = localStorage.getItem("tokenIdentification") ?? "";
     const tokenUser = JSON.parse(localStorage.getItem("tokenUser") ?? "null");
 
     const [infoProfil, setInfoProfil] = useState<infoProfile | null>(null);
+    const [ratingsInfo, setRatingsInfo] = useState<RatingInfo[]>([]);
 
     useEffect(() => {
         if (!tokenUser) {
@@ -61,7 +78,20 @@ function GetInfoProfile(){
         })
             .then((res) => res.json())
             .then((data) => setInfoProfil(data));
+
+        fetchWithAuth(`${import.meta.env.VITE_API_URL}/ratings/author/${tokenUser.id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${tokenAuth}`
+            }
+        })
+            .then((res) => res.json())
+            .then((data) => setRatingsInfo(data));
+
     }, []);
+
+
 
     const getDifficultyColor = (colorName: string): string => {
         const colors: Record<string, string> = {
@@ -80,10 +110,11 @@ function GetInfoProfile(){
 
     const avatarSrc = infoProfil?.pictureId ? profilePictures[infoProfil.pictureId] : null;
 
+    console.log(ratingsInfo)
+
     return (
         <div className="profil-card">
 
-            {/* HEADER */}
             <div className="profil-header">
                 <div className="avatar-circle">
                     {avatarSrc
@@ -98,7 +129,6 @@ function GetInfoProfile(){
                 </div>
             </div>
 
-            {/* INFOS */}
             <div className="profil-body">
                 <div className="profil-info-grid">
                     <div className="profil-info-item">
@@ -121,33 +151,45 @@ function GetInfoProfile(){
                         <i className="ti ti-mountain" />
                         <div>
                             <span className="profil-info-label">Blocs réalisés</span>
-                            <span className="profil-info-value">{infoProfil?.boulderUsers?.length ?? 0}</span>
+                            <span className="profil-info-value">{ratingsInfo?.length ?? 0}</span>
                         </div>
                     </div>
                 </div>
 
-                {/* BOULDERS */}
-                {infoProfil?.boulderUsers && infoProfil.boulderUsers.length > 0 && (
-                    <div className="profil-boulders">
-                        <p className="profil-boulders-title">Blocs validés</p>
-                        <div className="profil-boulders-list">
-                            {infoProfil.boulderUsers.map((b: BoulderUser) => (
-                                <div key={b.boulderId} className="profil-boulder-item" onClick={() => setPage(`boulderId-${b.boulderId}`)} style={{ cursor: "pointer" }}>
-                                    <span className="boulder-name">Boulder #{b.boulderId}</span>
-                                    <div className="boulder-difficulty">
-                                        <span
-                                            className="boulder-color-dot"
-                                            style={{ backgroundColor: getDifficultyColor(b.boulder?.difficulty?.difficultyColorName ?? "") }}
-                                        />
-                                        <span className="boulder-scale">
-                                            {b.boulder?.difficulty?.difficultyFrenchScale
-                                                ? `(${b.boulder.difficulty.difficultyFrenchScale})`
-                                                : ""}
-                                        </span>
-                                    </div>
+                {infoProfil?.HighestLvl && infoProfil.HighestLvl.length > 0 && (
+                <div className="profil-boulders">
+                    <p className="profil-boulders-title">Bloc le plus difficile validé</p>
+                    {(() => {
+                        const b = infoProfil.HighestLvl[0];
+                        return (
+                            <div className="profil-boulder-item" onClick={() => setPage(`boulderId-${b.boulderId}`)} style={{ cursor: "pointer" }}>
+                                <span className="boulder-name">Boulder #{b.boulderId}</span>
+                                <div className="boulder-difficulty">
+                                    <span
+                                        className="boulder-color-dot"
+                                        style={{ backgroundColor: getDifficultyColor(b.boulder?.difficulty?.difficultyColorName ?? "") }}
+                                    />
+                                    <span className="boulder-scale">
+                                        {b.boulder?.difficulty?.difficultyFrenchScale
+                                            ? `(${b.boulder.difficulty.difficultyFrenchScale})`
+                                            : ""}
+                                    </span>
                                 </div>
-                            ))}
-                        </div>
+                            </div>
+                        );
+                    })()}
+                </div>
+                )}
+                {ratingsInfo && ratingsInfo.length > 0 && (
+                    <div className="profil-boulders">
+                        <p className="profil-boulders-title">Blocs réalisés</p>
+                        {ratingsInfo.map((r) => (
+                            <div key={r.rateId} className="profil-boulder-item" onClick={() => setPage(`boulderId-${r.boulderId}`)} style={{ cursor: "pointer" }}>
+                                <span className="boulder-name">Boulder #{r.boulderId} — {r.boulder?.area?.areaName}</span>
+                                <span className="profil-info-value">Note : {r.rateNote}/10</span>
+                                {r.rateTxt && <span className="profil-info-label">"{r.rateTxt}"</span>}
+                            </div>
+                        ))}
                     </div>
                 )}
             </div>
