@@ -68,11 +68,12 @@ function App(){
       </div>
     );
   }
-  if(page === "formRatings") {
+  if(page.startsWith("formRatings")) {
+    const boulderId = Number(page.split("-")[1]);
     return (
       <div>
         <PageContext.Provider value={setPage}>
-          <CreateFormRatings></CreateFormRatings>
+          <CreateFormRatings boulderId={boulderId}></CreateFormRatings>
         </PageContext.Provider>
         
       </div>
