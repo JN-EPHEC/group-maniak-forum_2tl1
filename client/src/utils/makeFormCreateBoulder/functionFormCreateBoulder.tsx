@@ -10,7 +10,7 @@ export const postFormCreateBoulder = async (e: any) => {
     const levelId = data.get("boulderLevelIdForm")
     const areaId = data.get("boulderAreaIdForm")
     const boulderReleaseDate = data.get("boulderDateForm")
-    const userId = 1
+    const userId = data.get("boulderSetterIdForm")
     const boulderLink = data.get("boulderLinkForm")
 
     const tokenAuth = localStorage.getItem("tokenIdentification") ?? "";

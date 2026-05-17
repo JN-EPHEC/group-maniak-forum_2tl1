@@ -12,9 +12,16 @@ function CreateFormAddingBoulder(){
         areaId: number;
         areaName: string;
     }
+
+    interface formBoulderSetter{
+        userId: number;
+        userPseudo: string;
+    }
     const [formBoulder, setformBoulder] = useState<formAddBloc[]>([]);
 
     const [formBoulderArea, setformBoulderArea] = useState<formAddBlocArea[]>([]);
+
+    const [formBoulderSetter, setformBoulderSetter] = useState<formBoulderSetter[]>([]);
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/difficulties`)
@@ -27,7 +34,12 @@ function CreateFormAddingBoulder(){
             .then((res) => res.json())
             .then((data) => setformBoulderArea(data));
     }, []);
-    
+
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/users/status/3`)
+            .then((res) => res.json())
+            .then((data) => setformBoulderSetter(data));
+    }, []);
 
     return (
     <form id="formCreationBoulder" onSubmit={postFormCreateBoulder}>
@@ -76,6 +88,17 @@ function CreateFormAddingBoulder(){
         <div className="form-field">
             <label>Date de sortie</label>
             <input type="date" name="boulderDateForm" />
+        </div>
+
+        <div className="form-field">
+            <label>Setter / Ouvreur</label>
+            <select name="boulderSetterIdForm">
+                {formBoulderSetter.map((f) => (
+                    <option key={`idformBoulder${f.userId}`} value={f.userId}>
+                        {f.userPseudo}
+                    </option>
+                ))}
+            </select>
         </div>
 
         <input type="submit" value="Envoyer" />
