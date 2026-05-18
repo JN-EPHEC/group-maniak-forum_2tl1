@@ -17,5 +17,4 @@ export const postCommentsBoulder = async (e: any) => {
     };
     const response = await fetch(`${import.meta.env.VITE_API_URL}/comments`, requestOptions);
     const result = await response.json()
-    console.log(result);
 }

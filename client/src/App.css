@@ -359,6 +359,7 @@
 }
 
 .boulderCard {
+  align-items: start;
   width: calc(25% - 1.5%);
   flex-shrink: 0;
   background-color: #f4943d;
@@ -606,15 +607,10 @@ span {
 #ratingStars {
   color: white;
 }
-#boulderDetail {
-  width: 100%;
-  padding: 1.5rem;
-  background: transparent !important;
-}
-
-.boulderCard {
+#boulderDetail .boulderCard {
   display: grid;
   grid-template-columns: 1fr 280px;
+  align-items: start;
   grid-template-areas:
     "name       name"
     "setter     setter"
@@ -623,7 +619,8 @@ span {
     "image      date"
     "image      link"
     "image      rating"
-    "image      formrating";
+    "image      formrating"
+    "image      patchdate";
   gap: 12px 24px;
   padding: 1.5rem;
   width: 100%;
@@ -648,6 +645,7 @@ span {
   background: #333;
   border-radius: 10px;
   min-height: 200px;
+  align-self: start;
 }
 
 .boulderImageUrl img {
@@ -1349,4 +1347,117 @@ span {
 
 #formRatingBoulder button[type="submit"]:hover {
     background: #D05508;
+}
+
+.formPatchDate {
+  grid-area: patchdate;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formPatchDate form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formPatchDate label {
+  font-size: 13px;
+  color: #aaa;
+}
+
+.formPatchDate input[type="date"] {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 0.5px solid #444;
+  background: #2e2e2e;
+  color: #fff;
+  font-size: 14px;
+}
+
+.formPatchDate input[type="date"]:focus {
+  outline: none;
+  border-color: #E8600A;
+}
+
+.formPatchDate button {
+  background: #E8600A;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.formPatchDate button:hover {
+  background: #D05508;
+}
+
+.formPatchDate p {
+  font-size: 12px;
+  color: #aaa;
+}
+
+/* Le conteneur des boutons */
+#filterButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 12px;
+  margin-left: 16px;
+}
+
+/* Les boutons individuels — plus petits que #btnBlue */
+#filterButtons button {
+  background-color: #03b7cb;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  width: 110px;
+  height: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#filterButtons button:hover {
+  opacity: 0.85;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Bouton actif : légèrement plus foncé pour indiquer la sélection */
+#filterButtons button.active {
+  background-color: #029aab;
+  box-shadow: 0 0 0 2px #ffffff40;
+}
+
+#formRatingBoulder select {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 0.5px solid #444;
+    background: #1e1e1e;
+    color: #fff;
+    font-size: 14px;
+    box-sizing: border-box;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23aaa' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+#formRatingBoulder select:focus {
+    outline: none;
+    border-color: #E8600A;
+}
+
+#formRatingBoulder select option {
+    background: #1e1e1e;
+    color: #fff;
 }

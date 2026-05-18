@@ -1,17 +1,23 @@
 import Footer from "../../components/footer/footer"
 import ToolBar from "../../components/toolBar/toolbar"
 import GetBoulderById from "../../hooks/getBoulderById"
+import PatchBoulderId from "./buttonPatchBoulder";
 
-interface Props {
-  boulderId: string;
-}
+function CreationBoulderById({ boulderId }: { boulderId: number }) {
 
-function CreationBoulderById({ boulderId }: Props){
+    const tokenUser = JSON.parse(localStorage.getItem("tokenUser") ?? "null");
+    const role = tokenUser?.role;
+
+    const canAddBoulder = role === 1 || role === 3;
+
     return (
         <div id="boulderById">
-            <ToolBar></ToolBar>
-            <GetBoulderById  boulderId={boulderId}></GetBoulderById>
-            <Footer></Footer>
+            <ToolBar />
+            <GetBoulderById
+                boulderId={boulderId}
+                patchForm={canAddBoulder ? <PatchBoulderId boulderId={boulderId} /> : undefined}
+            />
+            <Footer />
         </div>
     )
 }

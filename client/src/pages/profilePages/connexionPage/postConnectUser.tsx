@@ -16,7 +16,6 @@ export const PostConnectUser = async (e: any) => {
         if (response.status === 200) {
             alert("Connecté à votre compte avec succès, vous pouvez désormais acceder à votre profil via le bouton 'Mon profil'")
             const resultat = await response.json()
-            console.log(resultat)
             localStorage.setItem("tokenIdentification", resultat.accessToken);
             localStorage.setItem("tokenUser", JSON.stringify(resultat.user));
             // ou navigate vers la page de connexion

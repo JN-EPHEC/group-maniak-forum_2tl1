@@ -36,5 +36,4 @@ export const postFormCreateBoulder = async (e: any) => {
     };
     const response = await fetchWithAuth(`${import.meta.env.VITE_API_URL}/boulders`, requestOptions);
     const result = await response.json()
-    console.log(result);
 };

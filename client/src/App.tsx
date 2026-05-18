@@ -12,109 +12,74 @@ import CreateFormRatings from "./pages/formRatings/createFormRatings.tsx";
 
 function App(){
   const [page, setPage] = useState("home");
+
   if(page === "aboutUs") {
     return (
-      <div>
-        <PageContext.Provider value={setPage}>
-          <CreationAboutUs>
-          
-          </CreationAboutUs>
-        </PageContext.Provider>
-        
-      </div>
+      <PageContext.Provider value={setPage}>
+        <CreationAboutUs />
+      </PageContext.Provider>
     );
   }
   if(page === "blocSemaine") {
     return (
-      <div>
-        <PageContext.Provider value={setPage}>
-          <CreationWeekBoulder>
-          
-          </CreationWeekBoulder>
-        </PageContext.Provider>
-        
-      </div>
+      <PageContext.Provider value={setPage}>
+        <CreationWeekBoulder />
+      </PageContext.Provider>
     );
   }
   if(page.startsWith("boulderPage")) {
     const gymId = page.split("-")[1];
     return (
-      <div>
-        <PageContext.Provider value={setPage}>
-          <CreationBoulderGymPage gymId={gymId} />
-        </PageContext.Provider>
-      </div>
+      <PageContext.Provider value={setPage}>
+        <CreationBoulderGymPage gymId={gymId} />
+      </PageContext.Provider>
     );
   }
   if(page.startsWith("boulderId")) {
-    const boulderId = page.split("-")[1];
+    const boulderId = Number(page.split("-")[1]);
     return (
-      <div>
-        <PageContext.Provider value={setPage}>
-          <CreationBoulderById boulderId={boulderId} />
-        </PageContext.Provider>
-      </div>
+      <PageContext.Provider value={setPage}>
+        <CreationBoulderById boulderId={boulderId} />
+      </PageContext.Provider>
     );
   }
   if(page === "pageConnexion") {
     return (
-      <div>
-        <PageContext.Provider value={setPage}>
-          <CreatePageConnexion>
-            
-          </CreatePageConnexion>
-        </PageContext.Provider>
-        
-      </div>
+      <PageContext.Provider value={setPage}>
+        <CreatePageConnexion />
+      </PageContext.Provider>
     );
   }
-  if(page === "formRatings") {
+  if(page.startsWith("formRatings")) {
+    const parts = page.split("-");
+    const boulderId = Number(parts[1]);
+    const difficultyId = Number(parts[2]);
     return (
-      <div>
-        <PageContext.Provider value={setPage}>
-          <CreateFormRatings></CreateFormRatings>
-        </PageContext.Provider>
-        
-      </div>
+      <PageContext.Provider value={setPage}>
+        <CreateFormRatings boulderId={boulderId} difficultyId={difficultyId} />
+      </PageContext.Provider>
     );
   }
   if(page === "pageProfil") {
     return (
-      <div>
-        <PageContext.Provider value={setPage}>
-          <CreationPageMonProfil>
-            
-          </CreationPageMonProfil>
-        </PageContext.Provider>
-        
-      </div>
+      <PageContext.Provider value={setPage}>
+        <CreationPageMonProfil />
+      </PageContext.Provider>
     );
   }
   if(page === "pageCreationCompte") {
     return (
-      <div>
-        <PageContext.Provider value={setPage}>
-          <CreationPageCreateAccount>
-            
-          </CreationPageCreateAccount>
-        </PageContext.Provider>
-        
-      </div>
+      <PageContext.Provider value={setPage}>
+        <CreationPageCreateAccount />
+      </PageContext.Provider>
     );
   }
-  
-  
-  return (
-    <div>
-      <PageContext.Provider value={setPage}>
-        <CreationPageAccueil>
 
-        </CreationPageAccueil>
-      </PageContext.Provider>
-      
-    </div>
-  )
-  
+  return (
+    <PageContext.Provider value={setPage}>
+      <CreationPageAccueil />
+    </PageContext.Provider>
+  );
 }
 
 export default App;

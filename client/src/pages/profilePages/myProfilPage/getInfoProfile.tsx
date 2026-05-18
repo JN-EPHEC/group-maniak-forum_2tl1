@@ -110,7 +110,6 @@ function GetInfoProfile(){
 
     const avatarSrc = infoProfil?.pictureId ? profilePictures[infoProfil.pictureId] : null;
 
-    console.log(ratingsInfo)
 
     return (
         <div className="profil-card">

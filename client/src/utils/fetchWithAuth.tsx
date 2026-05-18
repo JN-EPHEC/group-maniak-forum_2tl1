@@ -18,7 +18,7 @@ export const fetchWithAuth = async (url: string, options: RequestInit = {}): Pro
     if (response.status === 401) {
         const refreshToken = localStorage.getItem("refreshToken");
 
-        const refreshResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/refresh`, {
+        const refreshResponse = await fetch(`${import.meta.env.VITE_API_URL}/auth/refresh`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ refreshToken })
@@ -42,7 +42,6 @@ export const fetchWithAuth = async (url: string, options: RequestInit = {}): Pro
             localStorage.removeItem("tokenIdentification");
             localStorage.removeItem("refreshToken");
             localStorage.removeItem("tokenUser");
-            window.location.href = "/login"; // adapte selon ta route
         }
     }
 
