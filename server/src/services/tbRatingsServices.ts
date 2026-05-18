@@ -1,5 +1,5 @@
 
-import { sequelize,tbRatings,tbUsers,tbBoulders,tbAreaGyms,tbDifficultyUsers  } from "../models/index.js";
+import { sequelize,tbRatings,tbUsers,tbBoulders,tbAreaGyms,tbDifficultyUsers,tbDifficulties  } from "../models/index.js";
 
 export async function getAllService() {
   return tbRatings.findAll({
@@ -15,7 +15,11 @@ export async function getAllService() {
           model: tbAreaGyms,
           as: "area",
           attributes: ["areaId","areaName"]
-        }]
+        },{
+                    model: tbDifficulties,
+                    as: "difficulty",
+                    attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]
+                }]
       }]
   });
 }
@@ -33,7 +37,11 @@ export async function getByPkService(id:number){
                 model: tbAreaGyms,
                 as: "area",
                 attributes: ["areaId","areaName"]
-            }]
+            },{
+                    model: tbDifficulties,
+                    as: "difficulty",
+                    attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]
+                }]
             }]
         });
 }
@@ -52,7 +60,11 @@ export async function getByUserService(id:number){
                 model: tbAreaGyms,
                 as: "area",
                 attributes: ["areaId","areaName"]
-            }]
+            },{
+                    model: tbDifficulties,
+                    as: "difficulty",
+                    attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]
+                }]
             }]
         });
 }
@@ -71,7 +83,11 @@ export async function getByBoulderService(id:number){
                 model: tbAreaGyms,
                 as: "area",
                 attributes: ["areaId","areaName"]
-            }]
+            },{
+                    model: tbDifficulties,
+                    as: "difficulty",
+                    attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]
+                }]
             }]
         });
 }
@@ -90,7 +106,12 @@ export async function getByAreaService(id:number){
                 model: tbAreaGyms,
                 as: "area",
                 attributes: ["areaId","areaName"]
-            }]
+            }
+                          ,{
+                    model: tbDifficulties,
+                    as: "difficulty",
+                    attributes: ["difficultyId","difficultyColorName","difficultyFrenchScale","difficultyVerminScale"]
+                },]
             }]
         });
 }

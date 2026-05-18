@@ -32,5 +32,11 @@ export default interface Ratings {
       areaId: number;
       areaName: string;
     };
+            difficulty: {
+            difficultyId: number,
+            difficultyColorName: string,
+            difficultyFrenchScale: string,
+            difficultyVerminScale: string
+        },
   };
 }

@@ -1,15 +1,24 @@
 import type BoulderUser from "./BoulderUser";
 export default interface User {
-        userId: number;
-        userFName: string;
-        userLName: string;
-        userMail: string;
-        userPseudo: string;
-        pictureId: number;
-        status: {
-            statusId: number;
-            statusName: string;
-        };
-        HighestLvl : BoulderUser[];
-        createdAt: string;
-    }
+  userId: number;
+  userMail: string;
+  userLName: string;
+  userFName: string;
+  userPseudo: string;
+  pictureId: number;
+  statusId: number;
+  createdAt: string;
+  updatedAt: string;
+  profilePicture: {
+    pictureId: number;
+    pictureLink: string;
+    pictureLegend: string;
+  };
+
+  status: {
+    statusId: number;
+    statusName: string;
+  };
+
+  HighestLvl: BoulderUser[];
+}

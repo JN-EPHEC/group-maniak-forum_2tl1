@@ -4,7 +4,7 @@ import { fetchWithAuth } from "../../../utils/fetchWithAuth";
 import type Ratings from "../../../types/Ratings.ts";
 import PP1 from "../../../assets/img/PP_Chat.png";
 import PP2 from "../../../assets/img/PP_chien.png"
-import type User from "../../../types/user.ts";
+import type User from "../../../types/User.ts";
 const profilePictures: Record<number, string> = {
     1: PP1,
     2: PP2,
@@ -119,7 +119,7 @@ function GetInfoProfile(){
                         const b = infoProfil.HighestLvl[0];
                         return (
                             <div className="profil-boulder-item" onClick={() => setPage(`boulderId-${b.boulderId}`)} style={{ cursor: "pointer" }}>
-                                <span className="boulder-name">Boulder #{b.boulderId}</span>
+                                <span className="boulder-name">Boulder : {b.boulder.boulderName}</span>
                                 <div className="boulder-difficulty">
                                     <span
                                         className="boulder-color-dot"
@@ -143,6 +143,15 @@ function GetInfoProfile(){
                             <div key={r.rateId} className="profil-boulder-item" onClick={() => setPage(`boulderId-${r.boulderId}`)} style={{ cursor: "pointer" }}>
                                 <span className="boulder-name">Boulder : {r.boulder.boulderName} — {r.boulder.area.areaName}</span>
                                 <span className="profil-info-value">Note : {r.rateNote}/10</span>
+                                                                    <span
+                                        className="boulder-color-dot"
+                                        style={{ backgroundColor: getDifficultyColor(r.boulder?.difficulty?.difficultyColorName ?? "") }}
+                                    />
+                                    <span className="boulder-scale">
+                                        {r.boulder?.difficulty?.difficultyFrenchScale
+                                            ? `(${r.boulder.difficulty.difficultyFrenchScale})`
+                                            : ""}
+                                    </span>
                                 {r.rateTxt && <span className="profil-info-label">"{r.rateTxt}"</span>}
                             </div>
                         ))}

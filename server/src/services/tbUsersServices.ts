@@ -16,7 +16,7 @@ return tbUsers.findAll({
                         {
                             model: tbBoulders,
                             as: "boulder",
-                            attributes: ["difficultyId", "boulderId"],
+                            attributes: ["difficultyId", "boulderId","boulderName"],
                             include: [
                                 {
                                     model: tbDifficulties,
@@ -60,7 +60,7 @@ export async function getByPkService(id:number){
                         {
                             model: tbBoulders,
                             as: "boulder",
-                            attributes: ["difficultyId", "boulderId"],
+                            attributes: ["difficultyId", "boulderId","boulderName"],
                             include: [
                                 {
                                     model: tbDifficulties,
@@ -106,7 +106,7 @@ export async function getByStatusService(id:number){
                         {
                             model: tbBoulders,
                             as: "boulder",
-                            attributes: ["difficultyId", "boulderId"],
+                            attributes: ["difficultyId", "boulderId","boulderName"],
                             include: [
                                 {
                                     model: tbDifficulties,
