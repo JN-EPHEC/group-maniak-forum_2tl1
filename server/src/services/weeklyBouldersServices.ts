@@ -12,6 +12,7 @@ export async function getWeeklyBoulders(){
                 model: tbBoulders,
                 as: "boulder",
                 attributes: [
+                    "boulderName",
                     "boulderId",
                     "boulderDesc",
                     "boulderLink",

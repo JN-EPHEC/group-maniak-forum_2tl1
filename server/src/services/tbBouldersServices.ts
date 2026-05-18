@@ -1,4 +1,4 @@
-import { Json } from "sequelize/lib/utils";
+
 import { tbUsers,tbDifficulties,tbBoulders,tbAreaGyms,tbGyms,tbRatings,sequelize} from  "../models/index.js";
 
 export async function getAllService() {
