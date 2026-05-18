@@ -23,6 +23,7 @@ export const postRating = async (
             boulderId: boulderId,
             userId: userId,
             difficultyId: formData.get("feelRating")
+
         }),
     });
 

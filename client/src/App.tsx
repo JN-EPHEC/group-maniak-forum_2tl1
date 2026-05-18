@@ -51,13 +51,14 @@ function App(){
     );
   }
   if(page.startsWith("formRatings")) {
+
     const parts = page.split("-");
     const boulderId = Number(parts[1]);
-    const difficultyId = Number(parts[2]);
     return (
       <PageContext.Provider value={setPage}>
-        <CreateFormRatings boulderId={boulderId} difficultyId={difficultyId} />
+        <CreateFormRatings boulderId={boulderId}  />
       </PageContext.Provider>
+
     );
   }
   if(page === "pageProfil") {

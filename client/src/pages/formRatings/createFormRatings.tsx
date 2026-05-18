@@ -3,15 +3,14 @@ import ToolBar from "../../components/toolBar/toolbar"
 import RatingBoulderByIdForm from "./ratingsBoulderByIdForm"
 
 interface Props {
-  boulderId: number;
-  difficultyId: number,
+  boulderId: number
 }
 
-function CreateFormRatings({ boulderId, difficultyId }: Props){
+function CreateFormRatings({ boulderId }: Props){
     return(
         <div>
             <ToolBar></ToolBar>
-            <RatingBoulderByIdForm boulderId={boulderId} difficultyId={difficultyId}></RatingBoulderByIdForm>
+            <RatingBoulderByIdForm boulderId={boulderId}></RatingBoulderByIdForm>
             <Footer></Footer>
         </div>
     )

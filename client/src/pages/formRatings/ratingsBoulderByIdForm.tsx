@@ -54,10 +54,18 @@ function RatingBoulderByIdForm({ boulderId, difficultyId }: { boulderId: number,
         }
     }, [ratingsExistant, boulderId]);
 
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/difficulties`)
+            .then((res) => res.json())
+            .then((data) => setDifficulties(data));
+    }, []);
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         const formData = new FormData(e.currentTarget);
         await postRating(formData, boulderId, setPage);
+
     };
 
     if (hasRated) {
@@ -73,6 +81,7 @@ function RatingBoulderByIdForm({ boulderId, difficultyId }: { boulderId: number,
                 <label>Une note sur 10 :</label>
                 <input type="number" min="1" max="10" name="rating" />
 
+
                 <label>Difficulté ressentie :</label>
                 <select
                     value={selectedDifficultyId}
@@ -85,6 +94,7 @@ function RatingBoulderByIdForm({ boulderId, difficultyId }: { boulderId: number,
                         </option>
                     ))}
                 </select>
+
 
                 <label>Un commentaire sur ce bloc :</label>
                 <textarea name="ratingsTxt" placeholder="Laisse un commentaire..." />
