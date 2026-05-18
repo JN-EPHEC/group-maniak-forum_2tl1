@@ -1,11 +1,19 @@
-type Filter = "en_cours" | "denontes";
+import DifficultyDropdown from "./difficultiesdropdown.tsx";
+import type {Filter} from "../../types/Filter.ts"
 
 interface Props {
   filter: Filter;
   onFilterChange: (filter: Filter) => void;
+  difficulties: any[];
+  onDifficultyChange: (difficultyId: number | null) => void;
 }
 
-function FilterButtons({ filter, onFilterChange }: Props) {
+export default function FilterButtons({
+  filter,
+  onFilterChange,
+  difficulties,
+  onDifficultyChange,
+}: Props) {
   return (
     <div id="filterButtons">
       <button
@@ -15,6 +23,7 @@ function FilterButtons({ filter, onFilterChange }: Props) {
       >
         En cours
       </button>
+
       <button
         id="btnBlue"
         className={filter === "denontes" ? "active" : ""}
@@ -22,8 +31,11 @@ function FilterButtons({ filter, onFilterChange }: Props) {
       >
         Démontés
       </button>
+
+      <DifficultyDropdown
+        difficulties={difficulties}
+        onSelect={onDifficultyChange}
+      />
     </div>
   );
 }
-
-export default FilterButtons;

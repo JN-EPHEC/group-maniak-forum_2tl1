@@ -1,22 +1,6 @@
-export type Filter = "en_cours" | "denontes";
+import type {Filter} from "../../types/Filter.ts"
+import type Boulder from "../../types/boulder.ts"
 
-export interface Boulder {
-  boulderId: number;
-  boulderName: string;
-  boulderDesc: string;
-  boulderLink: string;
-  boulderReleaseDate: string;
-  boulderEndDate: string | null;
-  difficultyId: number;
-  areaId: number;
-  boulderImageUrl: string;
-  area: {
-    areaId: number;
-    areaName: string;
-  };
-  avgRating: number;
-  SumRating: string;
-}
 
 export function filterBoulders(boulders: Boulder[], filter: Filter): Boulder[] {
   return boulders.filter((b) =>

@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { getStars } from "../../utils/conversionRating";
 import { usePage } from "../../PageContext";
 import FilterButtons from "../../components/buttons/filterButton";
-import { type Boulder, type Filter, filterBoulders } from "../../components/buttons/filterUtils";
+import { filterBoulders } from "../../components/buttons/filterUtils";
+import type { Filter } from "../../types/Filter";
+import type Boulder from "../../types/boulder";
 
 interface Props {
   gymId: string;
@@ -11,6 +13,10 @@ interface Props {
 function GetBoulder({ gymId }: Props) {
   const [boulders, setBoulders] = useState<Boulder[]>([]);
   const [filter, setFilter] = useState<Filter>("en_cours");
+
+  const [difficulties, setDifficulties] = useState([]);
+  const [difficultyFilter, setDifficultyFilter] = useState<number | null>(null);
+
   const setPage = usePage();
 
   useEffect(() => {
@@ -19,11 +25,35 @@ function GetBoulder({ gymId }: Props) {
       .then((data) => setBoulders(data));
   }, []);
 
-  const filteredBoulders = filterBoulders(boulders, filter);
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/difficulties`)
+      .then((res) => res.json())
+      .then((data) => setDifficulties(data));
+  }, []);
+
+  const filteredBoulders = filterBoulders(boulders, filter).filter((b) =>
+    difficultyFilter ? b.difficultyId === difficultyFilter : true
+  );
+
+  if (filteredBoulders.length === 0) {
+    return (    <div>
+      <FilterButtons
+        filter={filter}
+        onFilterChange={setFilter}
+        difficulties={difficulties}
+        onDifficultyChange={setDifficultyFilter}
+      />Pas de blocs enregistrés qui correspondent à votre demande</div>
+    )
+  }
 
   return (
     <div>
-      <FilterButtons filter={filter} onFilterChange={setFilter}/>
+      <FilterButtons
+        filter={filter}
+        onFilterChange={setFilter}
+        difficulties={difficulties}
+        onDifficultyChange={setDifficultyFilter}
+      />
 
       <div id="boulderList">
         {filteredBoulders.map((boulder) => (
@@ -42,7 +72,8 @@ function GetBoulder({ gymId }: Props) {
 
             {boulder.boulderEndDate && (
               <span className="endDate">
-                🔴 Démontée le : {new Date(boulder.boulderEndDate).toLocaleDateString("fr-FR")}
+                🔴 Démontée le :{" "}
+                {new Date(boulder.boulderEndDate).toLocaleDateString("fr-FR")}
               </span>
             )}
 
