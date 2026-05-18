@@ -1,5 +1,4 @@
 import ButtonAboutUsPage from "./buttonMenuToolbar/buttonAboutUs.tsx";
-import ButtonForumPage from "./buttonMenuToolbar/buttonForum.tsx";
 import ButtonHomePage from "./buttonMenuToolbar/buttonHome.tsx";
 import ButtonWeekBoulderPage from "./buttonMenuToolbar/buttonWeekBoulder.tsx";
 
@@ -8,7 +7,6 @@ function DisplayMenuInterface(){
         <div className="d-flex flex-column flex-shrink-0 p-3 text-white" id="extendedMenu">
             <ButtonHomePage></ButtonHomePage>
             <ButtonWeekBoulderPage></ButtonWeekBoulderPage>
-            <ButtonForumPage></ButtonForumPage>
             <ButtonAboutUsPage></ButtonAboutUsPage>
         </div>
     )
