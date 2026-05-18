@@ -1,4 +1,4 @@
-import type { User } from "../types/user";
+import type { User } from "../types/User";
 
 async function loadData(setData: (users: User[]) => void) {
   try {

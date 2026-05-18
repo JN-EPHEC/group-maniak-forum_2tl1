@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { usePage } from "../../../PageContext";
 import { fetchWithAuth } from "../../../utils/fetchWithAuth";
-
+import type Ratings from "../../../types/Ratings.ts";
 import PP1 from "../../../assets/img/PP_Chat.png";
 import PP2 from "../../../assets/img/PP_chien.png"
-
+import type User from "../../../types/user.ts";
 const profilePictures: Record<number, string> = {
     1: PP1,
     2: PP2,
@@ -13,54 +13,11 @@ const profilePictures: Record<number, string> = {
 function GetInfoProfile(){
 
     const setPage = usePage();
-
-    interface BoulderUser {
-        boulderId: number;
-        boulder: {
-            difficultyId: number;
-            difficulty: {
-                difficultyColorName: string;
-                difficultyFrenchScale: string;
-            }
-        }
-    }
-
-    interface infoProfile {
-        userId: number;
-        userFName: string;
-        userLName: string;
-        userMail: string;
-        userPseudo: string;
-        pictureId: number;
-        status: {
-            statusId: number;
-            statusName: string;
-        };
-        HighestLvl : BoulderUser[];
-        createdAt: string;
-    }
-
-    interface RatingInfo {
-    rateId: number;
-    rateNote: number;
-    rateTxt: string;
-    videoLink: string | null;
-    boulderId: number;
-    boulder: {
-        boulderDesc: string;
-        area: {
-            areaName: string;
-        }
-    }
-}
-
-
-
-    const tokenAuth = localStorage.getItem("tokenIdentification") ?? "";
+ const tokenAuth = localStorage.getItem("tokenIdentification") ?? "";
     const tokenUser = JSON.parse(localStorage.getItem("tokenUser") ?? "null");
 
-    const [infoProfil, setInfoProfil] = useState<infoProfile | null>(null);
-    const [ratingsInfo, setRatingsInfo] = useState<RatingInfo[]>([]);
+    const [infoProfil, setInfoProfil] = useState<User | null>(null);
+    const [ratingsInfo, setRatingsInfo] = useState<Ratings[]>([]);
 
     useEffect(() => {
         if (!tokenUser) {
@@ -184,7 +141,7 @@ function GetInfoProfile(){
                         <p className="profil-boulders-title">Blocs réalisés</p>
                         {ratingsInfo.map((r) => (
                             <div key={r.rateId} className="profil-boulder-item" onClick={() => setPage(`boulderId-${r.boulderId}`)} style={{ cursor: "pointer" }}>
-                                <span className="boulder-name">Boulder #{r.boulderId} — {r.boulder?.area?.areaName}</span>
+                                <span className="boulder-name">Boulder : {r.boulder.boulderName} — {r.boulder.area.areaName}</span>
                                 <span className="profil-info-value">Note : {r.rateNote}/10</span>
                                 {r.rateTxt && <span className="profil-info-label">"{r.rateTxt}"</span>}
                             </div>

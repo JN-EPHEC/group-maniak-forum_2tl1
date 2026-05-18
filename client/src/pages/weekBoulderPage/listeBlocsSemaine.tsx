@@ -3,7 +3,7 @@ import { usePage } from "../../PageContext";
 import { getStars } from "../../utils/conversionRating";
 import { useState, useEffect } from "react";
 function WeekBoulder() {
-     interface WeeklyBoulder {
+interface WeeklyBoulder {
     boulderId: number;
     avgRating: number;
     ratingCount: number;

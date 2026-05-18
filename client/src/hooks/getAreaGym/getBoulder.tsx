@@ -4,7 +4,7 @@ import { usePage } from "../../PageContext";
 import FilterButtons from "../../components/buttons/filterButton";
 import { filterBoulders } from "../../components/buttons/filterUtils";
 import type { Filter } from "../../types/Filter";
-import type Boulder from "../../types/boulder";
+import type Boulder from "../../types/Boulder";
 
 interface Props {
   gymId: string;

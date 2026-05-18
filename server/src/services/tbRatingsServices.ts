@@ -10,7 +10,7 @@ export async function getAllService() {
         },{
           model: tbBoulders,
           as:"boulder",
-          attributes: ["boulderId","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
+          attributes: ["boulderId","boulderName","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
           include :[ {
           model: tbAreaGyms,
           as: "area",
@@ -28,7 +28,7 @@ export async function getByPkService(id:number){
             },{
                 model: tbBoulders,
                 as:"boulder",
-                attributes: ["boulderId","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
+                attributes: ["boulderId","boulderName","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
                 include :[ {
                 model: tbAreaGyms,
                 as: "area",
@@ -47,7 +47,7 @@ export async function getByUserService(id:number){
             },{
                 model: tbBoulders,
                 as:"boulder",
-                attributes: ["boulderId","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
+                attributes: ["boulderId","boulderName","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
                 include :[ {
                 model: tbAreaGyms,
                 as: "area",
@@ -66,7 +66,7 @@ export async function getByBoulderService(id:number){
             },{
                 model: tbBoulders,
                 as:"boulder",
-                attributes: ["boulderId","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
+                attributes: ["boulderId","boulderName","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
                 include :[ {
                 model: tbAreaGyms,
                 as: "area",
@@ -85,7 +85,7 @@ export async function getByAreaService(id:number){
             },{
                 model: tbBoulders,
                 as:"boulder",
-                attributes: ["boulderId","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
+                attributes: ["boulderId","boulderName","boulderDesc","boulderLink","boulderReleaseDate","boulderEndDate","difficultyId","userId","areaId","boulderImageUrl"],
                 include :[ {
                 model: tbAreaGyms,
                 as: "area",

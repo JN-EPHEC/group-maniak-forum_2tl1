@@ -1,14 +1,8 @@
 import { useState, useEffect } from "react";
 import { usePage } from "../../PageContext";
-
+import type Gym from "../../types/Gym";
 function CreateGymList(){
    
-
-    interface Gym {
-        gymId: Number;
-        gymName: string;
-        areaImageUrl: string;
-    }
     const [gyms, setGyms] = useState<Gym[]>([]);
 
     useEffect(() => {

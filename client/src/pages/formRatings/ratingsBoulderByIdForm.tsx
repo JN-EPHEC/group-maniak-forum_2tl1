@@ -1,13 +1,8 @@
 import { usePage } from "../../PageContext";
 import { postRating } from "./ratingsPost";
 import { useState, useEffect } from "react";
+import type Difficulty from "../../types/Difficulty";
 
-interface Difficulty {
-    difficultyId: number;
-    difficultyColorName: string;
-    difficultyFrenchScale: string;
-    difficultyVerminScale: string;
-}
 
 function RatingBoulderByIdForm({ boulderId, difficultyId }: { boulderId: number, difficultyId: number }) {
     const setPage = usePage();

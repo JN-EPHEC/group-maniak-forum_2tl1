@@ -1,12 +1,7 @@
 
 import { useState } from "react";
+import type Difficulty from "../../types/Difficulty";
 
-interface Difficulty {
-  difficultyId: number;
-  difficultyColorName: string;
-  difficultyFrenchScale: string;
-  difficultyVerminScale: string;
-}
 
 interface Props {
   difficulties: Difficulty[];

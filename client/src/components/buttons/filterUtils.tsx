@@ -1,5 +1,5 @@
 import type {Filter} from "../../types/Filter.ts"
-import type Boulder from "../../types/boulder.ts"
+import type Boulder from "../../types/Boulder.ts"
 
 
 export function filterBoulders(boulders: Boulder[], filter: Filter): Boulder[] {

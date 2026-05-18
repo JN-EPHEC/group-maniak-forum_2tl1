@@ -1,4 +1,4 @@
-import type { User } from "../types/user";
+import type { User } from "../types/User";
 import loadData from "./loadData";
 
 async function postUser(

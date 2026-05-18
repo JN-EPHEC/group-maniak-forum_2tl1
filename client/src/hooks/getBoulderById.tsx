@@ -3,45 +3,21 @@ import { getStars } from "../utils/conversionRating";
 import { postCommentsBoulder } from "../utils/createComments/postCommentsBoulder";
 import { usePage } from "../PageContext";
 import PatchBoulderId from "../pages/boulderIdPage/buttonPatchBoulder";
-import type Boulder from "../types/boulder"
+import type Boulder from "../types/Boulder";
+import type Comment from "../types/Comment";
+import type Ratings from "../types/Ratings";
+
 interface Props {
     boulderId: number;
     patchForm?: React.ReactNode;
 }
 
-function GetBoulderById({ boulderId, patchForm }: Props){
+function GetBoulderById({ boulderId}: Props){
 
-    interface CommentById {
-        commentsId: number,
-        author: {
-            userId: number,
-            userFName : string,
-            userLName: string,
-            userPseudo: string
-        },
-        boulderId: number,
-        commentsTxt: string,
-    }
-
-    interface RatingsByBoulders {
-        rateId: number,
-        rateNote: number,
-        difficultyId: number,
-        rateTxt: string,
-        author: {
-            userId: number,
-            userFName : string,
-            userLName: string,
-            userPseudo: string
-        },
-        boulderId: number,
-        commentsTxt: string,
-        
-    }
     const setPage  = usePage();
     const [boulderById, setBoulderById] = useState<Boulder[]>([]);
-    const [commentsBoulderById,setCommentsBoulderById] = useState<CommentById[]>([]);
-    const [RatingsByBoulders,setRatingsByBoulders] = useState<RatingsByBoulders[]>([]);
+    const [commentsBoulderById,setCommentsBoulderById] = useState<Comment[]>([]);
+    const [RatingsByBoulders,setRatingsByBoulders] = useState<Ratings[]>([]);
     
     
     useEffect(() => {
