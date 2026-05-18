@@ -15,7 +15,7 @@ function PatchBoulderId({ boulderId }: { boulderId: number }) {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
-                    'Authorization' : `${token}`,
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify({ "boulderEndDate": releaseDate }),
             });

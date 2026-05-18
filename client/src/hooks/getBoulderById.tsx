@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getStars } from "../utils/conversionRating";
 import { postCommentsBoulder } from "../utils/createComments/postCommentsBoulder";
 import { usePage } from "../PageContext";
+import PatchBoulderId from "../pages/boulderIdPage/buttonPatchBoulder";
 
 interface Props {
     boulderId: number;
@@ -167,6 +168,8 @@ function GetBoulderById({ boulderId, patchForm }: Props){
             </div>
         ))}
     </div>
+
+    <PatchBoulderId boulderId={boulderId}></PatchBoulderId>
 
 
     <div id="ajouterCommentaire">
