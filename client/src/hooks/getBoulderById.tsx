@@ -21,10 +21,13 @@ function GetBoulderById({ boulderId}: Props){
     
     
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/boulders/${boulderId}`)
-            .then((res) => res.json())
-            .then((data) => setBoulderById(Array.isArray(data) ? data : [data]));
-    }, []);
+    fetch(`${import.meta.env.VITE_API_URL}/boulders/${boulderId}`)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data); // <-- vérifie que boulderImageUrl est bien rempli
+            setBoulderById(Array.isArray(data) ? data : [data]);
+        });
+}, []);
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/comments/boulder/${boulderId}`)
