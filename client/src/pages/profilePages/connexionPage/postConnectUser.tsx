@@ -1,4 +1,4 @@
-export const PostConnectUser = async (e: any) => {
+export const PostConnectUser = async (e: any, setPage: (page: string) => void) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const identifier = data.get("emailForm");
@@ -14,15 +14,14 @@ export const PostConnectUser = async (e: any) => {
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, requestOptions);
         if (response.status === 200) {
-            alert("Connecté à votre compte avec succès, vous pouvez désormais acceder à votre profil via le bouton 'Mon profil'")
             const resultat = await response.json()
             localStorage.setItem("tokenIdentification", resultat.accessToken);
             localStorage.setItem("tokenUser", JSON.stringify(resultat.user));
-            // ou navigate vers la page de connexion
+            setPage("pageProfil")
         } else if (response.status === 401) {
-            alert("Erreur de connexion, le mot de passe ou email est peut-être incorrect")
+            (document.getElementById("erreurFormConnect") as HTMLElement).innerText = "Erreur de connexion, le mot de passe ou email est peut-être incorrect"
         } else {
-            alert("Une erreur inattendue est survenue.")
+            (document.getElementById("erreurFormConnect") as HTMLElement).innerText = "Une erreur inattendue est survenue.";
         }
         
     

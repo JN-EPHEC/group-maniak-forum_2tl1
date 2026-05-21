@@ -21,7 +21,6 @@ function GetInfoProfile(){
 
     useEffect(() => {
         if (!tokenUser) {
-            alert("Vous n'êtes pas encore connecté. Rendez vous dans la rubrique 'Se connecter'");
             setPage("pageConnexion");
             return;
         }

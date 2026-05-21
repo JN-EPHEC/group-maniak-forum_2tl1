@@ -85,6 +85,7 @@ function GetBoulderById({ boulderId}: Props){
                 >
                     Laisser un avis
                 </button>
+                <div id="formErrorRatings"></div>
             </div>
         </div>
     ))}

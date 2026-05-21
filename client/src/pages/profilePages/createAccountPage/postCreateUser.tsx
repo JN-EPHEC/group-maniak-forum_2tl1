@@ -1,4 +1,4 @@
-export const postCreateUser = async (e: any) => {
+export const postCreateUser = async (e: any, setPage: (page: string) => void) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const userMail = data.get("formEmail")
@@ -27,9 +27,8 @@ export const postCreateUser = async (e: any) => {
     try {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/users`, requestOptions);
 
-        if (response.status === 201) {
-            alert("Compte créé avec succès !")
-            // ou navigate vers la page de connexion
+        if (response.status === 201) {  
+            setPage("pageProfil")
         } else if (response.status === 500) {
             alert("Cet email ou ce pseudo est déjà utilisé.")
         } else {

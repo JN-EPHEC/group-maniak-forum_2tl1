@@ -1,5 +1,6 @@
 import ButtonConnectAccount from "./buttonCreateAccount/buttonConnectAccount"
 import ButtonCreateAccount from "./buttonCreateAccount/buttonCreateAccount"
+import ButtonDisconnectUser from "./buttonCreateAccount/buttonDisconnect"
 import ButtonMonProfil from "./buttonCreateAccount/buttonMonProfil"
 
 function DisplayMenuCreateAccount(){
@@ -8,6 +9,7 @@ function DisplayMenuCreateAccount(){
             <ButtonMonProfil></ButtonMonProfil>
             <ButtonCreateAccount></ButtonCreateAccount>
             <ButtonConnectAccount></ButtonConnectAccount>
+            <ButtonDisconnectUser></ButtonDisconnectUser>
         </div>
     )
 }

@@ -64,7 +64,6 @@ function RatingBoulderByIdForm({ boulderId, difficultyId }: { boulderId: number,
     };
 
     if (hasRated) {
-        alert("vous avez déjà voté pour ce bloc")
         setPage(`boulderId-${boulderId}`);
     }
 
@@ -96,6 +95,7 @@ function RatingBoulderByIdForm({ boulderId, difficultyId }: { boulderId: number,
 
                 <label>Avez vous pris une vidéo ?</label>
                 <textarea name="linkVideoForm" placeholder="Laisse le lien de votre vidéo..." />
+
 
                 <button type="submit">Soumettre</button>
             </form>

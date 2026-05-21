@@ -1,10 +1,12 @@
 import pp_chat from "../../../assets/img/PP_Chat.png"
 import pp_chien from "../../../assets/img/PP_chien.png"
+import { usePage } from "../../../PageContext"
 import { postCreateUser } from "./postCreateUser"
 
 function FormForCreationAccount(){
+    const setPage = usePage()
     return (
-        <form className="formCreateAccount" onSubmit={postCreateUser}>
+        <form className="formCreateAccount" onSubmit={(e) => postCreateUser(e, setPage)}>
             <div className="formCreateAccountFName">
                 <label>Prénom</label>
                 <input type="text" name="formFName" required />

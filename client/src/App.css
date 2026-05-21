@@ -1657,3 +1657,13 @@ form {
 .dropdown-item:not(:last-child) {
   border-bottom: 1px solid #f3f4f6;
 }
+
+#erreurFormConnect {
+  color: red;
+  font-size: 13px;
+}
+
+#formErrorRatings {
+  color: red;
+  font-size: 13px;
+}
