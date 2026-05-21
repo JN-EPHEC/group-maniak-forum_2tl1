@@ -1,4 +1,4 @@
-import { fetchWithAuth } from "../fetchWithAuth";
+import { fetchWithAuth } from "../../utils/fetchWithAuth";
 
 
 export const postFormCreateBoulder = async (e: any) => {

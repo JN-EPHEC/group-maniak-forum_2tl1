@@ -63,7 +63,7 @@ interface WeeklyBoulder {
     return (
         <div id="boulderWeekly">
         {boulderWeekly.map((boulder) => (
-        <div key={boulder.boulderId} className="boulderCard">
+        <div key={boulder.boulderId} className="boulderCard" onClick={() => setPage(`boulderId-${boulder.boulderId}`)}>
             <span className="boulderNameTitle">{boulder.boulder.boulderName}</span>
             <span className="setterInfo">
                 Ouvreur : {`${boulder.boulder.setter.userPseudo} (${boulder.boulder.setter.userFName} ${boulder.boulder.setter.userLName})`}
@@ -102,7 +102,7 @@ interface WeeklyBoulder {
 
                 <button
                     className="buttonOrange"
-                    onClick={() => setPage(`formRatings-${boulder.boulderId}`)}
+                    onClick={(e) => { e.stopPropagation(); setPage(`formRatings-${boulder.boulderId}`); }}
                 >
                     Laisser un avis
                 </button>

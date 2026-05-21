@@ -9,7 +9,10 @@ function CreationPageAccueil(){
       <div>
         <ToolBar></ToolBar>
         <WhiteManiakLogo></WhiteManiakLogo> 
-        <CreateGymList></CreateGymList>  
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <CreateGymList></CreateGymList> 
+        </div>
+          
         <Footer></Footer>
       </div>
   );
