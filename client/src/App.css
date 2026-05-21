@@ -1700,3 +1700,12 @@ form {
   color: red;
   font-size: 13px;
 }
+
+#filterButtonText {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+  text-align: center;
+  padding: 24px 0;
+  width: 100%;
+}

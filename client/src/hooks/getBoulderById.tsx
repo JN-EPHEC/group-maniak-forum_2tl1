@@ -91,10 +91,14 @@ function GetBoulderById({ boulderId}: Props){
                 <div id="formErrorRatings"></div>
 
                 {canPatch && <PatchBoulderId boulderId={boulderId} />}
+
+                
+                
+
             </div>
         </div>
     ))}
-
+    
 
     <div id="ratingsList">
         <h3>Avis & Notes</h3>

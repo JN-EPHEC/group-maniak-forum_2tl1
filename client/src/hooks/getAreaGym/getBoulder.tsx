@@ -36,7 +36,7 @@ function GetBoulder({ gymId }: Props) {
   );
 
   if (filteredBoulders.length === 0) {
-    return (    <div>
+    return (    <div id="filterButtonText">
       <FilterButtons
         filter={filter}
         onFilterChange={setFilter}
