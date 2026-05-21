@@ -1,4 +1,4 @@
-import { Json } from "sequelize/lib/utils";
+
 import { tbAreaGyms,tbGyms } from "../models/index.js";
 
 export async function getAllService() {

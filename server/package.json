@@ -1,8 +1,8 @@
 {
-  "name": "dev3-backend-tp1",
+  "name": "maniak-forum-api",
   "version": "1.0.0",
   "description": "",
-  "main": "hello-world.js",
+  "main": "server.ts",
   "scripts": {
     "build": "tsc",
     "start": "tsx watch src/server.ts",

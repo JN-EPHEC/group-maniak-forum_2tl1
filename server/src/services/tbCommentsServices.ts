@@ -1,4 +1,4 @@
-import { Json } from "sequelize/lib/utils";
+
 import { tbUsers,tbComments,tbBoulders,tbAreaGyms,tbReplies} from  "../models/index.js";
 import { Op, Sequelize } from "sequelize"
 

@@ -192,7 +192,8 @@ export async function getByGymService(id:number){
                 "setter.userId",
                 "area.areaId",
                 "area->gym.gymId"
-            ]
+            ],
+            order: [["boulderEndDate","DESC"],["boulderReleaseDate","DESC"]]
         });
 };
 export async function getBySetterService(id:number){
