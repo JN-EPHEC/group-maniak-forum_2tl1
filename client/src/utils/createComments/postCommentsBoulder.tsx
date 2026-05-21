@@ -1,6 +1,6 @@
 
 import { fetchWithAuth } from "../fetchWithAuth";
-export const postCommentsBoulder = async (e: any) => {
+export const postCommentsBoulder = async (e: any, setPage: (page: string) => void) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const commentsTxt = data.get("commentsTxtForm")
@@ -15,6 +15,12 @@ export const postCommentsBoulder = async (e: any) => {
             boulderId: boulderId,
         })
     };
-    const response = await fetchWithAuth(`${import.meta.env.VITE_API_URL}/comments`, requestOptions);
-    const result = await response.json()
-}
+    try {
+        const response = await fetchWithAuth(`${import.meta.env.VITE_API_URL}/comments`, requestOptions);
+        if(response.status == 403){
+            setPage("pageConnexion")
+        }
+    } catch(error) {
+        console.error(error)
+    }
+}    

@@ -26,7 +26,6 @@ export const PostConnectUser = async (e: any, setPage: (page: string) => void) =
         
     
     } catch (error) {
-        alert("Impossible de contacter le serveur, vérifie ta connexion.")
         console.error(error)
     }
 };

@@ -1071,6 +1071,10 @@ span {
   border-top: none;
   display: flex;
   flex-direction: column;
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
 }
 
 #ratingsList h3,

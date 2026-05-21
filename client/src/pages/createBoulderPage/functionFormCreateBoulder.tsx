@@ -28,9 +28,9 @@ export const postFormCreateBoulder = async (e: any) => {
             boulderLink: boulderLink,
             boulderReleaseDate: boulderReleaseDate,
             boulderEndDate: null,
-            difficultyId: levelId,
-            userId: userId,
-            areaId: areaId,
+            difficultyId: Number(levelId),
+            userId: Number(userId),
+            areaId: Number(areaId),
             boulderImageUrl: boulderImageUrl,
               })
     };

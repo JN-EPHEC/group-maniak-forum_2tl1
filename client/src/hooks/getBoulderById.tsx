@@ -18,6 +18,9 @@ function GetBoulderById({ boulderId}: Props){
     const [boulderById, setBoulderById] = useState<Boulder[]>([]);
     const [commentsBoulderById,setCommentsBoulderById] = useState<Comment[]>([]);
     const [RatingsByBoulders,setRatingsByBoulders] = useState<Ratings[]>([]);
+    const tokenUser = JSON.parse(localStorage.getItem("tokenUser") ?? "null");
+    const role = tokenUser?.role;
+    const canPatch = role === 1 || role === 3; 
     
     
     useEffect(() => {
@@ -86,6 +89,8 @@ function GetBoulderById({ boulderId}: Props){
                     Laisser un avis
                 </button>
                 <div id="formErrorRatings"></div>
+
+                {canPatch && <PatchBoulderId boulderId={boulderId} />}
             </div>
         </div>
     ))}
@@ -115,11 +120,10 @@ function GetBoulderById({ boulderId}: Props){
         ))}
     </div>
 
-    <PatchBoulderId boulderId={boulderId}></PatchBoulderId>
 
 
     <div id="ajouterCommentaire">
-        <form onSubmit={postCommentsBoulder}>
+        <form onSubmit={(e) => postCommentsBoulder(e, setPage)}>
             <input type="hidden" name="boulderId" value={boulderId} />
             <textarea name="commentsTxtForm" placeholder="Laisse un commentaire..."></textarea>
             <button type="submit">Publier</button>
