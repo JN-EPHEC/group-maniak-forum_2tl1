@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import type Difficulty from "../../types/Difficulty";
 
 
-function RatingBoulderByIdForm({ boulderId, difficultyId }: { boulderId: number, difficultyId: number }) {
+function RatingBoulderByIdForm({ boulderId }: { boulderId: number}) {
     const setPage = usePage();
 
     const token = localStorage.getItem("tokenIdentification");
@@ -18,8 +18,7 @@ function RatingBoulderByIdForm({ boulderId, difficultyId }: { boulderId: number,
 
     const [ratingsExistant, setRatingsExistant] = useState<RatingExistant[]>([]);
     const [hasRated, setHasRated] = useState(false);
-    const [difficulties, setDifficulties] = useState<Difficulty[]>([]);
-    const [selectedDifficultyId, setSelectedDifficultyId] = useState<number>(difficultyId);
+    const [difficulties, setDifficulties] = useState<Difficulty[]>([]);;
 
     useEffect(() => {
         if (!token || !userId) {
@@ -78,8 +77,6 @@ function RatingBoulderByIdForm({ boulderId, difficultyId }: { boulderId: number,
 
                 <label>Difficulté ressentie :</label>
                 <select
-                    value={selectedDifficultyId}
-                    onChange={(e) => setSelectedDifficultyId(Number(e.target.value))}
                     name="feelRating"
                 >
                     {difficulties.map((d) => (

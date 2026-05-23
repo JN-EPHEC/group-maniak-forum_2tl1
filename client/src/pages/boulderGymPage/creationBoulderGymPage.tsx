@@ -7,11 +7,6 @@ interface Props {
 }
 
 function CreationBoulderGymPage({ gymId }: Props){
-    const tokenUser = JSON.parse(localStorage.getItem("tokenUser") ?? "null");
-    const role = tokenUser?.role;
-
-    const canAddBoulder = role === 1 || role === 3;
-
     return (
         <div id="boulderGym">
             <ToolBar></ToolBar>
