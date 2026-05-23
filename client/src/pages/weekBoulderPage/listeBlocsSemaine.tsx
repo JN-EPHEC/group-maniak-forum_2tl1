@@ -1,81 +1,118 @@
-const weekBoulder1 = {
-    idBoulder: 45, 
-    nomBoulder: "la Dalleuh",
-    difficulte: "noire",
-    description: "Blocs de type dalle qui requiert assez de précision pour la pose de pied",
-    ouvreur: "Matito",
-    area: "La dalle",
+
+import { usePage } from "../../PageContext";
+import { getStars } from "../../utils/conversionRating";
+import { useState, useEffect } from "react";
+function WeekBoulder() {
+interface WeeklyBoulder {
+    boulderId: number;
+    avgRating: number;
+    ratingCount: number;
+
+    boulder: {
+        boulderId: number;
+        boulderName: string;
+        boulderDesc: string;
+        boulderLink: string | null;
+        boulderReleaseDate: string;
+        boulderEndDate: string | null;
+        difficultyId: number;
+        userId: number;
+        areaId: number;
+        boulderImageUrl: string | null;
+
+        difficulty: {
+            difficultyId: number;
+            difficultyColorName: string;
+            difficultyFrenchScale: string;
+            difficultyVerminScale: string;
+        };
+
+        setter: {
+            userId: number;
+            userFName: string;
+            userLName: string;
+            userPseudo: string;
+        };
+
+        area: {
+            areaId: number;
+            areaName: string;
+            areaDesc: string;
+
+            gym: {
+                gymId: number;
+                gymName: string;
+            };
+        };
+    };
 }
-const weekBoulder2 = {
-    idBoulder: 46, 
-    nomBoulder: "Le Toit Penché",
-    difficulte: "rouge",
-    description: "Bloc de type dévers qui demande une bonne gestion de la force et des hanches",
-    ouvreur: "Sarah",
-    area: "Le toit",
-}
-
-const weekBoulder3 = {
-    idBoulder: 47, 
-    nomBoulder: "La Fissure",
-    difficulte: "bleue",
-    description: "Bloc technique sur petites prises qui nécessite une bonne lecture du mur",
-    ouvreur: "Bastien",
-    area: "Le pan",
-}
-
-const weekBoulder4 = {
-    idBoulder: 48, 
-    nomBoulder: "Le Bombé",
-    difficulte: "jaune",
-    description: "Bloc d'équilibre sur volumes arrondis, idéal pour travailler le centre de gravité",
-    ouvreur: "Manu",
-    area: "Le gorille",
-}
 
 
 
-function WeekBoulder(){
+     const [boulderWeekly, setBoulderWeekly] = useState<WeeklyBoulder[]>([]);
+
+    useEffect(() => {
+        fetch(`${import.meta.env.VITE_API_URL}/boulders/weekly`)
+            .then((res) => res.json())
+            .then((data) => setBoulderWeekly(Array.isArray(data) ? data : [data]));
+    }, []);
+
+    const setPage = usePage();
+    
+
     return (
-        <ul id="blocsDeLaSemaine">
-            <li className="boulderCard">
-                <p className="boulderCard_nom">{weekBoulder1.nomBoulder}</p>
-                <p className="boulderCard_difficulte">{weekBoulder1.difficulte}</p>
-                <p className="boulderCard_description">{weekBoulder1.description}</p>
-                <div className="boulderCard_footer">
-                    <p className="boulderCard_ouvreur">🧗 {weekBoulder1.ouvreur}</p>
-                    <p className="boulderCard_area">📍 {weekBoulder1.area}</p>
-                </div>
-            </li>
-            <li className="boulderCard">
-                <p className="boulderCard_nom">{weekBoulder2.nomBoulder}</p>
-                <p className="boulderCard_difficulte">{weekBoulder2.difficulte}</p>
-                <p className="boulderCard_description">{weekBoulder2.description}</p>
-                <div className="boulderCard_footer">
-                    <p className="boulderCard_ouvreur">🧗 {weekBoulder2.ouvreur}</p>
-                    <p className="boulderCard_area">📍 {weekBoulder2.area}</p>
-                </div>
-            </li>
-            <li className="boulderCard">
-                <p className="boulderCard_nom">{weekBoulder3.nomBoulder}</p>
-                <p className="boulderCard_difficulte">{weekBoulder3.difficulte}</p>
-                <p className="boulderCard_description">{weekBoulder3.description}</p>
-                <div className="boulderCard_footer">
-                    <p className="boulderCard_ouvreur">🧗 {weekBoulder3.ouvreur}</p>
-                    <p className="boulderCard_area">📍 {weekBoulder3.area}</p>
-                </div>
-            </li>
-            <li className="boulderCard">
-                <p className="boulderCard_nom">{weekBoulder4.nomBoulder}</p>
-                <p className="boulderCard_difficulte">{weekBoulder4.difficulte}</p>
-                <p className="boulderCard_description">{weekBoulder4.description}</p>
-                <div className="boulderCard_footer">
-                    <p className="boulderCard_ouvreur">🧗 {weekBoulder4.ouvreur}</p>
-                    <p className="boulderCard_area">📍 {weekBoulder4.area}</p>
-                </div>
-            </li>
-        </ul>
-    );
-};
+        <div id="boulderWeekly">
+        {boulderWeekly.map((boulder) => (
+        <div key={boulder.boulderId} className="boulderCard" onClick={() => setPage(`boulderId-${boulder.boulderId}`)}>
+            <span className="boulderNameTitle">{boulder.boulder.boulderName}</span>
+            <span className="setterInfo">
+                Ouvreur : {`${boulder.boulder.setter.userPseudo} (${boulder.boulder.setter.userFName} ${boulder.boulder.setter.userLName})`}
+            </span>
 
+            <div className="boulderImageUrl">
+                {boulder.boulder.boulderImageUrl && <img src={boulder.boulder.boulderImageUrl} />}
+            </div>
+
+            <span className="boulderDesc">{boulder.boulder.boulderDesc}</span>
+            <span className="areaNameBoulder">Zone : {boulder.boulder.area.areaName}</span>
+            <span className="boulderReleaseDate">
+                Jour d'ouverture : {new Date(boulder.boulder.boulderReleaseDate).toLocaleDateString()}
+            </span>
+
+            <span className="boulderLink">
+                {boulder.boulder.boulderLink && <a href={boulder.boulder.boulderLink}>Voir</a>}
+            </span>
+
+            <span className="areaDescBoulder">{boulder.boulder.area.areaDesc}</span>
+
+
+            <div className="ratingSection">
+                <div id="ratingStars">
+                    {getStars(boulder.avgRating).map((star, i) => (
+                        star === "full" ? (
+                            <span key={i} className="star-full">★</span>
+                        ) : star === "half" ? (
+                            <span key={i} className="star-half">★</span>
+                        ) : (
+                            <span key={i} className="star-empty">★</span>
+                        )
+                    ))}
+                    <span className="ratingCount">({boulder.ratingCount})</span>
+                </div>
+
+                <button
+                    className="buttonOrange"
+                    onClick={(e) => { e.stopPropagation(); setPage(`formRatings-${boulder.boulderId}`); }}
+                >
+                    Laisser un avis
+                </button>
+            </div>
+        </div>
+        
+        )
+        )
+        }  
+        </div> 
+    )
+}
 export default WeekBoulder

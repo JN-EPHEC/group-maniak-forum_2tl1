@@ -1,7 +1,10 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class tbDifficultyUsers extends Model {};
+class tbDifficultyUsers extends Model {
+    declare userId: number;
+    declare boulderId: number;
+};
 
 tbDifficultyUsers.init(
         {
@@ -14,13 +17,14 @@ tbDifficultyUsers.init(
                 key : "userId"
             }
         },
-        difficultyId:{
+        boulderId:{
             type :DataTypes.INTEGER,
             primaryKey: true,
             references : {
-                model: "tbDifficulties",
-                key : "difficultyId"
-            }
+                model: "tbBoulders",
+                key : "boulderId"
+            },
+            onDelete: "CASCADE"
         }
     },
     {

@@ -1,6 +1,10 @@
 import express from 'express';
 import * as tbGymControllers from "../controllers/tbGymControllers.js";
-
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
+import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
+import { checkAdminOrSetter } from '../middlewares/checkAdminOrSetter.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkIfConnected } from '../middlewares/checkIfConnected.js';
 const router = express.Router()
 /**
  * @swagger
@@ -77,7 +81,7 @@ router.get("/:id",tbGymControllers.getGymbyPk);
  *         description: Erreur serveur
  */
 
-router.post("/", tbGymControllers.postGym);
+router.post("/",jwtAuth,requireAdmin,tbGymControllers.postGym);
 // ici je supprime selon son id
 /**
  * @swagger
@@ -101,6 +105,6 @@ router.post("/", tbGymControllers.postGym);
  *         description: Erreur serveur
  */
 
-router.delete("/:id", tbGymControllers.delGym);
+router.delete("/:id",jwtAuth,requireAdmin, tbGymControllers.delGym);
 
 export default router;

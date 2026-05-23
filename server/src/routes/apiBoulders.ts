@@ -1,6 +1,11 @@
 import express from 'express';
 import * as tbBoulders from "../controllers/tbBouldersControllers.js";
-
+import { getWeeklyBoulders } from '../controllers/weeklyBouldersControllers.js';
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
+import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
+import { checkAdminOrSetter } from '../middlewares/checkAdminOrSetter.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkIfConnected } from '../middlewares/checkIfConnected.js';
 const router = express.Router()
 /**
  * @swagger
@@ -30,6 +35,25 @@ const router = express.Router()
  */
 
 router.get('/',tbBoulders.getAllBoulders);
+/**
+ * @swagger
+ * /api/boulders/weekly:
+ *   get:
+ *     summary: Récupère les blocs de la semaines
+ *     tags: [Boulders]
+ *     responses:
+ *       200:
+ *         description: Liste de tous les blocs
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Boulder'
+ *       500:
+ *         description: Erreur serveur
+ */
+router.get('/weekly',getWeeklyBoulders);
 /**
  * @swagger
  * /api/boulders/{id}:
@@ -80,6 +104,27 @@ router.get('/:id',tbBoulders.getBoulderbyPk);
 router.get('/byArea/:id',tbBoulders.getBoulderByArea);
 /**
  * @swagger
+ * /api/boulders/byGym/{id}:
+ *   get:
+ *     summary: Récupère tous les blocs d'une salle spécifique
+ *     tags: [Boulders]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID de la zone
+ *     responses:
+ *       200:
+ *         description: Liste des blocs de la salle
+ *       500:
+ *         description: Erreur serveur
+ */
+
+router.get('/byGym/:id',tbBoulders.getBoulderByGym);
+/**
+ * @swagger
  * /api/boulders/bySetter/{id}:
  *   get:
  *     summary: Récupère tous les blocs ouverts par un setter donné
@@ -120,6 +165,8 @@ router.get('/bySetter/:id',tbBoulders.getBoulderBySetter);
  */
 
 router.get('/byDifficulty/:id',tbBoulders.getBoulderByDifficulty);
+
+
 //post
 /**
  * @swagger
@@ -140,7 +187,35 @@ router.get('/byDifficulty/:id',tbBoulders.getBoulderByDifficulty);
  *         description: Erreur serveur
  */
 
-router.post('/',tbBoulders.postBoulder);
+router.post('/',jwtAuth,checkAdminOrSetter,tbBoulders.postBoulder);
+//patch
+/**
+ * @swagger
+ * /api/boulders/{id}:
+ *   patch:
+ *     summary: Modifie un bloc
+ *     tags: [Boulders]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Boulder'
+ *     responses:
+ *       200:
+ *         description: Bloc modifié avec succès
+ *       404:
+ *         description: Bloc introuvable
+ *       500:
+ *         description: Erreur serveur
+ */
+router.patch('/:id',jwtAuth,checkAdminOrSetter,tbBoulders.patchBoulder);
 //del
 /**
  * @swagger
@@ -163,6 +238,6 @@ router.post('/',tbBoulders.postBoulder);
  *         description: Erreur serveur
  */
 
-router.delete('/:id',tbBoulders.deleteBoulder);
+router.delete('/:id',jwtAuth,requireAdmin,tbBoulders.deleteBoulder);
 
 export default router

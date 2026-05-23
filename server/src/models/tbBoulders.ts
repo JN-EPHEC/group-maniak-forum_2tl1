@@ -1,7 +1,18 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class tbBoulders extends Model {};
+class tbBoulders extends Model {
+    declare boulderId:number;
+    declare boulderName:string;
+    declare boulderDesc:string;
+    declare boulderLink:string;
+    declare boulderReleaseDate:Date;
+    declare boulderEndDate:Date;
+    declare difficultyId:number;
+    declare userId:number;
+    declare boulderImageUrl:string;
+
+};
 
 tbBoulders.init(
         {
@@ -10,6 +21,10 @@ tbBoulders.init(
             type : DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement:true
+        },
+        boulderName :{
+            type : DataTypes.STRING,
+            allowNull: false,
         },
         boulderDesc :{
             type : DataTypes.STRING,

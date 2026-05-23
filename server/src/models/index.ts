@@ -1,3 +1,4 @@
+export { default as sequelize } from "../config/database.js";
 export { default as tbGyms } from "./tbGyms.js";
 export { default as tbAreaGyms } from "./tbAreaGyms.js";
 export { default as tbDifficulties } from "./tbDifficulties.js";

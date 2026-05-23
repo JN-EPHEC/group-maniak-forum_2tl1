@@ -1,5 +1,7 @@
 /server/node_modules
+/server/coverage
 /node_modules
 /coverage
 .env*
+!.env.test
 .dockerignore

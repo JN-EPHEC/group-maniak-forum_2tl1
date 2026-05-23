@@ -1,7 +1,12 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class tbUsers extends Model {};
+class tbUsers extends Model {  declare userId: number;
+  declare userPseudo: string;
+  declare userMail: string;
+  declare userPassHashed: string;
+  declare statusId: number;
+};
 
 tbUsers.init(
         {

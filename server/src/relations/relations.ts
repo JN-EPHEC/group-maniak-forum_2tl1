@@ -51,8 +51,8 @@ import {
     tbComments.belongsTo(tbUsers, { foreignKey: "userId", as: "author" });
     tbUsers.hasMany(tbComments, { foreignKey: "userId", as: "comments" });
 
-    tbComments.belongsTo(tbBoulders, { foreignKey: "boulderId", as: "boulder" });
-    tbBoulders.hasMany(tbComments, { foreignKey: "boulderId", as: "comments" });
+    tbComments.belongsTo(tbBoulders, { foreignKey: "boulderId", as: "boulder", onDelete: "CASCADE" });
+    tbBoulders.hasMany(tbComments, { foreignKey: "boulderId", as: "comments", onDelete: "CASCADE" });
 
 
     // -------------------------
@@ -62,8 +62,8 @@ import {
     tbRatings.belongsTo(tbUsers, { foreignKey: "userId", as: "author" });
     tbUsers.hasMany(tbRatings, { foreignKey: "userId", as: "ratings" });
 
-    tbRatings.belongsTo(tbBoulders, { foreignKey: "boulderId", as: "boulder" });
-    tbBoulders.hasMany(tbRatings, { foreignKey: "boulderId", as: "ratings" });
+    tbRatings.belongsTo(tbBoulders, { foreignKey: "boulderId", as: "boulder" , onDelete: "CASCADE"});
+    tbBoulders.hasMany(tbRatings, { foreignKey: "boulderId", as: "ratings" , onDelete: "CASCADE"});
 
 
     // -------------------------
@@ -77,11 +77,11 @@ tbComments.hasMany(tbReplies, { foreignKey: "commentsrepliesId", as: "isReplyOf"
    // -------------------------
     // DIFFICULTY USERS 
     // -------------------------
-tbUsers.hasMany(tbDifficultyUsers, { foreignKey: "userId", as: "difficultyUsers" });
+tbUsers.hasMany(tbDifficultyUsers, { foreignKey: "userId", as: "HighestLvl" });
 tbDifficultyUsers.belongsTo(tbUsers, { foreignKey: "userId", as: "user" });
 
-tbDifficulties.hasMany(tbDifficultyUsers, { foreignKey: "difficultyId", as: "difficultyUsers" });
-tbDifficultyUsers.belongsTo(tbDifficulties, { foreignKey: "difficultyId", as: "difficulty" });
+tbBoulders.hasMany(tbDifficultyUsers, { foreignKey: "boulderId", as: "HighestLvl", onDelete: "CASCADE" });
+tbDifficultyUsers.belongsTo(tbBoulders, { foreignKey: "boulderId", as: "boulder", onDelete: "CASCADE" });
 
 
 

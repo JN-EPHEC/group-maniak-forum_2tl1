@@ -1,7 +1,11 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class tbReplies extends Model {};
+class tbReplies extends Model {
+    declare replyId: number;
+    declare commentsId: number;
+    declare commentsrepliesId: number;
+};
 
 tbReplies.init(
     
@@ -13,13 +17,13 @@ tbReplies.init(
         },
         commentsId: {
             type: DataTypes.INTEGER,
-            references: { model: "tbComments", key: "commentsId" }
+            references: { model: "tbComments", key: "commentsId" },
+            onDelete: "CASCADE",
         },
         commentsrepliesId: {
             type: DataTypes.INTEGER,
             references: { model: "tbComments", key: "commentsId" }
-        }
-
+        },
     },
     {
         //les options de la table ici (model)

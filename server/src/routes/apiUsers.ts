@@ -1,7 +1,10 @@
 import express from 'express';
 import * as tbUserControllers from "../controllers/tbUsersControllers.js";
-import { checkIdParam } from '../middlewares/checkIdParam.js';
-
+import tbUsers from '../models/tbUsers.js';
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
+import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkIfConnected } from '../middlewares/checkIfConnected.js';
 const router = express.Router()
 /**
  * @swagger
@@ -29,11 +32,13 @@ const router = express.Router()
  *         description: Erreur serveur
  */
 
-router.get("/", tbUserControllers.getAllUsers);
+router.get("/",jwtAuth,checkIfConnected,tbUserControllers.getAllUsers);
 /**
  * @swagger
  * /api/users/{id}:
  *   get:
+ *     security:
+ *       - bearerAuth: []
  *     summary: Récupère un utilisateur via son ID
  *     tags: [Users]
  *     parameters:
@@ -50,13 +55,17 @@ router.get("/", tbUserControllers.getAllUsers);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
+ *       401:
+ *         description: Token expiré ou manquant
+ *       403:
+ *         description: Token invalide
  *       404:
  *         description: Utilisateur non trouvé
  *       500:
  *         description: Erreur serveur
  */
 
-router.get('/:id',tbUserControllers.getUserbyPk);
+router.get('/:id',jwtAuth,checkIfConnected,tbUserControllers.getUserbyPk);
 /**
  * @swagger
  * /api/users/status/{id}:
@@ -97,7 +106,36 @@ router.get('/status/:id',tbUserControllers.getUserbyStatus);
  *         description: Erreur serveur
  */
 
+
 router.post("/", tbUserControllers.postUsers);
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   patch:
+ *     summary: Modifie un bloc
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: Users modifié avec succès
+ *       404:
+ *         description: Users introuvable
+ *       500:
+ *         description: Erreur serveur
+ */
+router.patch("/:id",jwtAuth,checkOwnerOrAdmin(tbUsers,"userId"),tbUserControllers.patchUser)
+
 /**
  * @swagger
  * /api/users/{id}:
@@ -119,6 +157,6 @@ router.post("/", tbUserControllers.postUsers);
  *         description: Erreur serveur
  */
 
-router.delete("/:id",checkIdParam,tbUserControllers.deleteUsers);
+router.delete("/:id",jwtAuth,requireAdmin,tbUserControllers.deleteUsers);
 
 export default router;

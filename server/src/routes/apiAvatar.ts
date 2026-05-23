@@ -1,7 +1,10 @@
 
 import express from 'express';
-import * as tbProfilePictures from "../controllers/tbProfilePictures.js";
-
+import * as tbProfilePictures from "../controllers/tbProfilePicturesControllers.js";
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
+import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkIfConnected } from '../middlewares/checkIfConnected.js';
 const router = express.Router()
 
 /**
@@ -14,7 +17,7 @@ const router = express.Router()
 //GET
 /**
  * @swagger
- * /api/profilepictures:
+ * /api/avatar:
  *   get:
  *     summary: Récupère toutes les images de profil
  *     tags: [ProfilePictures]
@@ -34,7 +37,7 @@ const router = express.Router()
 router.get("/",tbProfilePictures.getAllProfilePictures);
 /**
  * @swagger
- * /api/profilepictures/{id}:
+ * /api/avatar/{id}:
  *   get:
  *     summary: Récupère une image de profil via son ID
  *     tags: [ProfilePictures]
@@ -62,7 +65,7 @@ router.get("/:id",tbProfilePictures.getProfilePicturebyPk);
 //POST 
 /**
  * @swagger
- * /api/profilepictures:
+ * /api/avatar:
  *   post:
  *     summary: Ajoute une nouvelle image de profil
  *     tags: [ProfilePictures]
@@ -83,11 +86,11 @@ router.get("/:id",tbProfilePictures.getProfilePicturebyPk);
  *         description: Erreur serveur
  */
 
-router.post("/",tbProfilePictures.postProfilePicture);
+router.post("/",jwtAuth,requireAdmin,tbProfilePictures.postProfilePicture);
 //DEL
 /**
  * @swagger
- * /api/profilepictures/{id}:
+ * /api/avatar/{id}:
  *   delete:
  *     summary: Supprime une image de profil via son ID
  *     tags: [ProfilePictures]
@@ -107,5 +110,5 @@ router.post("/",tbProfilePictures.postProfilePicture);
  *         description: Erreur serveur
  */
 
-router.delete("/:id",tbProfilePictures.delProfilePicture);
+router.delete("/:id",jwtAuth,requireAdmin,tbProfilePictures.delProfilePicture);
 export default router

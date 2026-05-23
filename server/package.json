@@ -1,8 +1,8 @@
 {
-  "name": "dev3-backend-tp1",
+  "name": "maniak-forum-api",
   "version": "1.0.0",
   "description": "",
-  "main": "hello-world.js",
+  "main": "server.ts",
   "scripts": {
     "build": "tsc",
     "start": "tsx watch src/server.ts",
@@ -16,6 +16,7 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/http-auth": "^4.1.4",
     "@types/jest": "^30.0.0",
     "@types/supertest": "^7.2.0",
@@ -30,11 +31,14 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.2.0",
+    "bcrypt": "^6.0.0",
     "bootstrap": "^5.3.8",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",

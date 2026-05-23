@@ -1,6 +1,11 @@
 import express from 'express';
-import * as tbReplies from "../controllers/tbRepliesControllers.js";
-
+import * as Replies from "../controllers/tbRepliesControllers.js";
+import tbReplies from '../models/tbReplies.js';
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
+import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
+import { checkAdminOrSetter } from '../middlewares/checkAdminOrSetter.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkIfConnected } from '../middlewares/checkIfConnected.js';
 const router = express.Router()
 /**
  * @swagger
@@ -29,7 +34,7 @@ const router = express.Router()
  *         description: Erreur serveur
  */
 
-router.get("/",tbReplies.getAllReplies);
+router.get("/",Replies.getAllReplies);
 /**
  * @swagger
  * /api/replies/comment/{id}:
@@ -50,28 +55,47 @@ router.get("/",tbReplies.getAllReplies);
  *         description: Erreur serveur
  */
 
-router.get("/comment/:id",tbReplies.getRepliesbyComments);
+router.get("/comment/:id",Replies.getRepliesbyComments);
 //POST
 /**
  * @swagger
  * /api/replies:
  *   post:
- *     summary: Crée une nouvelle réponse à un commentaire
- *     tags: [Replies]
+ *     tags:
+ *       - Replies
+ *     summary: Crée un reply (commentaire enfant + relation)
+ *     description: >
+ *       Crée automatiquement un commentaire enfant, puis crée la relation reply
+ *       entre le commentaire parent et le commentaire enfant.
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Reply'
+ *             $ref: '#/components/schemas/CreateReplyInput'
  *     responses:
  *       201:
- *         description: Réponse créée avec succès
+ *         description: Reply créé avec succès
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Reply created successfully"
+ *                 reply:
+ *                   $ref: '#/components/schemas/tbReplies'
+ *                 childComment:
+ *                   $ref: '#/components/schemas/tbComments'
+ *       400:
+ *         description: Champs manquants
  *       500:
  *         description: Erreur serveur
  */
-
-router.post("/",tbReplies.postReplies);
+router.post("/",jwtAuth,checkIfConnected,Replies.postReplies);
 //DELETE
 /**
  * @swagger
@@ -94,7 +118,6 @@ router.post("/",tbReplies.postReplies);
  *       500:
  *         description: Erreur serveur
  */
-
-router.delete("/:id",tbReplies.deleteReplies);
+router.delete("/:id",jwtAuth,checkOwnerOrAdmin(tbReplies,"replyId"),Replies.deleteReplies);
 
 export default router

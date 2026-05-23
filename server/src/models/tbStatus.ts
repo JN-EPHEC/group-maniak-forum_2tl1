@@ -1,7 +1,10 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.js";
 
-class tbStatus extends Model {};
+class tbStatus extends Model {
+    declare statusId: number;
+    declare statusName: string;
+};
 
 tbStatus.init(
         {

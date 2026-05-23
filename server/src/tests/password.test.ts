@@ -1,45 +1,127 @@
-import { validatePassword } from "../utils/password.js";
-import { describe, test, expect,it} from "@jest/globals";
 
-describe("Password Validator - White Box Testing", () => {
+import { jest,describe, test, expect,it} from "@jest/globals";
+import {checkPassword} from "../middlewares/checkPassword";
+const mockResponse = () => {
+  const res: any = {};
+  res.status = jest.fn().mockReturnValue(res);
+  res.json = jest.fn().mockReturnValue(res);
+  return res;
+};
 
-    // Test initial pour initialiser le rapport de couverture
-    // Ce test ne couvre que la première ligne de la fonction (Branch 1)
-    it("devrait rejeter un mot de passe vide", () => {
-        const result = validatePassword("", 25);
-        expect(result).toBe(false);
+const mockNext = () => jest.fn();
+
+describe("Middleware checkPassword", () => {
+  test("Renvoie 401 si aucun mot de passe n'est fourni", () => {
+    const req: any = { body: {} };
+    const res = mockResponse();
+    const next = mockNext();
+
+    checkPassword(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.json).toHaveBeenCalledWith({ message: "Veuillez entrer un mot de passe" });
+    expect(next).not.toHaveBeenCalled();
+  });
+
+  test("Renvoie 400 si le mot de passe est trop court", () => {
+    const req: any = { body: { password: "Aa1!" } };
+    const res = mockResponse();
+    const next = mockNext();
+
+    checkPassword(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Le mot de passe doit contenir au moins 8 caractères",
     });
-    // TODO: Ajoutez vos tests ici pour atteindre 100% de couverture...
-    it("devrai rejeter un mdp pas assez long",()=>{
-        const result = validatePassword("caca", 25);
-        expect(result).toBe(false);
+  });
+
+  test("Renvoie 400 si pas de majuscule", () => {
+    const req: any = { body: { password: "abcd1234!" } };
+    const res = mockResponse();
+    const next = mockNext();
+
+    checkPassword(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Le mot de passe doit contenir au moins une majuscule",
     });
-    it("devrai rejeter un mdp trop long",()=>{
-        const result = validatePassword("cacapipiproutcacapipiprout", 25);
-        expect(result).toBe(false);
+  });
+
+  test("Renvoie 400 si pas de minuscule", () => {
+    const req: any = { body: { password: "ABCD1234!" } };
+    const res = mockResponse();
+    const next = mockNext();
+
+    checkPassword(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Le mot de passe doit contenir au moins une minuscule",
     });
-    it("devrait refuser si C'est un enfant et que son mdp n'a pas de lettre minuscule",()=>{
-        const result = validatePassword("CACAPIPIPROUT", 8);
-        expect(result).toBe(false);
+  });
+
+  test("Renvoie 400 si pas de chiffre", () => {
+    const req: any = { body: { password: "Abcdefg!" } };
+    const res = mockResponse();
+    const next = mockNext();
+
+    checkPassword(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Le mot de passe doit contenir au moins un chiffre",
     });
-    it("devrait actepter si C'est un enfant et que son mdp a des lettres minuscules",()=>{
-        const result = validatePassword("cacapipiproute", 8);
-        expect(result).toBe(true);
+  });
+
+  test("Renvoie 400 si pas de caractère spécial", () => {
+    const req: any = { body: { password: "Abcdefg1" } };
+    const res = mockResponse();
+    const next = mockNext();
+
+    checkPassword(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(400);
+    expect(res.json).toHaveBeenCalledWith({
+      message: "Le mot de passe doit contenir au moins un caractère spécial",
     });
-    it("devrait refuser si C'est un ado/adulte et que son mdp a pas de lettre majuscule ou n'a pas de minuscules ou n'a pas de nombre ",()=>{
-        const result = validatePassword("??????????", 19);
-        expect(result).toBe(false);
-    });
-    it("devrait refuser si C'est un ado/adulte et que son mdp n'a pas de lettre special",()=>{
-        const result = validatePassword("cacaPIPIprout3", 19);
-        expect(result).toBe(false);
-    });
-    it("devrait refuser si C'est un senior et que son mdp n'a pas de chiffres et de majuscule",()=>{
-        const result = validatePassword("cacapipiproute", 66);
-        expect(result).toBe(false);
-    });
-    it("devrait accepter si C'est un senior/ado/senior et que son mdp a des/une lettre/s minuscule/s, des/un chiffre/s, des/une majuscules et des/un caractére/s spéciaux ",()=>{
-        const result = validatePassword("cacaPIPIprout3?", 66);
-        expect(result).toBe(true);
-    });
+  });
+
+  test("Passe au next() si le mot de passe est valide", () => {
+    const req: any = { body: { password:"Winter2026?" } };
+    const res = mockResponse();
+    const next = mockNext();
+
+    checkPassword(req, res, next);
+
+    expect(next).toHaveBeenCalled();
+    expect(res.status).not.toHaveBeenCalled();
+  });
+test("Renvoie 500 si une erreur interne survient dans le middleware", () => {
+  const req: any = {
+    body: {}
+  };
+
+  // On crée un getter qui throw dès qu'on lit req.body.password
+  Object.defineProperty(req.body, "password", {
+    get() {
+      throw new Error("Erreur simulée");
+    }
+  });
+
+  const res = mockResponse();
+  const next = mockNext();
+
+  checkPassword(req, res, next);
+
+  expect(res.status).toHaveBeenCalledWith(500);
+  expect(res.json).toHaveBeenCalledWith({
+    message: "Erreur interne middleware checkPassword",
+  });
+  expect(next).not.toHaveBeenCalled();
+});
+
+
+
 });

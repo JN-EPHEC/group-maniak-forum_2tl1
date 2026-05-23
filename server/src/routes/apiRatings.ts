@@ -1,6 +1,11 @@
 import express from 'express';
-import * as tbRatings from "../controllers/tbRatingsControllers.js";
-
+import * as Ratings from "../controllers/tbRatingsControllers.js";
+import tbRatings from '../models/tbRatings.js';
+import { requireAdmin } from '../middlewares/checkAdminRole.js';
+import { checkOwnerOrAdmin } from '../middlewares/checkOwnerOrAdmin.js';
+import { checkAdminOrSetter } from '../middlewares/checkAdminOrSetter.js';
+import { jwtAuth } from '../middlewares/jwtAuth.js';
+import { checkIfConnected } from '../middlewares/checkIfConnected.js';
 const router = express.Router()
 /**
  * @swagger
@@ -29,7 +34,7 @@ const router = express.Router()
  *         description: Erreur serveur
  */
 
-router.get("/",tbRatings.getAllRatings);
+router.get("/",Ratings.getAllRatings);
 /**
  * @swagger
  * /api/ratings/{id}:
@@ -56,7 +61,7 @@ router.get("/",tbRatings.getAllRatings);
  *         description: Erreur serveur
  */
 
-router.get("/:id",tbRatings.getRatingsbyPk);
+router.get("/:id",Ratings.getRatingsbyPk);
 /**
  * @swagger
  * /api/ratings/author/{id}:
@@ -77,7 +82,7 @@ router.get("/:id",tbRatings.getRatingsbyPk);
  *         description: Erreur serveur
  */
 
-router.get("/author/:id",tbRatings.getRatingsByUser);
+router.get("/author/:id",Ratings.getRatingsByUser);
 /**
  * @swagger
  * /api/ratings/boulder/{id}:
@@ -98,7 +103,7 @@ router.get("/author/:id",tbRatings.getRatingsByUser);
  *         description: Erreur serveur
  */
 
-router.get("/boulder/:id",tbRatings.getRatingsByBoulders);
+router.get("/boulder/:id",Ratings.getRatingsByBoulders);
 /**
  * @swagger
  * /api/ratings/area/{id}:
@@ -119,7 +124,7 @@ router.get("/boulder/:id",tbRatings.getRatingsByBoulders);
  *         description: Erreur serveur
  */
 
-router.get("/area/:id",tbRatings.getRatingsByAreaGym);
+router.get("/area/:id",Ratings.getRatingsByAreaGym);
 //POST 
 /**
  * @swagger
@@ -140,7 +145,7 @@ router.get("/area/:id",tbRatings.getRatingsByAreaGym);
  *         description: Erreur serveur
  */
 
-router.post("/",tbRatings.postRatings);
+router.post("/",jwtAuth,checkIfConnected,Ratings.postRatings);
 //DEL
 /**
  * @swagger
@@ -163,5 +168,5 @@ router.post("/",tbRatings.postRatings);
  *         description: Erreur serveur
  */
 
-router.delete("/:id",tbRatings.delRatings);
+router.delete("/:id",jwtAuth,checkOwnerOrAdmin(tbRatings,'userId'),Ratings.delRatings);
 export default router
