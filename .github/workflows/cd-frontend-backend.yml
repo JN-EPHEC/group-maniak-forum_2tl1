@@ -39,7 +39,7 @@ jobs:
 
   deploy-backend:
     runs-on: ubuntu-latest
-    needs: deploy-frontend   # ⬅️ Le backend attend que le front soit fini
+    needs: deploy-frontend
 
     steps:
       - uses: actions/checkout@v3
@@ -54,6 +54,6 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd /home/ben/maniak-forum
-            git pull origin main
+            docker image pull ekss/maniak-forum:latest
             docker compose down
             docker compose up --build -d
