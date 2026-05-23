@@ -40,7 +40,7 @@ tbBoulders.init(
             allowNull: false,
         },
         boulderEndDate :{
-            type : DataTypes.DATE,
+            type : DataTypes.STRING,
             allowNull: true,
             defaultValue: null
         },

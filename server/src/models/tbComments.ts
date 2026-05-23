@@ -32,7 +32,8 @@ tbComments.init(
             references : {
                 model: "tbBoulders",
                 key : "boulderId"
-            }
+            },
+            onDelete: "CASCADE"
         }
     },
     {
