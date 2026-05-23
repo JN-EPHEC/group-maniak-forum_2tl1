@@ -18,6 +18,8 @@ jobs:
           npm install
           npm run build
         working-directory: ./client
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
       - name: Deploy to VPS via SCP
         uses: appleboy/scp-action@v0.1.4
         with:
