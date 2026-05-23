@@ -1,9 +1,7 @@
 name: Continuous Deployment - Backend
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   deploy-backend:
@@ -19,6 +17,6 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd /home/ben/maniak-forum
-            git pull ekss/maniak-forum:latest
+            git image pull ekss/maniak-forum:latest
             docker compose down
             docker compose up --build -d
