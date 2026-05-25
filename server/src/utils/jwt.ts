@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import type tbUsers from "../models/tbUsers.js";
 
-const ACCESS_EXPIRES_IN = "15m";
+const ACCESS_EXPIRES_IN = "15min";
 const REFRESH_EXPIRES_IN = "7d";
 
 export interface JwtAccessPayload {
