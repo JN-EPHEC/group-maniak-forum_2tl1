@@ -35,7 +35,7 @@ async function startServer() {
         await sequelize.sync();
         console.log('La syncro est done');
         app.listen(port, () => {
-            console.log(`Serveur lancé sur http://localhost:${port}`);
+            console.log(`Serveur lancé sur http://${process.env.BACK_URL}:${port}`);
         });
     } catch (error) {
         console.error('Erreur au démarrage :', error);
