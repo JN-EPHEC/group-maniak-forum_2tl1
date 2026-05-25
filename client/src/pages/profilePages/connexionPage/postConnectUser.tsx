@@ -5,6 +5,7 @@ export const PostConnectUser = async (e: any, setPage: (page: string) => void) =
     const password = data.get("passwordForm");
     const requestOptions = {
         method: 'POST',
+        credentials: 'include' as RequestCredentials,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
             identifier: identifier,
