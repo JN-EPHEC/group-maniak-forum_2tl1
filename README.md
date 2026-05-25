@@ -13,7 +13,7 @@ Année académique : 2025‑2026
 # 🌍 1. Lien de Production
 
 ➡️ **Application déployée :**  
-`https://maniak-forum.be`
+`https://www.maniak-forum.be`
 
 Oui j'ai payé
 ---
