@@ -59,15 +59,19 @@ export async function getWeeklyBoulders() {
                 }
             ]
         }],
-        group: [
-            "tbRatings.boulderId",
-            "boulder.boulderId",
-            "boulder.difficulty.difficultyId",
-            "boulder.setter.userId",
-            "boulder.area.areaId",
-            "boulder.area.gym.gymId"
-        ],
-        order: [["boulderReleaseDate","DESC"],[fn("AVG", col("rateNote")), "DESC"]],
+            group: [
+                "tbRatings.boulderId",
+                "boulder.boulderId",
+                "boulder.boulderReleaseDate",
+                "boulder.difficulty.difficultyId",
+                "boulder.setter.userId",
+                "boulder.area.areaId",
+                "boulder.area.gym.gymId"
+            ],
+            order: [
+                [fn("AVG", col("rateNote")), "DESC"],
+                [{ model: tbBoulders, as: "boulder" }, "boulderReleaseDate", "DESC"]
+            ],
         limit: 4
     });
 }
