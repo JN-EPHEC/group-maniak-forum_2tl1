@@ -56,7 +56,7 @@ export async function getByPkService(id:number){
                         attributes: ["boulderId", "createdAt"],
                         separate: true,
                         limit: 1,
-                        order: [[{ model: tbBoulders, as: "boulder" }, "difficultyId", "DESC"]], // ✅ ici
+                        order: [[{ model: tbBoulders, as: "boulder" }, "difficultyId", "DESC"]],
                         include: [
                             {
                                 model: tbBoulders,
