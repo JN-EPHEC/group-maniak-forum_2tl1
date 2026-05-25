@@ -67,7 +67,7 @@ export async function getWeeklyBoulders() {
             "boulder.area.areaId",
             "boulder.area.gym.gymId"
         ],
-        order: [[fn("AVG", col("rateNote")), "DESC"]],
+        order: [["boulderReleaseDate","DESC"],[fn("AVG", col("rateNote")), "DESC"]],
         limit: 4
     });
 }
