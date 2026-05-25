@@ -53,7 +53,7 @@ function GetBoulderById({ boulderId }: Props) {
                     </span>
 
                     <div className="boulderImageUrl">
-                        {boulder.boulderImageUrl && <img src={boulder.boulderImageUrl} />}
+                        {boulder.boulderImageUrl && <img loading="lazy" src={boulder.boulderImageUrl} />}
                     </div>
 
                     <span className="boulderDesc">{boulder.boulderDesc}</span>
