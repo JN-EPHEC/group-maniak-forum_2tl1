@@ -50,33 +50,33 @@ export async function getByPkService(id:number){
     return tbUsers.findByPk(id,{
             attributes: { exclude: ["userPassHashed"] },
             include: [
-                {
-                    model: tbDifficultyUsers,
-                    as: "HighestLvl",
-                    attributes: ["boulderId", "createdAt"],
-                    separate: true,
-                    limit: 1,
-                    include: [
-                        {
-                            model: tbBoulders,
-                            as: "boulder",
-                            attributes: ["difficultyId", "boulderId","boulderName"],
-                            include: [
-                                {
-                                    model: tbDifficulties,
-                                    as: "difficulty",
-                                    attributes: [
-                                        "difficultyId",
-                                        "difficultyColorName",
-                                        "difficultyFrenchScale",
-                                        "difficultyVerminScale"
-                                    ]
-                                }
-                            ],
-                            order: [["difficultyId", "DESC"]]
-                        }
-                    ]
-                },
+                    {
+                        model: tbDifficultyUsers,
+                        as: "HighestLvl",
+                        attributes: ["boulderId", "createdAt"],
+                        separate: true,
+                        limit: 1,
+                        order: [[{ model: tbBoulders, as: "boulder" }, "difficultyId", "DESC"]], // ✅ ici
+                        include: [
+                            {
+                                model: tbBoulders,
+                                as: "boulder",
+                                attributes: ["difficultyId", "boulderId", "boulderName"],
+                                include: [
+                                    {
+                                        model: tbDifficulties,
+                                        as: "difficulty",
+                                        attributes: [
+                                            "difficultyId",
+                                            "difficultyColorName",
+                                            "difficultyFrenchScale",
+                                            "difficultyVerminScale"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
                 {
                     model: tbProfilePictures,
                     as: "profilePicture",
