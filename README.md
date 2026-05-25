@@ -13,8 +13,9 @@ Année académique : 2025‑2026
 # 🌍 1. Lien de Production
 
 ➡️ **Application déployée :**  
-`https://maniak-forum.l1-6.ephec-ti.be`
+`https://maniak-forum.be`
 
+Oui j'ai payé
 ---
 
 # 📌 2. Description du Projet
