@@ -50,7 +50,6 @@
   min-height: 100vh;
 }
 
-/* Wrapper centré — à appliquer sur chaque page */
 .pageContent {
   max-width: var(--content-width);
   margin: 0 auto;
@@ -425,11 +424,6 @@
   flex-direction: row-reverse;
 }
 
-@media (max-width: 640px) {
-  #rowBen, #rowMatt { flex-direction: column; }
-  #idPhotoBen, #idPhotoMatt { width: 100%; height: 220px; }
-}
-
 /* ═══════════════════════════════════════════════════════════════
    PROFIL PAGE
 ═══════════════════════════════════════════════════════════════ */
@@ -482,7 +476,6 @@
   line-height: 1.8;
 }
 
-/* ─── Profil Card ─── */
 .profil-card {
   max-width: 560px;
   margin: 2rem auto;
@@ -671,7 +664,7 @@
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 20px;
-  padding: 24px var(--content-pad) 80px;
+  padding: 24px 16px 80px;
   max-width: 100%;
   margin: 0 auto;
 }
@@ -693,10 +686,12 @@
 }
 
 .boulderImageUrl {
-  width: 100%;
+  width: calc(100% - 32px);
   aspect-ratio: 4 / 3;
   overflow: hidden;
   background: #1a1a1a;
+  margin: 8px 16px;
+  border-radius: var(--radius-sm);
 }
 
 .boulderImageUrl img {
@@ -729,7 +724,7 @@
 .boulderCard .boulderDesc {
   font-size: 0.85rem;
   color: var(--text-muted);
-  padding: 10px 16px;
+  padding: 10px 12px;
   line-height: 1.6;
   border-left: 3px solid var(--orange);
   margin: 8px 16px;
@@ -768,6 +763,12 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.boulderCard .areaDescBoulder {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  padding: 0 16px 8px;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -824,6 +825,7 @@
   letter-spacing: 0.02em;
   text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
+
 /* ═══════════════════════════════════════════════════════════════
    BOULDER LIST
 ═══════════════════════════════════════════════════════════════ */
@@ -894,9 +896,6 @@
 #boulderList > div.difficultyId6 { border-top-color: #3a3a3a; }
 #boulderList > div.difficultyId7 { border-top-color: #c8c8c8; }
 #boulderList > div.difficultyId8 { border-top-color: #c0399a; }
-
-@media (max-width: 768px) { #boulderList { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 480px) { #boulderList { grid-template-columns: 1fr; } }
 
 /* ═══════════════════════════════════════════════════════════════
    STARS
@@ -1340,24 +1339,6 @@ span {
   line-height: 1.6;
 }
 
-/* ─── Boulder detail responsive ─── */
-@media (max-width: 640px) {
-  #boulderDetail .boulderCard {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "name"
-      "setter"
-      "image"
-      "desc"
-      "area"
-      "date"
-      "link"
-      "rating"
-      "formrating"
-      "patchdate";
-  }
-}
-
 /* ═══════════════════════════════════════════════════════════════
    FORMS
 ═══════════════════════════════════════════════════════════════ */
@@ -1367,7 +1348,6 @@ form {
   font-family: var(--font);
 }
 
-/* ─── Shared label/input style (mixin) ─── */
 .formCreateAccount label,
 .formConnexionAccount label,
 #formCreationBoulder label,
@@ -1411,7 +1391,6 @@ form {
   border-color: var(--orange-hover);
 }
 
-/* ─── Create Account ─── */
 .formCreateAccount {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1489,7 +1468,6 @@ form {
 
 #boutonSoumissionCreateAccount:hover { background: var(--orange-dark); }
 
-/* ─── Login ─── */
 .formConnexionAccount {
   display: flex;
   flex-direction: column;
@@ -1519,7 +1497,6 @@ form {
 
 .formConnexionAccount button[type="submit"]:hover { background: var(--orange-dark); }
 
-/* ─── Create Boulder ─── */
 #formCreationBoulder {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1555,7 +1532,6 @@ form {
 
 #formCreationBoulder input[type="submit"]:hover { background: var(--orange-dark); }
 
-/* ─── Rating Form ─── */
 #formRatingBoulder {
   display: grid;
   grid-template-columns: 1fr;
@@ -1624,7 +1600,7 @@ form {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   DROPDOWN BOUTON DE TRI
+   DROPDOWN
 ═══════════════════════════════════════════════════════════════ */
 
 .dropdown {
@@ -1696,7 +1672,7 @@ form {
   font-size: 13px;
 }
 
-#formErrorRatings{
+#formErrorRatings {
   color: red;
   font-size: 13px;
 }
@@ -1709,6 +1685,11 @@ form {
   padding: 24px 0;
   width: 100%;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   DELETE BUTTON
+═══════════════════════════════════════════════════════════════ */
+
 .btn-delete {
   background: transparent;
   color: #e05555;
@@ -1762,4 +1743,76 @@ form {
   font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MEDIA QUERIES
+═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1200px) {
+  #boulderList {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1600px) {
+  #boulderList {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  #boulderList { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 540px) {
+  
+
+  #boulderList { grid-template-columns: 1fr; padding: 1rem 12px; }
+  #boulderWeekly {
+  grid-template-columns: 1fr;
+  padding: 16px 12px 80px;
+  }
+
+  #listGym {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 16px 12px 80px;
+  }
+
+  #zoneWhiteLogoManiakHome {
+    height: 20vh;
+  }
+
+  #rowBen, #rowMatt { flex-direction: column; }
+  #idPhotoBen, #idPhotoMatt { width: 100%; height: 220px; }
+
+  #boulderDetail .boulderCard {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "name"
+      "setter"
+      "image"
+      "desc"
+      "area"
+      "date"
+      "link"
+      "rating"
+      "formrating"
+      "patchdate";
+  }
+
+  .profil-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profil-boulder-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  #extendedMenu,
+  #extendedMenuAccount {
+    width: 100%;
+  }
 }
