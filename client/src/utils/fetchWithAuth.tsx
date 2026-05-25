@@ -16,12 +16,10 @@ export const fetchWithAuth = async (url: string, options: RequestInit = {}): Pro
     let response = await fetch(url, authOptions);
 
     if (response.status === 401) {
-        const refreshToken = localStorage.getItem("refreshToken");
-
         const refreshResponse = await fetch(`${import.meta.env.VITE_API_URL}/auth/refresh`, {
             method: 'POST',
+            credentials: 'include', 
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ refreshToken })
         });
 
         if (refreshResponse.ok) {
@@ -40,7 +38,6 @@ export const fetchWithAuth = async (url: string, options: RequestInit = {}): Pro
         } else {
             // Refresh expiré → déconnexion forcée
             localStorage.removeItem("tokenIdentification");
-            localStorage.removeItem("refreshToken");
             localStorage.removeItem("tokenUser");
         }
     }
