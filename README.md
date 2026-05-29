@@ -203,7 +203,7 @@ Elle est hébergée sur **Supabase (PostgreSQL)** et manipulée via **Sequelize*
 - Express  
 - TypeScript  
 - ORM : Sequelize  
-- PostgreSQL (Supabase)
+- PostgresSQL (Supabase)
 
 ### **Frontend**
 - React  
