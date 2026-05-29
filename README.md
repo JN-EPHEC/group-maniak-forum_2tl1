@@ -24,12 +24,12 @@ Cette application est une **plateforme communautaire dédiée à une salle d’e
 
 Elle répond à plusieurs besoins concrets des salles et des grimpeurs :
 
-- centraliser les blocs actuels et archivés,  
-- visualiser des vidéos de bêta,  
-- donner un avis ou un ressenti,  
-- suivre l’historique des ouvertures,  
-- créditer les ouvreurs,  
-- échanger via un espace communautaire.
+- consulter les blocs actuels et archivés ;
+- visualiser des vidéos de “béta” (méthode optimale) ;
+- donner un avis ou un ressenti sur un bloc ;
+- suivre l’historique des ouvertures ;
+- créditer les ouvreurs ;
+- échanger entre grimpeurs via un espace de commentaires.
 
 Le projet est réalisé dans le cadre du cours **Développement 3** et constitue un **projet full‑stack complet**, incluant backend, frontend, base de données, tests, CI/CD et déploiement Docker.
 
